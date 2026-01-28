@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\begin{document}
+    \shorthandoff{=}
+
+    \section{Gauge-Invariance}
+    Let 
+    \begin{equation*}
+        \dot{x}=Ax,\,y=Cx+b,\,\dot{b}=0
+    \end{equation*}
+    be given. The bias term is modeled as,
+    \begin{equation*}
+        b\triangleq \alpha C+\beta C^\perp
+    \end{equation*}
+    where $C^T C^\perp=(C^\perp)^T C=0$ or alternatively $C\perp C^\perp$,
+    and the projection matrix is chosen as,
+    \begin{equation*}
+        \Pi\triangleq I-\frac{CC^T}{C^T C}
+    \end{equation*}
+    The following can be stated,
+    \begin{equation*}
+        \begin{split}
+          \Pi C&=\left(I-\frac{CC^T}{C^T C}\right)C\\
+          &=C-\frac{CC^T C}{C^T C}\\
+          &=C-C\\
+          \Pi C&=0
+        \end{split}
+    \end{equation*}
+    and
+    \begin{equation*}
+        \begin{split}
+          \Pi C^\perp&=\left(I-\frac{CC^T}{C^T C}\right)C^\perp\\
+          &=C^\perp-\frac{CC^T C^\perp}{C^T C}\\
+          \Pi C^\perp&=C^\perp
+        \end{split}
+    \end{equation*}
+    The projection matrix applied on the bias $\Pi b$ gives,
+    \begin{equation*}
+        \begin{split}
+          \Pi b&=\Pi (\alpha C+\beta C^\perp)\\
+          &=\alpha \Pi C+\beta \Pi C^\perp\\
+          &=\beta C^\perp
+        \end{split}
+    \end{equation*}
+    $\Pi$ applied to the output gives,
+    \begin{equation*}
+        \begin{split}
+            \Pi y&=\Pi (Cx+\alpha C+\beta C^\perp)\\
+            &=\Pi Cx+\alpha \Pi C+\beta \Pi C^\perp\\
+            &=\beta \Pi C^\perp\\
+            &=\beta C^\perp
+        \end{split}
+    \end{equation*}
+    and     
+    $\beta$ can be recovered using,
+    \begin{equation*}
+        \begin{split}
+            (C^\perp)^T(\Pi y&=\beta C^\perp)\\
+            (C^\perp)^T\Pi y&=(C^\perp)^T\beta C^\perp\\
+            (C^\perp)^T\Pi y&=\beta(C^\perp)^T C^\perp\\
+            \beta&=\frac{(C^\perp)^T\Pi y}{(C^\perp)^T C^\perp}
+        \end{split}
+    \end{equation*}
+    Here, the bias perpendicular to the output vector $C$ can be recovered but, the bias aligned with the output can not be recovered via the projection. This can also be observed by the following,
+    \begin{equation*}
+        \begin{split}  
+            \dot{x}=Ax,\,y=Cx+b,\,\dot{b}=0\\
+            \dot{x}=Ax,\,y=Cx+\alpha C+\beta C^\perp,\,\dot{\alpha C+\beta C^\perp}=0\\
+            \dot{x}=Ax,\,y=C(x+\alpha)+\beta C^\perp,\,\dot{\alpha} C+\dot{\beta} C^\perp=0\\
+            \dot{x}=Ax,\,y=C(x+\alpha)+\beta C^\perp,\,\dot{\alpha}=0,\,\dot{\beta}=0
+        \end{split}
+    \end{equation*}
+    Defining $z\triangleq x+\alpha$,
+    \begin{equation*}
+        \begin{split}  
+            \dot{z}=Az-\alpha A,\,y=Cz+\beta C^\perp ,\,\dot{\alpha}=0,\,\dot{\beta}=0
+        \end{split}
+    \end{equation*}
+    gives
+    \begin{equation*}
+        \begin{split} 
+            \begin{bmatrix}
+                \dot{z}\\
+                \dot{\alpha}
+            \end{bmatrix}=
+            \begin{bmatrix}
+                A& -A\\
+                0& 0
+            \end{bmatrix}\begin{bmatrix}
+                z\\
+                \alpha
+            \end{bmatrix},\,y=\begin{bmatrix}C& 0\end{bmatrix}
+            \begin{bmatrix}
+                z\\
+                \alpha
+            \end{bmatrix}+\beta C^\perp,\,x=\begin{bmatrix}I&-I\end{bmatrix}\begin{bmatrix}
+                z\\
+                \alpha
+            \end{bmatrix}
+        \end{split}
+    \end{equation*}
+    An observer as follows,
+    \begin{equation*}
+        \begin{bmatrix}
+                \dot{\hat{z}}\\
+                \dot{\hat{\alpha}}
+            \end{bmatrix}=
+            \begin{bmatrix}
+                A& -A\\
+                0& 0
+            \end{bmatrix}\begin{bmatrix}
+                \hat{z}\\
+                \hat{\alpha}
+            \end{bmatrix}+\begin{bmatrix}
+            L\\L_\alpha
+            \end{bmatrix}(y-\hat{y}),\,\hat{y}=\begin{bmatrix}C& 0\end{bmatrix}
+            \begin{bmatrix}
+                \hat{z}\\
+                \hat{\alpha}
+            \end{bmatrix}+\Pi y,\,\hat{x}=\begin{bmatrix}I&-I\end{bmatrix}\begin{bmatrix}
+                \hat{z}\\
+                \hat{\alpha}
+            \end{bmatrix}
+    \end{equation*}
+    may be used to determine $x$ and $\alpha$ where $\beta$ is obtained using the projection.
+
+\end{document}

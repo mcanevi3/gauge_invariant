@@ -1,0 +1,41 @@
+clear;clc;
+
+A_=[1,2;-3,-4];
+B1_=zeros(2,1);
+B2_=zeros(2,1);
+C1_=[1,0];
+D1_=zeros(1,1);
+D2_=zeros(1,1);
+C2_=[1,0];
+
+A=[A_,zeros(2,1);zeros(1,2),zeros(1,1)];
+B1=[B1_;zeros(1,1)];
+B2=[B2_;zeros(1,1)];
+C1=[C1_,eye(1)];
+D1=D1_;
+D2=D2_;
+C2=[C2_,zeros(1,1)];
+
+n=3;
+m=1;
+cvx_clear;
+cvx_begin sdp quiet;
+variable P(n,n) symmetric;
+variable W(n,m);
+variable gm;
+minimize(gm);
+[
+    A'*P+P*A+W*C1+C1'*W' , P*B2+W*D2 , C2';
+    (P*B2+W*D2)' , -gm*eye(m) , zeros(m,m);
+    C2 , zeros(m,m) , -gm*eye(m)
+]<=0;
+P>=0;
+gm>=0;
+cvx_end;
+L=inv(P)*W;
+
+odefun=@()
+[t,y] = ode45(odefun,tspan,y0);
+
+
+

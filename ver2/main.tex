@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\begin{document}
+    \shorthandoff{=}
+    Sistem
+    \begin{equation}
+        \dot{x}=0,\,\dot{b}=0,\,y=Cx+b+n
+    \end{equation}
+    ve boyutlar $x\in\mathbb{R}^{nx1}$, $y\in\mathbb{R}^{px1}$, $b\in\mathbb{R}^{px1}$, $n\in\mathbb{R}^{px1}$, $C\in\mathbb{R}^{pxn}$ ve $\rho\in\mathbb{R}$ olmak üzere, izdüşüm matrisi
+    \begin{equation}
+        \Pi\triangleq I^{pxp}-\frac{1}{\rho}CC^T
+    \end{equation}
+    olarak tanımlanmıştır. $\Pi C=0$ ifadesi,
+    \begin{equation}
+    \begin{split}
+        \Pi C&=0\\
+        (I^{pxp}-\frac{1}{\rho}CC^T)C&=0\\
+        (\rho I-CC^T)C&=0\quad \rightarrow (\lambda I-(CC^T))C=0
+    \end{split}
+    \end{equation}
+    olarak yazılabilir. Buradan $\rho\neq 0$, $CC^T$ matrisinin öz-değerleri olarak seçilebilir. Dikkat edilirse, $CC^T$ matrisi pozitif yarı tanımlıdır ve rankı $rank(CC^T)=n$ olarak hesaplanır. $CC^T\in\mathbb{R}^{pxp}$ sebebiyle, eğer $p>n$ ise $\Pi$ matrisinin tersi yoktur. Bu durumda, $z\triangleq \Pi \hat{b}$ ve
+    \begin{equation}
+        \dot{z}=-\alpha z+\alpha \Pi y,\,\alpha>0
+    \end{equation}
+    olmak üzere, $z$ kestiriminden $\hat{b}$ sinyaline 
+    \begin{equation}
+         \hat{b}=\Pi^{-1} z
+    \end{equation}
+    ifadesine ihtiyaç olduğundan, geçiş bulunmamaktadır. Bu sebeple tersinin alınabilmesi için,
+    \begin{equation}
+         p\leq n
+    \end{equation}
+    şartı sağlanmalıdır.
+
+    \begin{itemize}
+    \item $n=1$, $p=2$ ve 
+    \begin{equation}
+        C=\begin{bmatrix}1\\1\end{bmatrix},\quad CC^T=\begin{bmatrix}1&1\\1&1\end{bmatrix}
+    \end{equation}
+    seçilsin, $CC^T$ öz-değerleri $0$ ve $2$'dir. $\rho=2$ seçilsin,
+    \begin{equation}
+        \Pi=\begin{bmatrix}1&0\\0&1\end{bmatrix}-\frac{1}{2}\begin{bmatrix}1&1\\1&1\end{bmatrix}=\frac{1}{2}\begin{bmatrix}1&-1\\-1&1\end{bmatrix}
+    \end{equation}
+    olur ve tersi mevcut değildir.
+
+    \item $n=2$, $p=2$ ve 
+    \begin{equation}
+        C=\begin{bmatrix}1&1\\1&1\end{bmatrix},\quad CC^T=\begin{bmatrix}2&2\\2&2\end{bmatrix}
+    \end{equation}
+    seçilsin, $CC^T$ öz-değerleri $0$ ve $4$'dir. $\rho=4$ seçilsin. Bu durumda,
+    \begin{equation}
+        \Pi=\frac{1}{2}\begin{bmatrix}1&-1\\-1&1\end{bmatrix}
+    \end{equation}
+    elde edilir ve yine $\Pi^{-1}$ mevcut değildir.
+    
+    \item $n=2$, $p=2$ ve 
+    \begin{equation}
+        C=\begin{bmatrix}1&2\\3&4\end{bmatrix},\quad CC^T=\begin{bmatrix}5&11\\11&25\end{bmatrix}
+    \end{equation}
+    seçilsin, $CC^T$ öz-değerleri $0.1339$ ve $29.8661$'dir. $\rho=29.8661$ seçilsin. Bu durumda,
+    \begin{equation}
+        \Pi=\begin{bmatrix}-36.3413&-82.1509\\-82.1509&-185.7065\end{bmatrix}
+    \end{equation}
+    ve
+    \begin{equation}
+        \Pi=\begin{bmatrix}-3583.2&1585.1\\1585.1& -701.2\end{bmatrix}
+    \end{equation}
+    elde edilir. Fakat,
+    \begin{equation}
+        \Pi C=
+        \begin{bmatrix}
+        -282.7939& -401.2860\\
+        -639.2704& -907.1277\\
+        \end{bmatrix}
+    \end{equation}
+
+    \end{itemize}
+
+\end{document}

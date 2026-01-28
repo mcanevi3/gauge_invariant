@@ -1,0 +1,255 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\begin{document}
+    \shorthandoff{=}
+    \section{Ötelemesiz PLL}
+    \begin{equation*}
+        \begin{split}
+            \dot{\theta}_r&=\omega_r,\quad v_r=\sin{(\theta_r)}\\
+            \dot{\theta}&=\omega_0+k_v u,\quad v=\sin{(\theta)}\\
+            \bar{e}&=v\cdot v_r\\
+            e&=\frac{w_c}{s+w_c}\bar{e},\quad \dot{e}=-w_c e+w_c\bar{e}\\
+            u&=F(s)e
+        \end{split}
+    \end{equation*}
+    
+    \begin{equation*}
+        \begin{split}
+            \bar{e}&=v\cdot v_r\\
+            &=\sin{(\theta)}\sin{(\theta_r)}\\
+            &=\frac{1}{2}\left[
+                \cos{(\theta_r-\theta)}-\cos{(\theta_r+\theta)}
+            \right],\quad \text{LPF}\\
+            &\approx \frac{1}{2}\cos{(\theta_r-\theta)}
+        \end{split}
+    \end{equation*}
+    $k_v=2$ olsun,
+    \begin{equation*}
+        \begin{split}
+            \dot{\theta}&=\omega_0+k_v u\\
+            \dot{\theta}&=\omega_0+k_v F(s) e\\
+            \dot{\theta}&=\omega_0+F(s)\cdot 2 e\\
+            \dot{\theta}&\approx\omega_0+F(s)\cdot 2 \frac{1}{2}\cos{(\theta_r-\theta)}\\
+            \dot{\theta}&\approx\omega_0+F(s)\cdot \cos{(\theta_r-\theta)}\\
+        \end{split}
+    \end{equation*}
+    
+    \begin{figure}
+    \centering
+        \includegraphics[width=0.95\textwidth]{result1}
+    \caption{Sonuçlar-1}\label{fig:result1}
+    \end{figure}
+    
+    \begin{figure}
+    \centering
+        \includegraphics[width=0.95\textwidth]{model1.png}
+    \caption{Simulink modeli}\label{fig:model1}
+    \end{figure}
+    
+    \clearpage
+    \section{LMI}
+    Sistem denklemleri
+    \begin{equation*}
+        \begin{split}
+            \dot{x}&=Ax+Bu,\quad y=Cx+b+n
+        \end{split}
+    \end{equation*}
+    Gözleyici denklemleri
+    \begin{equation*}
+        \begin{split}
+            \dot{\hat{x}}&=A\hat{x}+Bu+L(y-\hat{y}),\quad y=C\hat{x}+\hat{b}\\
+            \dot{\hat{b}}&=-\Gamma (y-\hat{y})
+        \end{split}
+    \end{equation*}
+    Hatalar $e=x-\hat{x}$ ve $e_b=b-\hat{b}$ olmak üzere,
+    \begin{equation*}
+        \begin{split}
+            \dot{e}&=\dot{x}-\dot{\hat{x}}\\
+            &=Ax+Bu-A\hat{x}-Bu-L(Cx+b+n-C\hat{x}-\hat{b})\\
+            &=Ax-A\hat{x}-LCx-Lb-Ln+LC\hat{x}+L\hat{b}\\
+            \dot{e}&=(A-LC)e-Le_b-Ln
+        \end{split}
+    \end{equation*}
+    ve
+    \begin{equation*}
+        \begin{split}
+            \dot{e_b}&=\dot{b-\hat{b}}\\
+            &=\dot{b}-\dot{\hat{b}}\\
+            &=-\dot{\hat{b}}\\
+            &=\Gamma (y-\hat{y})\\
+            &=\Gamma (Cx+b+n-C\hat{x}-\hat{b})\\
+            &=\Gamma (Ce+e_b+n)\\
+            &=\Gamma Ce +\Gamma e_b + \Gamma n
+        \end{split}
+    \end{equation*}
+    Hata dinamikleri,
+    \begin{equation*}
+        \begin{split}
+            \begin{bmatrix}
+                \dot{e}\\
+                \dot{e_b}\\
+            \end{bmatrix}=\begin{bmatrix}
+                A-LC& -L\\\Gamma C& \Gamma
+            \end{bmatrix}\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}+\begin{bmatrix}
+                -L\\
+                \Gamma\\
+            \end{bmatrix}n
+        \end{split}
+    \end{equation*}
+    Lyapunov fonksiyonu $V=e^TPe+e_b^Te_b/\gamma^2$,
+    \begin{equation*}
+        \begin{split}
+            V&=\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}^T\begin{bmatrix}
+                P& 0\\
+                0& \gamma^{-2}I
+            \end{bmatrix}\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}
+        \end{split}
+    \end{equation*}
+    Türevi,
+    \begin{equation*}
+        \begin{split}
+            \dot{V}&=\begin{bmatrix}
+                \dot{e}\\
+                \dot{e}_b\\
+            \end{bmatrix}^T\begin{bmatrix}
+                P& 0\\
+                0& \gamma^{-2}I
+            \end{bmatrix}\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}+\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}^T\begin{bmatrix}
+                P& 0\\
+                0& \gamma^{-2}I
+            \end{bmatrix}\begin{bmatrix}
+                \dot{e}\\
+                \dot{e}_b\\
+            \end{bmatrix}\\
+            &=
+            \begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}^T
+            \begin{bmatrix}
+                (A-LC)^T& C^T\Gamma^T\\-L^T& \Gamma^T
+            \end{bmatrix}\begin{bmatrix}
+                P& 0\\
+                0& \gamma^{-2}I
+            \end{bmatrix}\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}
+            +n^T\begin{bmatrix}
+                -L^T&\Gamma^T
+            \end{bmatrix}\begin{bmatrix}
+                P& 0\\
+                0& \gamma^{-2}I
+            \end{bmatrix}\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}\\
+            &+\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}^T\begin{bmatrix}
+                P& 0\\
+                0& \gamma^{-2}I
+            \end{bmatrix}
+            \begin{bmatrix}
+                A-LC& -L\\\Gamma C& \Gamma
+            \end{bmatrix}\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}+\begin{bmatrix}
+                e\\
+                e_b\\
+            \end{bmatrix}^T\begin{bmatrix}
+                P& 0\\
+                0& \gamma^{-2}I
+            \end{bmatrix}\begin{bmatrix}
+                -L\\
+                \Gamma\\
+            \end{bmatrix}n\\
+            &=
+            \begin{bmatrix}
+                e\\
+                e_b\\
+                n\\
+            \end{bmatrix}^T
+            \begin{bmatrix}
+            P(A-LC)+(A-LC)^TP& \gamma^{-2}C^T\Gamma^T -PL &-PL\\
+            \gamma^{-2}\Gamma C-L^TP& \gamma^{-2}\Gamma+\gamma^{-2}\Gamma^T  &\gamma^{-2}\Gamma\\
+            -L^TP& \gamma^{-2}\Gamma^T  &0
+            \end{bmatrix}
+            \begin{bmatrix}
+                e\\
+                e_b\\
+                n\\
+            \end{bmatrix}
+        \end{split}
+    \end{equation*}
+    $\matbb{H}_\infty$ problemi
+    \begin{equation*}
+        \begin{split}
+            \dot{V}+\begin{bmatrix}e& e_b& n\end{bmatrix}^T\begin{bmatrix}e& e_b& n\end{bmatrix}-\gamma_n^2 n^Tn<0
+        \end{split}
+    \end{equation*}
+    ile 
+    \begin{equation*}
+        \begin{split}
+            \begin{bmatrix}
+            P(A-LC)+(A-LC)^TP+I& \gamma^{-2}C^T\Gamma^T -PL &-PL\\
+            \gamma^{-2}\Gamma C-L^TP& \gamma^{-2}\Gamma+\gamma^{-2}\Gamma^T  &\gamma^{-2}\Gamma\\
+            -L^TP& \gamma^{-2}\Gamma^T  &-\gamma_n^2I
+            \end{bmatrix}\prec 0
+        \end{split}
+    \end{equation*}
+    kullanılarak optimizasyon problemi,
+    \begin{equation*}
+        \begin{split}
+            &\min{(\rho_n)}\quad \text{s.t.}\\
+            &P\succ 0\\
+            &\begin{bmatrix}
+            A^TP+PA-YC-C^TY^T+I& \rho C^T\Gamma^T-Y &-Y\\
+            \rho\Gamma C-Y^T& \rho\Gamma+\rho\Gamma^T  &\rho\Gamma\\
+            -Y^T& \rho\Gamma^T  &-\rho_nI
+            \end{bmatrix}\prec 0
+        \end{split}
+    \end{equation*}
+    olarak elde edilir ve $Y\triangleq PL$, $\rho_n\triangleq\gamma_n^2$, $\rho\triangleq\gamma^{-2}$
+    $\rho=1$ için
+    \begin{equation*}
+        \begin{split}
+            &\min{(\rho_n)}\quad \text{s.t.}\\
+            &P\succ 0\\
+            &\begin{bmatrix}
+            A^TP+PA-YC-C^TY^T+I&  C^T\Gamma^T-Y &-Y\\
+            \Gamma C-Y^T& \Gamma+\Gamma^T  &\Gamma\\
+            -Y^T& \Gamma^T  &-\rho_nI
+            \end{bmatrix}\prec 0
+        \end{split}
+    \end{equation*}
+    olarak elde edilir.
+    
+\end{document}
