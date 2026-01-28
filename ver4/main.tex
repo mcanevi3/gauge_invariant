@@ -12,73 +12,10 @@
 
 \begin{document}
     \shorthandoff{=}
-    Let the following system be given,
-    \begin{gather*}
-        \dot{x}=Ax+B_w(\alpha C+\beta C^\perp),\,y=Cx+(\alpha C+\beta C^\perp)
-    \end{gather*}
-    The classical Luenberger observer is given by,
-    \begin{gather*}
-        \dot{\hat{x}}=A\hat{x}+L(y-\hat{y}),\,\hat{y}=C\hat{x}
-    \end{gather*}
-    Using the projection
-    \begin{gather*}    
-        \Pi=I-\frac{CC^T}{C^TC}
-    \end{gather*}    
-    the GI-Luenberger observer can be defined as,
-    \begin{gather*}
-        \dot{\hat{x}}=A\hat{x}+L(y-\hat{y})+B_w\Pi y,\,\hat{y}=C\hat{x}+\Pi y
-    \end{gather*}
-    which is in explicit form,
-    \begin{gather*}
-        \dot{\hat{x}}=A\hat{x}+L(y-\hat{y})+B_w\beta C^\perp,\,\hat{y}=C\hat{x}+\beta C^\perp
-    \end{gather*}
-    where $\Pi C=0$, $\Pi C^\perp=C^\perp$ and $C^T C^\perp =0$.
-    The error dynamics of the classical Luenberger observer is obtained as,
-    \begin{equation*}
-    \begin{split}
-        \dot{e}&=Ax+\alpha B_wC+\beta B_wC^\perp-A\hat{x}-L(Cx+\alpha C+\beta C^\perp-C\hat{x})\\
-        \dot{e}&=(A-LC)e+\alpha(B_wC-LC)+\beta(B_wC^\perp-LC^\perp)\\
-        \dot{e}&=(A-LC)e+\alpha(B_w-L)C+\beta(B_w-L)C^\perp
-    \end{split}
-    \end{equation*}
-    where the GI-Luenberger observer is obtained as,
-    \begin{equation*}
-    \begin{split}
-        \dot{e}&=Ax+\alpha B_wC+\beta B_wC^\perp-A\hat{x}-L(Cx+\alpha C+\beta C^\perp-C\hat{x}-\Pi y)-B_w\Pi y\\
-        \dot{e}&=Ax+\alpha B_wC+\beta B_wC^\perp-A\hat{x}-L(Cx+\alpha C+\beta C^\perp-C\hat{x}-\beta C^\perp)-B_w\beta C^\perp\\
-        \dot{e}&=(A-LC)e+\alpha(B_w-L)C
-    \end{split}
-    \end{equation*}
-    From the error dynamics of GI-Luenberger observer stating,
-    \begin{equation*}
-        ||B_w-L||=0
-    \end{equation*}
-    the ideal case is obtained as 
-    \begin{equation*}
-        B_w=L
-    \end{equation*}
-    for complete invariance respect to $\alpha$, but practically the following $\mathcal{H}_\infty$ problem is more applicable,
-    \begin{equation*}
-    \begin{split}
-        \min_L{\gamma}\,s.t.\\
-        P\succ 0\\
-        \begin{bmatrix}
-            (A-LC)^TP+P(A-LC)& P(B_w-L)\\
-            P(B_w-L)^T& -\gamma I
-        \end{bmatrix}\prec 0
-    \end{split}
-    \end{equation*}
-    which is results in the following LMI problem,
-    \begin{equation*}
-    \begin{split}
-        \min_L{\rho}\,s.t.\\
-        P\succ 0\\
-        \begin{bmatrix}
-            A^TP+PA-YC-C^TY^T& PB_w-Y\\
-            (PB_w)^T-Y^T& -\rho I
-        \end{bmatrix}\prec 0\\
-        L=P^{-1}Y,\,\gamma=\sqrt{\rho}
-    \end{split}
-    \end{equation*}
-        
+    
+    % \input{luenberger1.tex}
+    % \input{pi1.tex}
+    \input{luenberger2.tex}
+    
+    
 \end{document}

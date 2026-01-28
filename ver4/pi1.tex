@@ -1,0 +1,53 @@
+\section{PI Observer}
+Let the following system be given,
+\begin{gather*}
+    \dot{x}=Ax+B_w(C\alpha + C^\perp\beta),\,y=Cx+(C\alpha + C^\perp\beta)
+\end{gather*}
+The classical PI observer is given by,
+\begin{gather*}
+    \dot{\hat{x}}=A\hat{x}+L(y-\hat{y})+L_i q,\,\dot{q}=y-\hat{y},\,\hat{y}=C\hat{x}
+\end{gather*}
+Using the projection
+\begin{gather*}    
+    \Pi=I-\frac{CC^T}{C^TC}
+\end{gather*}    
+the GI-PI observer can be defined as,
+\begin{gather*}
+    \dot{\hat{x}}=A\hat{x}+L(y-\hat{y})+L_i q+B_w\Pi y,\,\hat{y}=C\hat{x}+\Pi y,\,,\dot{q}=y-\hat{y}\,
+\end{gather*}
+which is in explicit form,
+\begin{gather*}
+    \dot{\hat{x}}=A\hat{x}+L(y-\hat{y})+L_i q+B_wC^\perp \beta,\,\hat{y}=C\hat{x}+C^\perp \beta,\,,\dot{q}=y-\hat{y}\,
+\end{gather*}
+where $\Pi C=0$, $\Pi C^\perp=C^\perp$ and $C^T C^\perp =0$.
+
+The error dynamics of the classical PI observer is obtained as,
+\begin{equation*}
+\begin{split}
+    \dot{e}&=Ax+B_wC\alpha +B_wC^\perp\beta -A\hat{x}-L(Cx+C\alpha + C^\perp\beta-C\hat{x})-L_i q\\
+    \dot{e}&=(A-LC)e+(B_wC-LC)\alpha+(B_wC^\perp-LC^\perp)\beta-L_i q\\
+    \dot{e}&=\boxed{(A-LC)e+(B_w-L)C\alpha+(B_w-L)C^\perp\beta-L_i q}
+\end{split}
+\end{equation*}
+and 
+\begin{equation*}
+\begin{split}
+    \dot{q}&=Cx+C\alpha + C^\perp\beta-C\hat{x}-L_i q\\
+    \dot{q}&=\boxed{Ce-L_i q+C\alpha + C^\perp\beta}
+\end{split}
+\end{equation*}
+where the GI-PI observer is obtained as,
+\begin{equation*}
+\begin{split}
+    \dot{e}&=Ax+ B_wC\alpha+ B_wC^\perp\beta-A\hat{x}-L(Cx+ C\alpha+ C^\perp\beta-C\hat{x}-\Pi y)-B_w\Pi y-L_i q\\
+    \dot{e}&=Ax+ B_wC\alpha+ B_wC^\perp\beta-A\hat{x}-L(Cx+ C\alpha+C^\perp\beta -C\hat{x}- C^\perp\beta)-B_w C^\perp\beta-L_i q\\
+    \dot{e}&=\boxed{(A-LC)e+(B_w-L)C\alpha-L_i q}
+\end{split}
+\end{equation*}
+and 
+\begin{equation*}
+\begin{split}
+    \dot{q}&=Cx+C\alpha + C^\perp\beta-C\hat{x}-C^\perp \beta-L_i q\\
+    \dot{q}&=\boxed{Ce-L_i q+C\alpha}
+\end{split}
+\end{equation*}

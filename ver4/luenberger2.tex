@@ -1,0 +1,109 @@
+\section{Luenberger Observer}
+Let the following system be given,
+\begin{gather*}
+    \dot{x}=Ax+B_w w,\,y=Cx+w,\, \dot{w}=0
+\end{gather*}
+The classical Luenberger observer is given by,
+\begin{gather*}
+    \dot{\hat{x}}=A\hat{x}+B_w\hat{w}+L(y-\hat{y}),\,\dot{\hat{w}}=L_w(y-\hat{y}),\,\hat{y}=C\hat{x}+\hat{w}
+\end{gather*}
+The error dynamics are obtained as,
+\begin{equation*}
+\begin{split}
+    \dot{e}&=Ax+B_w w -A\hat{x}-L(Cx+w-C\hat{x}-\hat{w})\\
+    \dot{e}&=(A-LC)e+(B_w-L)e_w
+\end{split}
+\end{equation*}
+and 
+\begin{equation*}
+\begin{split}
+    \dot{e}_w&=-L_w(Cx+w-C\hat{x})\\
+    \dot{e}_w&=-L_wCe
+\end{split}
+\end{equation*}
+or put together the following is obtained,
+\begin{equation*}
+\begin{split}
+    \begin{bmatrix}
+        \dot{e}\\\dot{e}_w
+    \end{bmatrix}=\begin{bmatrix}
+        A-LC& B_w-L\\
+        -L_wC& 0
+    \end{bmatrix}\begin{bmatrix}
+        e\\e_w
+    \end{bmatrix}
+\end{split}
+\end{equation*}
+
+Using the projection
+\begin{gather*}    
+    \Pi=I-\frac{CC^T}{C^TC}
+\end{gather*}    
+the signal $w$ is decomposed as 
+\begin{equation*}
+    w=C\alpha+C^{\perp}\beta
+\end{equation*}
+and the system is re-stated as
+\begin{gather*}
+    \dot{x}=Ax+B_w (C\alpha+C^{\perp}\beta)\\
+    y=Cx+(C\alpha+C^{\perp}\beta)\\
+    \dot{\alpha}=\dot{\beta}=0
+\end{gather*}
+The classical Luenberger observer is given by,
+\begin{gather*}
+    \dot{\hat{x}}=A\hat{x}+B_w(C\hat{\alpha}+C^{\perp}\hat{\beta})+L(y-\hat{y})\\
+    \dot{\hat{\alpha}}=L_w(y-\hat{y})\\
+    \dot{\hat{\beta}}=L_w(y-\hat{y})\\
+    \hat{y}=C\hat{x}+C\hat{\alpha}+C^{\perp}\hat{\beta}
+\end{gather*}
+The error dynamics are,
+\begin{equation*}
+    \begin{split}
+        \begin{bmatrix}
+            \dot{e}\\\dot{e}_\alpha\\\dot{e}_\beta
+        \end{bmatrix}=\begin{bmatrix}
+            A-LC& (B_w-L)C& (B_w-L)C^\perp \\
+           -L_wC& -L_wC& -L_wC^\perp\\
+           -L_wC& -L_wC& -L_wC^\perp\\
+        \end{bmatrix}\begin{bmatrix}
+            e\\e_\alpha\\e_\beta
+        \end{bmatrix}
+    \end{split}
+\end{equation*}
+Since,
+\begin{equation*}
+    \Pi y=\Pi Cx+\Pi C\alpha+\Pi C^{\perp}\beta=C^{\perp}\beta
+\end{equation*}
+the GI Luenberger observer is given by,
+\begin{gather*}
+    \dot{\hat{x}}=A\hat{x}+B_wC\hat{\alpha}+L(y-\hat{y})+B_w\Pi y\\
+    \dot{\hat{\alpha}}=L_w(y-\hat{y})\\
+    \hat{y}=C\hat{x}+C\hat{\alpha}+\Pi y
+\end{gather*}
+and the corresponding error dynamics are given by,
+\begin{equation*}
+\begin{split}
+    \dot{e}&=Ax+B_w (C\alpha+C^{\perp}\beta)-A\hat{x}-B_wC\hat{\alpha}-L(y-\hat{y})-B_w\Pi y\\
+    \dot{e}&=Ax+B_w (C\alpha+C^{\perp}\beta)-A\hat{x}-B_wC\hat{\alpha}\\
+    &-L(Cx+C\alpha+C^{\perp}\beta-C\hat{x}-C\hat{\alpha}-C^{\perp}\beta)-B_wC^{\perp}\beta\\
+    \dot{e}&=(A-LC)e+(B_w-L)Ce_\alpha
+    \end{split}
+\end{equation*}
+and
+\begin{equation*}
+\begin{split}
+    \dot{e}_\alpha&=-L_w(Cx+C\alpha+C^{\perp}\beta-C\hat{x}-C\hat{\alpha}-C^{\perp}\beta)\\
+    \dot{e}_\alpha&=-L_wCe+-L_wCe_\alpha
+    \end{split}
+\end{equation*}
+hence,
+\begin{gather*}
+    \begin{bmatrix}
+        \dot{e}\\\dot{e}_\alpha
+    \end{bmatrix}=\begin{bmatrix}
+        A-LC& (B_w-L)C\\
+        -L_wC& -L_wC
+    \end{bmatrix}\begin{bmatrix}
+        e\\e_\alpha
+    \end{bmatrix}
+\end{gather*}

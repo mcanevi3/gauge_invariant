@@ -1,0 +1,69 @@
+\section{Luenberger Observer}
+    Let the following system be given,
+    \begin{gather*}
+        \dot{x}=Ax+B_w(C\alpha + C^\perp\beta),\,y=Cx+(C\alpha + C^\perp\beta)
+    \end{gather*}
+    The classical Luenberger observer is given by,
+    \begin{gather*}
+        \dot{\hat{x}}=A\hat{x}+L(y-\hat{y}),\,\hat{y}=C\hat{x}
+    \end{gather*}
+    Using the projection
+    \begin{gather*}    
+        \Pi=I-\frac{CC^T}{C^TC}
+    \end{gather*}    
+    the GI-Luenberger observer can be defined as,
+    \begin{gather*}
+        \dot{\hat{x}}=A\hat{x}+L(y-\hat{y})+B_w\Pi y,\,\hat{y}=C\hat{x}+\Pi y
+    \end{gather*}
+    which is in explicit form,
+    \begin{gather*}
+        \dot{\hat{x}}=A\hat{x}+L(y-\hat{y})+B_w C^\perp \beta,\,\hat{y}=C\hat{x}+ C^\perp \beta
+    \end{gather*}
+    where $\Pi C=0$, $\Pi C^\perp=C^\perp$ and $C^T C^\perp =0$.
+    The error dynamics of the classical Luenberger observer is obtained as,
+    \begin{equation*}
+    \begin{split}
+        \dot{e}&=Ax+B_wC\alpha +B_wC^\perp\beta -A\hat{x}-L(Cx+C\alpha + C^\perp\beta-C\hat{x})\\
+        \dot{e}&=(A-LC)e+(B_wC-LC)\alpha+(B_wC^\perp-LC^\perp)\beta\\
+        \dot{e}&=\boxed{(A-LC)e+(B_w-L)C\alpha+(B_w-L)C^\perp\beta}
+    \end{split}
+    \end{equation*}
+    where the GI-Luenberger observer is obtained as,
+    \begin{equation*}
+    \begin{split}
+        \dot{e}&=Ax+ B_wC\alpha+ B_wC^\perp\beta-A\hat{x}-L(Cx+ C\alpha+ C^\perp\beta-C\hat{x}-\Pi y)-B_w\Pi y\\
+        \dot{e}&=Ax+ B_wC\alpha+ B_wC^\perp\beta-A\hat{x}-L(Cx+ C\alpha+C^\perp\beta -C\hat{x}- C^\perp\beta)-B_w C^\perp\beta\\
+        \dot{e}&=\boxed{(A-LC)e+(B_w-L)C\alpha}
+    \end{split}
+    \end{equation*}
+    From the error dynamics of GI-Luenberger observer stating,
+    \begin{equation*}
+        ||(B_w-L)C||=0
+    \end{equation*}
+    the ideal case is obtained as 
+    \begin{equation*}
+        B_w=L
+    \end{equation*}
+    for complete invariance respect to $\alpha$, but practically the following $\mathcal{H}_\infty$ problem is more applicable,
+    \begin{equation*}
+    \begin{split}
+        \min_L{\gamma}\,s.t.\\
+        P\succ 0\\
+        \begin{bmatrix}
+            (A-LC)^TP+P(A-LC)& P(B_w-L)C\\
+            PC^T(B_w-L)^T& -\gamma I
+        \end{bmatrix}\prec 0
+    \end{split}
+    \end{equation*}
+    which is results in the following LMI problem,
+    \begin{equation*}
+    \begin{split}
+        \min_L{\rho}\,s.t.\\
+        P\succ 0\\
+        \begin{bmatrix}
+            A^TP+PA-YC-C^TY^T& (PB_w-Y)C\\
+            C^T(PB_w)^T-Y^T& -\rho I
+        \end{bmatrix}\prec 0\\
+        L=P^{-1}Y,\,\gamma=\sqrt{\rho}
+    \end{split}
+    \end{equation*}
