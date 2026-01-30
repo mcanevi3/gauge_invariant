@@ -1,0 +1,32 @@
+\begin{thebibliography}{1}
+
+\bibitem{duan2013lmis}
+Guang-Ren Duan and Hai-Hua Yu.
+\newblock {\em LMIs in control systems: analysis, design and applications}.
+\newblock CRC press, 2013.
+
+\bibitem{olfati2007consensus}
+Reza Olfati-Saber, J~Alex Fax, and Richard~M Murray.
+\newblock Consensus and cooperation in networked multi-agent systems.
+\newblock {\em Proceedings of the IEEE}, 95(1):215--233, 2007.
+
+\bibitem{shoukry2015event}
+Yasser Shoukry and Paulo Tabuada.
+\newblock Event-triggered state observers for sparse sensor noise/attacks.
+\newblock {\em IEEE Transactions on Automatic Control}, 61(8):2079--2091, 2015.
+
+\bibitem{yang2025output}
+Guitao Yang, Alexander~J Gallo, Angelo Barboni, Riccardo~MG Ferrari, Andrea
+  Serrani, and Thomas Parisini.
+\newblock On the output redundancy of lti systems: A geometric approach with
+  application to privacy.
+\newblock {\em IEEE Transactions on Automatic Control}, 2025.
+
+\bibitem{yang2022sensor}
+Guitao Yang, Hamed Rezaee, Andrea Serrani, and Thomas Parisini.
+\newblock Sensor fault-tolerant state estimation by networks of distributed
+  observers.
+\newblock {\em IEEE Transactions on Automatic Control}, 67(10):5348--5360,
+  2022.
+
+\end{thebibliography}
