@@ -1,23 +1,54 @@
 \section{Work}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The System Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Let $x\in\mathbb{R}^{n\times1}$, $y\in\mathbb{R}^{p\times1}$, $w\in\mathbb{R}^{r\times1}$ be the state, measurement, exogenous vectors, respectively, the SIMO/MIMO LTI system addressed in this paper is stated as, 
 \begin{gather} 
     \dot{x}=A x+B_w w+B_u u,\,y=C x+D_w w
 \end{gather}
 where $A\in\mathbb{R}^{n\times n}$, $B_w\in\mathbb{R}^{n\times r}$, $C\in\mathbb{R}^{p\times n}$ and $D_w\in\mathbb{R}^{p\times r}$. The following additional rank condition
-\begin{equation*}
+\begin{gather}
     \mathrm{rank}(C)=r<p
-\end{equation*}
+\end{gather}
 arises in sparse sensor applications\cite{shoukry2015event}, topologies used in Multi Agen Systems(MAS)\cite{olfati2007consensus} and distributed networks \cite{yang2022sensor}, and is also called Strictly Output Redundant(SOR) system \cite{yang2025output}. Here, the system output is overdetermined, therefore, 
-\begin{equation*}  
+\begin{gather}  
     \mathrm{dim}\,\mathcal{N}(C^T)=p-r\geq 1
-\end{equation*}  
+\end{gather}  
 or using orthogonality $C^TC^\perp=0$,
-\begin{equation*}  
+\begin{gather}  
     \mathrm{dim}\,\mathcal{N}(C^\perp)=p-r\geq 1
-\end{equation*}  
+\end{gather}  
 which ensures nontrivial orthogonal component in the output space. 
+
+The system model is augmented with constant exogenous inputs as follows,
+\begin{gather} \label{eq:augmented_system}
+    \begin{bmatrix}\dot{x}\\\dot{w}\end{bmatrix}=\begin{bmatrix}
+        A& B_w\\0& 0
+    \end{bmatrix}
+    \begin{bmatrix}
+        x\\w
+    \end{bmatrix}
+    +\begin{bmatrix}
+        B_u\\0
+    \end{bmatrix}u,\,
+    y=\begin{bmatrix}
+       C& D_w
+    \end{bmatrix}
+    \begin{bmatrix}
+        x\\w
+    \end{bmatrix}
+\end{gather}
+and in short form as,
+\begin{gather} 
+\dot{\tilde{x}}=\tilde{A}\tilde{x}+\tilde{B}u,\,y=\tilde{C}\tilde{x}
+\end{gather}
+where $\tilde{x}\triangleq \begin{bmatrix}
+        x&w
+    \end{bmatrix}^T$ and matrices with tilde are as in Eq~\ref{eq:augmented_system}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Observer Models}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The classical Luenberger Observer, in this context also called P Observer(PO) is defined as,
 \begin{gather} 
     \dot{\hat{x}}=A \hat{x}+B_u u+L(y-\hat{y}),\,\hat{y}=C \hat{x}
@@ -27,7 +58,7 @@ Assuming $(A,C)$-pair observable, the error dynamics are obtained for the error 
     \dot{e}=(A-LC)e+(B_w-D_wL)w
 \end{gather}
 The $\mathbb{H}_\infty$ optimal observer for objective function $z=C_ze$ is designed using the following LMI problem\cite{duan2013lmis},
-\begin{equation*} 
+\begin{equation*} \label{eq:p_lmi1}
 \begin{split} 
     \min_Y{(\gamma)}\quad \mathrm{s.t.}\\
     \begin{bmatrix}
@@ -38,28 +69,45 @@ The $\mathbb{H}_\infty$ optimal observer for objective function $z=C_ze$ is desi
     P\succ 0
 \end{split} 
 \end{equation*}
-where the observer gain is recovered with $L=P^{-1}Y$. The P Observer utilizes a proportional term to correct its estimate which results in steady-state error in its estimate when exogenous input is present. The Proportional-Integral Observer(PIO) is defined as follows,
+where the observer gain is recovered with $L=P^{-1}Y$. For constant exogenous inputs the augmented LO is given as,
 \begin{gather} 
-\begin{split} 
-    \dot{\hat{x}}=A \hat{x}+B_u u+L(y-\hat{y})+L_i q\\
-    \dot{q}=y-\hat{y},\,\hat{y}=C \hat{x}
-\end{split} 
-\end{gather}
-which is used to compansate for steady state errors in the estimate for constant exogenous inputs. The corresponding error dynamics are obtained as,
-\begin{gather} 
+    \begin{bmatrix}\dot{\hat{x}}\\\dot{\hat{w}}\end{bmatrix}=\begin{bmatrix}
+        A& B_w\\0& 0
+    \end{bmatrix}
     \begin{bmatrix}
-        \dot{e}\\\dot{q}
-    \end{bmatrix}=\begin{bmatrix}
-        A-LC& -L_i\\C& 0
-    \end{bmatrix}\begin{bmatrix}
-        e\\q
+        \hat{x}\\\hat{w}
     \end{bmatrix}+\begin{bmatrix}
-        B_w-D_wL\\D_w
-    \end{bmatrix}w
-\end{gather} 
-The integral term $L_i$ is chosen for fixed $L$ for the sake of simplicity.
+        L_1\\L_2
+    \end{bmatrix}(y-\hat{y})
+    +\begin{bmatrix}
+        B_u\\0
+    \end{bmatrix}u\\
+    \hat{y}=\begin{bmatrix}
+       C& D_w
+    \end{bmatrix}
+    \begin{bmatrix}
+        \hat{x}\\\hat{w}
+    \end{bmatrix}
+\end{gather}
+with error dynamics,
+\begin{gather}
+    \begin{bmatrix}
+        \dot{e}\\\dot{e}_w
+    \end{bmatrix}
+    =\begin{bmatrix}
+        A-L_1C& B_w-L_1D_w\\
+        -L_2C& -L_2
+    \end{bmatrix}
+    \begin{bmatrix}
+        e\\e_w
+    \end{bmatrix}+\begin{bmatrix}
+        B_u\\0
+    \end{bmatrix}u
+\end{gather}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Projection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The projection defined using Gauge-Invariance principle is "proposed" as follows,
 \begin{gather}
     \Pi\triangleq I-C(C^TC)^{-1}C^T
@@ -85,15 +133,38 @@ After this decomposition the projection on the output gives,
     \Pi y=\Pi(Cx+C\alpha+C^\perp \beta)=\Pi C^\perp \beta=C^\perp \beta
 \end{gather}
 which is the orthogonal component. 
-The classical Luenberger Observer is fed with this orthogonal component naming it GI-Luenberger observer, the observer expression becomes,
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The GI-Luenberger Observer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The classical Luenberger Observer is fed with this orthogonal component forming the GI-Luenberger observer, the observer expression becomes,
 \begin{gather} 
     \dot{\hat{x}}=A \hat{x}+B_u u+L(y-\hat{y})+B_w \Pi y,\,\hat{y}=C \hat{x}+\Pi y
 \end{gather}
-The error dynamics,
+The error dynamics of LO,
 \begin{gather}
     \dot{e}=(A-LC)e+(B_w-L)C\alpha+(B_w-L)C^\perp\beta
 \end{gather}
-are converted into the following using the GI-term,
+is as follows for the GI-Luenberger observer,
 \begin{gather}
     \dot{e}=(A-LC)e+(B_w-L)C\alpha
 \end{gather}
+Assuming the observer is designed using the LMI given in Eq~\ref{eq:p_lmi1}, the main difference is in the exogenous input decomposition, thus the performance depends on the decomposition. The steady-state estimation errors will persist for both the LO and GI-LO even for constant exogenous inputs. 
+Assuming constant exogenous inputs, the following GI-Observer is stated,
+\begin{gather} 
+    \begin{bmatrix}\dot{\hat{x}}\\\dot{\alpha}\end{bmatrix}=
+        \begin{bmatrix}A& B_w\\0& 0\end{bmatrix}
+        \begin{bmatrix}\hat{x}\\\alpha\end{bmatrix}
+        +L(y-\hat{y})+\begin{bmatrix}B_w\\0\end{bmatrix} \Pi y,\\
+        \hat{y}=\begin{bmatrix}C& I\end{bmatrix} \begin{bmatrix}\hat{x}\\\alpha\end{bmatrix}+\Pi y
+\end{gather}
+with error dynamics,
+\begin{gather} 
+    \begin{bmatrix}\dot{e}_{x}\\\dot{e}_\alpha\end{bmatrix}=
+        \left(\begin{bmatrix}A& B_w\\0& 0\end{bmatrix}-
+        \begin{bmatrix}L_1\\L_2\end{bmatrix}\begin{bmatrix}C&I\end{bmatrix}
+        \right)
+        \begin{bmatrix}e_x\\e_\alpha\end{bmatrix}
+\end{gather}
+
+
