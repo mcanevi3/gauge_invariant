@@ -10,10 +10,20 @@ Reza Olfati-Saber, J~Alex Fax, and Richard~M Murray.
 \newblock Consensus and cooperation in networked multi-agent systems.
 \newblock {\em Proceedings of the IEEE}, 95(1):215--233, 2007.
 
+\bibitem{Peskin1995}
+M.~E. Peskin and D.~V. Schroeder.
+\newblock {\em An Introduction to Quantum Field Theory}.
+\newblock Addison-Wesley, 1995.
+
 \bibitem{shoukry2015event}
 Yasser Shoukry and Paulo Tabuada.
 \newblock Event-triggered state observers for sparse sensor noise/attacks.
 \newblock {\em IEEE Transactions on Automatic Control}, 61(8):2079--2091, 2015.
+
+\bibitem{YangMills1954}
+C.~N. Yang and R.~L. Mills.
+\newblock Conservation of isotopic spin and isotopic gauge invariance.
+\newblock {\em Phys. Rev.}, 96:191--195, 1954.
 
 \bibitem{yang2025output}
 Guitao Yang, Alexander~J Gallo, Angelo Barboni, Riccardo~MG Ferrari, Andrea

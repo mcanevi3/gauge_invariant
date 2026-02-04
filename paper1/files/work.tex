@@ -28,7 +28,7 @@ The classical Luenberger Observer is defined as,
 \end{gather}
 where $L\in\mathbb{R}^{n\times p}$ is the observer gain. Assuming $(A,C)$-pair observable, the error dynamics are obtained for the error $e\triangleq x-\hat{x}$ as,
 \begin{gather} 
-    \dot{e}=(A-LC)e+(B_w-D_w L)w
+    \dot{e}=(A-LC)e+(B_w-L D_w)w
 \end{gather}
 The $\mathbb{H}_\infty$ optimal observer for objective function $z=C_ze$ is designed using the following LMI problem\cite{duan2013lmis},
 \begin{equation*} \label{eq:p_lmi1}
@@ -124,7 +124,7 @@ or,
 \begin{gather}
 \begin{split}
     \dot{e}&=(A-LC)e+(B_w-LD_w)w-(L-\Lambda)\Pi D_w w\\
-    &=(A-LC)e+(B_w +(-L-L\Pi+\Lambda\Pi)D_w) w
+    &=(A-LC)e+(B_w-LD_w+L\Pi D_w-\Lambda\Pi D_w) w
 \end{split}
 \end{gather}
 
