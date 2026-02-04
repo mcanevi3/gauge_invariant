@@ -31,7 +31,7 @@ variable gmma;
 minimize(gmma);
 P>=1e-3*eye(n);
 [A'*P+P*A-Y*C-C'*Y',P*Bw-Y*Dw,Cz';
-(P*Bw-Y*Dw)',zeros(p,p),-gmma*eye(p);
+(P*Bw-Y*Dw)',-gmma*eye(p),zeros(p,p);
 Cz,zeros(p,p),-gmma*eye(p)]<=0;
 cvx_end;
 
