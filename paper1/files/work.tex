@@ -33,9 +33,9 @@ where $L\in\mathbb{R}^{n\times p}$ is the observer gain. Assuming $(A,C)$-pair o
 The $\mathbb{H}_\infty$ optimal observer for objective function $z=C_ze$ is designed using the following LMI problem\cite{duan2013lmis},
 \begin{equation*} \label{eq:p_lmi1}
 \begin{split} 
-    \min_Y{(\gamma)}\quad \mathrm{s.t.}\\
+    \min_{Y,P}{(\gamma)}\quad \mathrm{s.t.}\\
     \begin{bmatrix}
-        (PA-YC)+(PA-YC)^T& PB_w-YD_w& C_z^T\\
+        (PA-YC)+\star^T& PB_w-YD_w& C_z^T\\
         \star& -\gamma I& 0\\
         \star& 0& -\gamma I
     \end{bmatrix}\prec 0\\
@@ -44,50 +44,14 @@ The $\mathbb{H}_\infty$ optimal observer for objective function $z=C_ze$ is desi
 \end{equation*}
 where the observer gain is recovered with $L=P^{-1}Y$. 
 
-% For constant exogenous inputs the augmented LO is given as,
-% \begin{gather} 
-%     \begin{bmatrix}\dot{\hat{x}}\\\dot{\hat{w}}\end{bmatrix}=\begin{bmatrix}
-%         A& B_w\\0& 0
-%     \end{bmatrix}
-%     \begin{bmatrix}
-%         \hat{x}\\\hat{w}
-%     \end{bmatrix}+\begin{bmatrix}
-%         L_1\\L_2
-%     \end{bmatrix}(y-\hat{y})
-%     +\begin{bmatrix}
-%         B_u\\0
-%     \end{bmatrix}u\\
-%     \hat{y}=\begin{bmatrix}
-%        C& D_w
-%     \end{bmatrix}
-%     \begin{bmatrix}
-%         \hat{x}\\\hat{w}
-%     \end{bmatrix}
-% \end{gather}
-% with error dynamics,
-% \begin{gather}
-%     \begin{bmatrix}
-%         \dot{e}\\\dot{e}_w
-%     \end{bmatrix}
-%     =\begin{bmatrix}
-%         A-L_1C& B_w-L_1D_w\\
-%         -L_2C& -L_2
-%     \end{bmatrix}
-%     \begin{bmatrix}
-%         e\\e_w
-%     \end{bmatrix}+\begin{bmatrix}
-%         B_u\\0
-%     \end{bmatrix}u
-% \end{gather}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Projection}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The projection defined using Gauge-Invariance principle is "proposed" as follows,
+The projection operator defined using Gauge-Invariance principle is "proposed" as follows,
 \begin{gather}
     \Pi\triangleq I-C(C^TC)^{-1}C^T
 \end{gather}
-where the following properties are satisfied,
+which satisfies the following properties,
 \begin{gather}
 \begin{split}
     &\Pi C= (I-C(C^TC)^{-1}C^T)C=0\\
@@ -95,68 +59,67 @@ where the following properties are satisfied,
     &\Pi^2=\Pi,\,\Pi\in\mathbb{R}^{p\times p}
 \end{split}
 \end{gather}
-Using the projection on the measured output gives,
+Using the projection operator on the measured output yields,
 \begin{gather}
-    \Pi y=\Pi(Cx+D_w w)=\Pi D_w w
+    \Pi y=\Pi(C x+D_w w)=\Pi D_w w
 \end{gather}
-The projection eliminates the state dependency and utilizing
+The projection eliminates the state dependent component of the output, isolating the exogenous component establishing state invariance. This is an algebraic measurement of the disturbance reflected to the output.The exogenous input is recovered under the following condition,
 \begin{gather}
-    D_w w=C\alpha+C^\perp \beta
+    \mathrm{rank}(\Pi D_w)=r
 \end{gather}
-the projection gives,
+or equivalently,
 \begin{gather}
-    \Pi y=\Pi C\alpha+\Pi C^\perp \beta=C^\perp \beta
+\ker(\Pi D_w) = {0}.
 \end{gather}
-which is the orthogonal component. 
-
+with the least square estimator,
+\begin{gather}
+    \hat{\omega}=(\Pi D_w)^\dagger(\Pi y)
+\end{gather}
+where $(.)^\dagger$ is the Moore-Penrose pseudoinverse. The exogenous signal recovery fails if 
+\begin{gather}
+D_w w \in \mathrm{Im}(C),
+\end{gather}
+otherwise,
+\begin{gather}
+    \hat{\omega}\rightarrow \omega
+\end{gather}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The GI-Luenberger Observer}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The classical Luenberger observer is fed with this orthogonal component forming the GI-Luenberger observer, the observer expression becomes,
+The classical Luenberger observer is fed with the sensed exogenous input forming the GI-Luenberger observer, the observer expression becomes,
 \begin{gather} 
-    \dot{\hat{x}}=A \hat{x}+B_u u+L(y-\hat{y})+\Lambda \Pi y,\,\hat{y}=C \hat{x}+\Pi y
-\end{gather}
-where $\Lambda\in\mathbb{R}^{n\times p}$ and the error dynamics are obtained as,
-\begin{gather}
-    \dot{e}=(A-LC)e+(B_w-LD_w)w-(L-\Lambda)\Pi y
-\end{gather}
-For 
-\begin{gather}
-\begin{split}
-A=\begin{bmatrix}
-0.1495&    0.5832\\
-0.8922&    0.8997\\
-\end{bmatrix},\,B_w=\begin{bmatrix}
-0.3489\\
-0.1484
-\end{bmatrix}\\
-C=\begin{bmatrix}
-0.1184&    0.9606\\
-0.4265&    0.3471\\
-0.7257&    0.3820\\
-\end{bmatrix},\,D_w=\begin{bmatrix}
-0.8844\\
-0.9317\\
-0.0529\\
-\end{bmatrix}
+\begin{split} 
+    \dot{\hat{x}}=A \hat{x}+B_w\hat{\omega}+B_u u+L(y-\hat{y})\\
+    \hat{y}=C \hat{x}+D_w \hat{\omega}\\
+    \hat{\omega}=(\Pi D_w)^\dagger(\Pi y)
 \end{split}
 \end{gather}
-the following is obtained,
+the error dynamics are obtained as,
 \begin{gather}
-\begin{split}
-B_w-LD_w=\\
-\begin{bmatrix}
-    0.3489 - 0.0529l_{13} - 0.9317l_{12} - 0.8844l_{11}\\
-    0.1484 - 0.0529l_{23} - 0.9317l_{22} - 0.8844l_{21}
-\end{bmatrix}
-\end{split}
+    \dot{e}=(A-LC)e
 \end{gather}
-a solution is picked as
+
+The exogenous input is recovered since,
 \begin{gather}
-L=
-\begin{bmatrix}
-0.3945&0&0\\
-0.1678&0&0\\
-\end{bmatrix}
+    \Pi y=\Pi C x+\Pi D_w w=\Pi D_w w
 \end{gather}
+and,
+\begin{gather}
+    (\Pi D_w)^\dagger \Pi y=(\Pi D_w)^\dagger (\Pi D_w) w=w
+\end{gather}
+under the following condition, where $D_w w$ is partitioned as,
+\begin{gather}
+    D_w=C\alpha+C^\perp \beta,\,\beta\neq 0
+\end{gather}
+since,
+\begin{gather}
+    \Pi D_w=\Pi C\alpha+\Pi C^\perp \beta=\Pi C^\perp \beta,\,\beta\neq 0
+\end{gather}
+and finally,
+\begin{gather}
+    \Pi D_w\neq 0
+\end{gather}
+
+
+
 
