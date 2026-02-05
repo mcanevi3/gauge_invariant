@@ -120,11 +120,43 @@ where $\Lambda\in\mathbb{R}^{n\times p}$ and the error dynamics are obtained as,
 \begin{gather}
     \dot{e}=(A-LC)e+(B_w-LD_w)w-(L-\Lambda)\Pi y
 \end{gather}
-or,
+For 
 \begin{gather}
 \begin{split}
-    \dot{e}&=(A-LC)e+(B_w-LD_w)w-(L-\Lambda)\Pi D_w w\\
-    &=(A-LC)e+(B_w-LD_w+L\Pi D_w-\Lambda\Pi D_w) w
+A=\begin{bmatrix}
+0.1495&    0.5832\\
+0.8922&    0.8997\\
+\end{bmatrix},\,B_w=\begin{bmatrix}
+0.3489\\
+0.1484
+\end{bmatrix}\\
+C=\begin{bmatrix}
+0.1184&    0.9606\\
+0.4265&    0.3471\\
+0.7257&    0.3820\\
+\end{bmatrix},\,D_w=\begin{bmatrix}
+0.8844\\
+0.9317\\
+0.0529\\
+\end{bmatrix}
 \end{split}
+\end{gather}
+the following is obtained,
+\begin{gather}
+\begin{split}
+B_w-LD_w=\\
+\begin{bmatrix}
+    0.3489 - 0.0529l_{13} - 0.9317l_{12} - 0.8844l_{11}\\
+    0.1484 - 0.0529l_{23} - 0.9317l_{22} - 0.8844l_{21}
+\end{bmatrix}
+\end{split}
+\end{gather}
+a solution is picked as
+\begin{gather}
+L=
+\begin{bmatrix}
+0.3945&0&0\\
+0.1678&0&0\\
+\end{bmatrix}
 \end{gather}
 
