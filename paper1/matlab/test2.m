@@ -3,7 +3,7 @@ clear;clc;
 A=-1;
 Bw=1;
 C=[1;2];
-Dw=[1;2]*1+[2;-1]*1;
+Dw=[1;2]*1+[2;-1]*1e-2;
 n=size(A,1);
 p=size(C,1);
 
@@ -38,7 +38,7 @@ disp(eig(A-L*C))
 disp("L:");
 disp(L)
 
-%  L=[1,1];
+ L=[1,1];
 
 
 syms x1 x2 x3 x4 x5 x6 real;
