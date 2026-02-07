@@ -121,5 +121,27 @@ and finally,
 \end{gather}
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Robust Observer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let the system be given as,
+\begin{gather} 
+    \dot{x}=A x+B_w w,\,y=(C_0+\Delta C_0) x+D_w w
+\end{gather}
+where $||\Delta||_\infty\leq 1$, the projection,
+\begin{gather}
+    \Pi\triangleq I-C_0(C_0^TC_0)^{-1}C_0^T
+\end{gather}
+on the output gives,
+\begin{gather}
+    \Pi(C_0 x+\Delta C_0 x+D_w w)=\Pi \Delta C_0 x+\Pi D_w w
+\end{gather}
+The uncertainty model,
+\begin{gather}
+    \Delta C_0=H \Delta E
+\end{gather}
+where $\Delta^T\Delta\leq I$ or $||\Delta||_\infty\leq 1$. Hence,
+\begin{gather}
+    \Pi y=\Pi H \Delta E x+\Pi D_w w
+\end{gather}
 

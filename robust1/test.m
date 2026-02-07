@@ -6,12 +6,18 @@ Dw=[1;2]*1+[2;-1]*1;
 
 C0=[1;2];
 Ctheta=[2;3];
+
+H=diag(C0);
+syms d1 d2 real;
+E=1;
+H*[d1;d2]*E
+
 theta_bar=1;
 
 
 theta_test=-0.5;
 C=C0+(theta_test)*Ctheta;
-
+ 
 r=size(Bw,2);
 n=size(A,1);
 p=size(C,1);
