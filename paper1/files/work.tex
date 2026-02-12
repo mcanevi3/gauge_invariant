@@ -178,3 +178,57 @@ and $E=1$ hence,
 \end{gather}
 where $\delta_1\neq \delta_2$.
 
+\clearpage
+Let the system be given as,
+\begin{gather} 
+\begin{split} 
+    y&=(C_0+H\Delta) x+D_w w\\
+    &=\Pi C_0+\Pi H\Delta x+\Pi D_w w\\
+    \Pi y&=\Pi H\Delta x+\Pi D_w w
+\end{split} 
+\end{gather},
+\begin{gather} 
+\begin{split} 
+    (\Pi H )^\dagger\Pi y&=(\Pi H )^\dagger\Pi H\Delta x+(\Pi H )^\dagger\Pi D_w w\\
+    H^\dagger \Pi^\dagger\Pi y&= \Delta x+(\Pi H )^\dagger\Pi D_w w\\
+    H^\dagger \Pi y&= \Delta x+H ^\dagger\Pi^\dagger\Pi D_w w\\
+    H^\dagger \Pi y&= \Delta x+H ^\dagger\Pi D_w w\\
+\end{split} 
+\end{gather},
+or
+\begin{gather} 
+\begin{split} 
+    (\Pi D_w )^\dagger\Pi y&=(\Pi H )^\dagger\Pi H\Delta x+(\Pi H )^\dagger\Pi D_w w\\
+    D_w^\dagger \Pi^\dagger\Pi y &=(\Pi D_w )^\dagger\Pi H \Delta x+(\Pi D_w )^\dagger\Pi D_w w\\
+    D_w^\dagger \Pi y&=(\Pi D_w )^\dagger\Pi H \Delta x+ w\\
+    &=D_w^\dagger \Pi^\dagger\Pi H \Delta x+ w\\
+    D_w^\dagger \Pi y&=D_w^\dagger \Pi H \Delta x+ w\\
+\end{split} 
+\end{gather},
+
+
+
+\begin{gather} 
+\begin{split} 
+    \begin{bmatrix}
+        I & H ^\dagger\Pi D_w\\
+        D_w^\dagger \Pi H& I
+    \end{bmatrix}
+    \begin{bmatrix}
+       \Delta x\\w
+    \end{bmatrix}=
+    \begin{bmatrix}
+       H^\dagger\\D_w^\dagger
+    \end{bmatrix}\Pi y
+\end{split} 
+\end{gather},
+
+
+\begin{gather} 
+\begin{split} 
+    \left|\begin{bmatrix}
+        I & H ^\dagger\Pi D_w\\
+        D_w^\dagger \Pi H & I
+    \end{bmatrix}\right|=I-H ^\dagger\Pi D_w D_w^\dagger \Pi H
+\end{split} 
+\end{gather},
