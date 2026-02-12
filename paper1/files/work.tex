@@ -178,36 +178,42 @@ and $E=1$ hence,
 \end{gather}
 where $\delta_1\neq \delta_2$.
 
-\clearpage
-Let the system be given as,
+\subsection{Recovery of $w$ and $\Delta$ with projection}
+The system output with uncertainty is given as,
+\begin{gather} 
+    y=(C_0+H\Delta E) x+D_w w
+\end{gather}
+where the projection 
+\begin{gather}
+    \Pi\triangleq I-C_0(C_0^TC_0)^{-1}C_0^T
+\end{gather}
+is applied to the output, hence,
 \begin{gather} 
 \begin{split} 
-    y&=(C_0+H\Delta) x+D_w w\\
-    &=\Pi C_0+\Pi H\Delta x+\Pi D_w w\\
-    \Pi y&=\Pi H\Delta x+\Pi D_w w
+    \Pi y&=\Pi C_0+\Pi H\Delta E x+\Pi D_w w\\
+    \Pi y&=\Pi H\Delta E x+\Pi D_w w
 \end{split} 
-\end{gather},
-\begin{gather} 
+\end{gather}
+is obtained. The following is obtained to factor out $\Delta  Ex$,
+\begin{gather} \label{eqn:component_delta_x}
 \begin{split} 
-    (\Pi H )^\dagger\Pi y&=(\Pi H )^\dagger\Pi H\Delta x+(\Pi H )^\dagger\Pi D_w w\\
-    H^\dagger \Pi^\dagger\Pi y&= \Delta x+(\Pi H )^\dagger\Pi D_w w\\
-    H^\dagger \Pi y&= \Delta x+H ^\dagger\Pi^\dagger\Pi D_w w\\
-    H^\dagger \Pi y&= \Delta x+H ^\dagger\Pi D_w w\\
+    (\Pi H )^\dagger\Pi y&=(\Pi H )^\dagger\Pi H\Delta Ex+(\Pi H )^\dagger\Pi D_w w\\
+    H^\dagger \Pi^\dagger\Pi y&= \Delta E x+(\Pi H )^\dagger\Pi D_w w\\
+    H^\dagger \Pi y&= \Delta Ex+H ^\dagger\Pi^\dagger\Pi D_w w\\
+    H^\dagger \Pi y&= \Delta Ex+H ^\dagger\Pi D_w w
 \end{split} 
-\end{gather},
-or
+\end{gather}
+and to factor out $w$,
 \begin{gather} 
-\begin{split} 
-    (\Pi D_w )^\dagger\Pi y&=(\Pi H )^\dagger\Pi H\Delta x+(\Pi H )^\dagger\Pi D_w w\\
-    D_w^\dagger \Pi^\dagger\Pi y &=(\Pi D_w )^\dagger\Pi H \Delta x+(\Pi D_w )^\dagger\Pi D_w w\\
-    D_w^\dagger \Pi y&=(\Pi D_w )^\dagger\Pi H \Delta x+ w\\
-    &=D_w^\dagger \Pi^\dagger\Pi H \Delta x+ w\\
-    D_w^\dagger \Pi y&=D_w^\dagger \Pi H \Delta x+ w\\
+\begin{split} \label{eqn:component_w}
+    (\Pi D_w )^\dagger\Pi y&=(\Pi H )^\dagger\Pi H\Delta E x+(\Pi H )^\dagger\Pi D_w w\\
+    D_w^\dagger \Pi^\dagger\Pi y &=(\Pi D_w )^\dagger\Pi H \Delta Ex+(\Pi D_w )^\dagger\Pi D_w w\\
+    D_w^\dagger \Pi y&=(\Pi D_w )^\dagger\Pi H \Delta Ex+ w\\
+    &=D_w^\dagger \Pi^\dagger\Pi H \Delta Ex+ w\\
+    D_w^\dagger \Pi y&=D_w^\dagger \Pi H \Delta E x+ w\\
 \end{split} 
-\end{gather},
-
-
-
+\end{gather}
+Both Eq~\ref{eqn:component_delta_x} and Eq~\ref{eqn:component_w} are combined into,
 \begin{gather} 
 \begin{split} 
     \begin{bmatrix}
@@ -215,20 +221,35 @@ or
         D_w^\dagger \Pi H& I
     \end{bmatrix}
     \begin{bmatrix}
-       \Delta x\\w
+       \Delta E x\\w
     \end{bmatrix}=
     \begin{bmatrix}
        H^\dagger\\D_w^\dagger
     \end{bmatrix}\Pi y
 \end{split} 
-\end{gather},
-
-
+\end{gather}
+The singularity,
 \begin{gather} 
 \begin{split} 
-    \left|\begin{bmatrix}
+    \left|\begin{array}{cc}
         I & H ^\dagger\Pi D_w\\
         D_w^\dagger \Pi H & I
-    \end{bmatrix}\right|=I-H ^\dagger\Pi D_w D_w^\dagger \Pi H
+    \end{array}\right|=I-H ^\dagger\Pi D_w D_w^\dagger \Pi H
 \end{split} 
-\end{gather},
+\end{gather}
+is obtained. $w$ is recovered with,
+\begin{gather} 
+\begin{split} 
+    w&=\frac{\left|\begin{array}{cc}
+        I & H^\dagger\\
+        D_w^\dagger \Pi H & D_w^\dagger
+    \end{array}\right|}
+    {
+    \left|\begin{array}{cc}
+        I & H ^\dagger\Pi D_w\\
+        D_w^\dagger \Pi H & I
+    \end{array}\right|
+    }\\
+    &=\frac{D_w^\dagger-H^\dagger D_w^\dagger \Pi H}{I-H ^\dagger\Pi D_w D_w^\dagger \Pi H}
+\end{split} 
+\end{gather}
