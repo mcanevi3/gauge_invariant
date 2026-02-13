@@ -1,2 +1,107 @@
 \subsection{Example 1}
-
+The system is given as, $A=-1$, $B_w=1$,
+\begin{equation}
+    C_0=\begin{bmatrix}
+        1\\2
+    \end{bmatrix}
+    ,\,D_w=\begin{bmatrix}
+        3\\3
+    \end{bmatrix},\,
+    H=\begin{bmatrix}
+        1&0\\0&2
+    \end{bmatrix},\,
+    E=1
+\end{equation}
+The uncertainty is modeled as,
+\begin{equation}
+\begin{split}
+    C_0+H\Delta E&=
+    \begin{bmatrix}
+        1\\2
+    \end{bmatrix}+
+    \begin{bmatrix}
+        1&0\\0&2
+    \end{bmatrix}
+    \begin{bmatrix}
+        \delta_1\\\delta_2
+    \end{bmatrix}\\
+    &=
+    \begin{bmatrix}
+        1+\delta_1\\2+2\delta_2
+    \end{bmatrix}
+\end{split}
+\end{equation}
+The projection is calculated as,
+\begin{equation}
+\begin{split}
+    \Pi_0&=
+    \begin{bmatrix}
+        1&0\\0&1
+    \end{bmatrix}-\begin{bmatrix}
+        1\\2
+    \end{bmatrix}\left(
+    \begin{bmatrix}
+        1&2
+    \end{bmatrix}\begin{bmatrix}
+        1\\2
+    \end{bmatrix}\right)^{-1}
+    \begin{bmatrix}
+        1&2
+    \end{bmatrix}\\
+    &=
+    \begin{bmatrix}
+        0.8&   -0.4\\
+        -0.4&    0.2\\
+    \end{bmatrix}
+\end{split}
+\end{equation}
+The output is explicitly written as,
+\begin{equation}
+\begin{split}
+    y&=\begin{bmatrix}
+       1+\delta_1\\2+2\delta_2
+    \end{bmatrix}x+\begin{bmatrix}
+        3\\3
+    \end{bmatrix}w\\
+\end{split}
+\end{equation}
+The projection is applied and the following is obtained,
+\begin{equation}
+\begin{split}
+    \Pi_0 y&=\begin{bmatrix}
+        0.8&   -0.4\\
+        -0.4&    0.2\\
+    \end{bmatrix}\begin{bmatrix}
+       1+\delta_1\\2+2\delta_2
+    \end{bmatrix}x+\begin{bmatrix}
+        0.8&   -0.4\\
+        -0.4&    0.2\\
+    \end{bmatrix}\begin{bmatrix}
+        3\\3
+    \end{bmatrix}w\\
+    &=\begin{bmatrix}
+    0.8\delta_1 - 0.8\delta_2\\
+    0.4\delta_2 - 0.4\delta_1
+    \end{bmatrix}
+    +\begin{bmatrix}
+        1.2\\-0.6
+    \end{bmatrix}w
+\end{split}
+\end{equation}
+Premultiplying the equation with
+\begin{equation}
+    (\Pi_0 H)^\dagger=\begin{bmatrix}
+    0.5&   -0.25\\
+   -0.5&    0.25\\
+    \end{bmatrix}
+\end{equation}
+gives,
+\begin{equation}
+(\Pi_0 H)^\dagger\Pi_0y=\begin{bmatrix}
+0.5\delta_1 - 0.5\delta_2\\
+0.5\delta_2 - 0.5\delta_1\\
+\end{bmatrix}x+\begin{bmatrix}
+0.7500\\
+-0.7500
+\end{bmatrix}w
+\end{equation}
