@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[turkish]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\begin{document}
+    \shorthandoff{=}
+    \begin{equation*}
+        \dot{x}=-x^2+w
+    \end{equation*}
+    ve
+    \begin{equation*}
+        \begin{bmatrix}
+            y_1\\y_2
+        \end{bmatrix}=
+        \begin{bmatrix}
+            \cos(x)\\\sin(x)
+        \end{bmatrix}+\begin{bmatrix}
+            1\\2
+        \end{bmatrix}w
+    \end{equation*}
+    olmak üzere, projeksiyon,
+    \begin{equation*}
+        \Pi=\begin{bmatrix}
+            \sin(x)^2& -\sin(x)\cos(x)\\
+            -\sin(x)\cos(x)& \cos(x)^2
+        \end{bmatrix}
+    \end{equation*}
+    şeklinde seçilir. Projeksiyon uygulandığında,
+    \begin{equation*}
+        \begin{bmatrix}
+            \sin(x)^2& -\sin(x)\cos(x)\\
+            -\sin(x)\cos(x)& \cos(x)^2
+        \end{bmatrix}\begin{bmatrix}
+            \cos(x)\\\sin(x)
+        \end{bmatrix}=\begin{bmatrix}
+            \sin(x)^2\cos(x)-\sin(x)^2\cos(x)\\
+            -\sin(x)\cos(x)^2+\cos(x)^2\sin(x)
+        \end{bmatrix}=\begin{bmatrix}
+            0\\0
+        \end{bmatrix}
+    \end{equation*}
+
+    $\Pi y$ ifadesi,
+    \begin{equation*}
+        \Pi=\begin{bmatrix}
+            \sin(x)^2& -\sin(x)\cos(x)\\
+            -\sin(x)\cos(x)& \cos(x)^2
+        \end{bmatrix}\begin{bmatrix}
+            1\\2
+        \end{bmatrix}=\begin{bmatrix}
+            \sin(x)^2-2\sin(x)\cos(x)\\
+            -\sin(x)\cos(x)+2\cos(x)^2
+        \end{bmatrix}
+    \end{equation*}
+
+    \begin{equation*}
+        \left(\Pi\begin{bmatrix}1\\2
+        \end{bmatrix}\right)^\dagger=
+        \frac{1}{3\cos(x)^2 - 2\sin(2x) + 1}
+        \begin{bmatrix}
+        -(\sin(2x) + \cos(x)^2 - 1)& \cos(x)(2\cos(x) - \sin(x))
+        \end{bmatrix}
+    \end{equation*}
+    şeklinde olur.
+
+
+
+\end{document}
