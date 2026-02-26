@@ -1,107 +1,84 @@
 \subsection{Example 1}
 The system is given as, $A=-1$, $B_w=1$,
 \begin{equation}
-    C_0=\begin{bmatrix}
+    C=\begin{bmatrix}
         1\\2
     \end{bmatrix}
     ,\,D_w=\begin{bmatrix}
         3\\3
-    \end{bmatrix},\,
-    H=\begin{bmatrix}
-        1&0\\0&2
-    \end{bmatrix},\,
-    E=1
-\end{equation}
-The uncertainty is modeled as,
-\begin{equation}
-\begin{split}
-    C_0+H\Delta E&=
-    \begin{bmatrix}
-        1\\2
-    \end{bmatrix}+
-    \begin{bmatrix}
-        1&0\\0&2
     \end{bmatrix}
-    \begin{bmatrix}
-        \delta_1\\\delta_2
-    \end{bmatrix}\\
-    &=
-    \begin{bmatrix}
-        1+\delta_1\\2+2\delta_2
+\end{equation}
+The projection,
+\begin{equation}
+    \Pi=I-C(C^TC)^{-1}C^T
+\end{equation}
+is calculated as,
+\begin{equation}
+    \Pi=\frac{1}{5}\begin{bmatrix}
+        4& -2\\-2& 1
     \end{bmatrix}
-\end{split}
 \end{equation}
-The projection is calculated as,
+Applying the projection on the output,
 \begin{equation}
-\begin{split}
-    \Pi_0&=
-    \begin{bmatrix}
-        1&0\\0&1
-    \end{bmatrix}-\begin{bmatrix}
-        1\\2
-    \end{bmatrix}\left(
-    \begin{bmatrix}
-        1&2
-    \end{bmatrix}\begin{bmatrix}
-        1\\2
-    \end{bmatrix}\right)^{-1}
-    \begin{bmatrix}
-        1&2
-    \end{bmatrix}\\
-    &=
-    \begin{bmatrix}
-        0.8&   -0.4\\
-        -0.4&    0.2\\
-    \end{bmatrix}
-\end{split}
-\end{equation}
-The output is explicitly written as,
-\begin{equation}
-\begin{split}
-    y&=\begin{bmatrix}
-       1+\delta_1\\2+2\delta_2
-    \end{bmatrix}x+\begin{bmatrix}
-        3\\3
-    \end{bmatrix}w\\
-\end{split}
-\end{equation}
-The projection is applied and the following is obtained,
-\begin{equation}
-\begin{split}
-    \Pi_0 y&=\begin{bmatrix}
-        0.8&   -0.4\\
-        -0.4&    0.2\\
-    \end{bmatrix}\begin{bmatrix}
-       1+\delta_1\\2+2\delta_2
-    \end{bmatrix}x+\begin{bmatrix}
-        0.8&   -0.4\\
-        -0.4&    0.2\\
-    \end{bmatrix}\begin{bmatrix}
-        3\\3
-    \end{bmatrix}w\\
-    &=\begin{bmatrix}
-    0.8\delta_1 - 0.8\delta_2\\
-    0.4\delta_2 - 0.4\delta_1
-    \end{bmatrix}x
-    +\begin{bmatrix}
-        1.2\\-0.6
+    \Pi y=\begin{bmatrix}
+        1.2\\
+        -0.6
     \end{bmatrix}w
-\end{split}
 \end{equation}
-Premultiplying the equation with
+is obtained and $w$ is recovered with, $(\Pi D)^\dagger$,
 \begin{equation}
-    (\Pi_0 H)^\dagger=\begin{bmatrix}
-    0.5&   -0.25\\
-   -0.5&    0.25\\
+    (\Pi D)^\dagger\Pi y=\frac{1}{3}\begin{bmatrix}
+        2&  -1
+    \end{bmatrix}\begin{bmatrix}
+        1.2\\
+        -0.6
+    \end{bmatrix}w=w
+\end{equation}
+The observer gain is defined as,
+\begin{equation}
+    L=\begin{bmatrix}
+        l_1& l_2
     \end{bmatrix}
 \end{equation}
-gives,
+where the error dynamics are,
 \begin{equation}
-(\Pi_0 H)^\dagger\Pi_0y=\begin{bmatrix}
-0.5\delta_1 - 0.5\delta_2\\
-0.5\delta_2 - 0.5\delta_1\\
-\end{bmatrix}x+\begin{bmatrix}
-0.7500\\
--0.7500
-\end{bmatrix}w
+    \dot{e}=(A-LC)e+(B-LD)w
 \end{equation}
+Due to the degree of freedom available, 
+\begin{equation}
+    B-LD=1-3l_1-3l_2=0
+\end{equation}
+can be enforced and the eigenvalue assignment gives,
+\begin{equation}
+\begin{split}
+    A-LC&=\lambda\\
+    -1-l_1-2l_2&=\lambda
+\end{split}
+\end{equation}
+and is combined into,
+\begin{equation}
+\begin{split}
+    -1-l_1-2l_2&=\lambda\\
+    -1-l_1-2\left(\frac{1-3l_1}{3}\right)&=\lambda\\
+    -3-3l_1-2(1-3l_1)&=3\lambda\\
+    -3-3l_1-2+6l_1&=3\lambda\\
+    3l_1&=3\lambda+5\\
+    l_1&=\frac{3\lambda+5}{3}
+\end{split}
+\end{equation}
+and 
+\begin{equation}
+    l_2=\frac{-4-3\lambda}{3}
+\end{equation}
+Hence,
+\begin{equation}
+    L=\frac{1}{3}\begin{bmatrix}
+        3\lambda+5& -4-3\lambda
+    \end{bmatrix}
+\end{equation}
+The states are independent of $w$, therefore the state estimation is not affected by $w$. The output can be corrected using the projection.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Example 2}
+
+
