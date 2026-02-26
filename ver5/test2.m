@@ -8,7 +8,7 @@ C=[1;2];
 D=[3;3];
 
 proj=@(C)eye(size(C,1))-C*pinv(C'*C)*C';
-proj(C)
+Pival=proj(C)
 
 lambda=-4;
 l2=-lambda-4/3;
