@@ -1,0 +1,34 @@
+
+Use linear system 
+xdot=Ax+Bw w+Bu u 
+y=Cx+Dw w+Du u +n
+
+xhatdot=Axhat+Bu u+L(y-yhat)
+yhat=Cxhat+Du u
+
+edot=Ax+Bw w+Bu u-Axhat-Bu u-L(y-yhat)
+    =Ax+Bw w+Bu u-Axhat-Bu u-L(Cx+Dw w+Du u-Cxhat-Du u)
+    =(A-LC)e+(Bw-LDw)w+Ln
+
+with suitable L, Bw-LDw=0
+edot=(A-LC)e+Ln
+
+
+Pi (y-Du u)=Pi Cx+Pi Dw w+Pi n
+           =Pi Dw w+Pi n
+
+Piw (y-Du u)=Piw Cx+Piw Dw w+Piw n
+            =Piw Cx+Piw n
+
+ver5/test3
+w - 4*n
+
+Unknown Input Observer (UIO)
+
+Disturbance Observer (DOB)
+
+
+if we design Luenberger noise cannot be eliminated and if L is high noise affect will incerase?
+so what if PI observer is utilized?
+Can we get better noise attenuation?
+And if so, what about projection to get w recovery?
