@@ -1,0 +1,84 @@
+\subsection{Example 1}
+% The system is given as, $A=-1$, $B_w=1$,
+% \begin{equation}
+%     C=\begin{bmatrix}
+%         1\\2
+%     \end{bmatrix}
+%     ,\,D_w=\begin{bmatrix}
+%         3\\3
+%     \end{bmatrix}
+% \end{equation}
+% The projection,
+% \begin{equation}
+%     \Pi=I-C(C^TC)^{-1}C^T
+% \end{equation}
+% is calculated as,
+% \begin{equation}
+%     \Pi=\frac{1}{5}\begin{bmatrix}
+%         4& -2\\-2& 1
+%     \end{bmatrix}
+% \end{equation}
+% Applying the projection on the output,
+% \begin{equation}
+%     \Pi y=\begin{bmatrix}
+%         1.2\\
+%         -0.6
+%     \end{bmatrix}w
+% \end{equation}
+% is obtained and $w$ is recovered with, $(\Pi D)^\dagger$,
+% \begin{equation}
+%     (\Pi D)^\dagger\Pi y=\frac{1}{3}\begin{bmatrix}
+%         2&  -1
+%     \end{bmatrix}\begin{bmatrix}
+%         1.2\\
+%         -0.6
+%     \end{bmatrix}w=w
+% \end{equation}
+% The observer gain is defined as,
+% \begin{equation}
+%     L=\begin{bmatrix}
+%         l_1& l_2
+%     \end{bmatrix}
+% \end{equation}
+% where the error dynamics are,
+% \begin{equation}
+%     \dot{e}=(A-LC)e+(B-LD)w
+% \end{equation}
+% Due to the degree of freedom available, 
+% \begin{equation}
+%     B-LD=1-3l_1-3l_2=0
+% \end{equation}
+% can be enforced and the eigenvalue assignment gives,
+% \begin{equation}
+% \begin{split}
+%     A-LC&=\lambda\\
+%     -1-l_1-2l_2&=\lambda
+% \end{split}
+% \end{equation}
+% and is combined into,
+% \begin{equation}
+% \begin{split}
+%     -1-l_1-2l_2&=\lambda\\
+%     -1-l_1-2\left(\frac{1-3l_1}{3}\right)&=\lambda\\
+%     -3-3l_1-2(1-3l_1)&=3\lambda\\
+%     -3-3l_1-2+6l_1&=3\lambda\\
+%     3l_1&=3\lambda+5\\
+%     l_1&=\frac{3\lambda+5}{3}
+% \end{split}
+% \end{equation}
+% and 
+% \begin{equation}
+%     l_2=\frac{-4-3\lambda}{3}
+% \end{equation}
+% Hence,
+% \begin{equation}
+%     L=\frac{1}{3}\begin{bmatrix}
+%         3\lambda+5& -4-3\lambda
+%     \end{bmatrix}
+% \end{equation}
+% The states are independent of $w$, therefore the state estimation is not affected by $w$. The output can be corrected using the projection.
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Example 2}
+
+
