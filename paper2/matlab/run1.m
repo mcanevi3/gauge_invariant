@@ -24,7 +24,7 @@ pw=size(Cw,1);
 Aa=[A,Bw*Cw;zeros(nw,n),Aw];
 Ca=[C,Dw*Cw];
 
-La=place(Aa',Ca',[-10,-10,-10])'
+La=place(Aa',Ca',[-10,-10,-20])'
 
 
 
