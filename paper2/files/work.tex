@@ -30,12 +30,12 @@ where $L\in\mathbb{R}^{n\times p}$ is the observer gain. Assuming $(A,C)$-pair o
 \begin{gather} 
     \dot{e}=(A-LC)e+(B_w-L D_w)w
 \end{gather}
-The $\mathbb{H}_\infty$ optimal observer for objective function $z=C_ze$ is designed using the following LMI problem\cite{duan2013lmis},
+The $\mathcal{H}_\infty$ optimal observer for objective function $z=C_ze$ is designed using the following LMI problem\cite{duan2013lmis},
 \begin{equation*} \label{eq:p_lmi1}
 \begin{split} 
     \min_{Y,P}{(\gamma)}\quad \mathrm{s.t.}\\
     \begin{bmatrix}
-        (PA-YC)+\star^T& PB_w-YD_w& C_z^T\\
+        (PA-YC)+\star& PB_w-YD_w& C_z^T\\
         \star& -\gamma I& 0\\
         \star& 0& -\gamma I
     \end{bmatrix}\prec 0\\
@@ -87,9 +87,5 @@ The isolated disturbance is added to the classical observer as follows,
     \dot{\hat{x}}=A \hat{x}+L(y-\hat{y})+B_w\hat{w},\,\hat{y}=C \hat{x}+D_w\hat{w}\\
     \hat{w}=(\Pi D_w)^\dagger(\Pi y)
 \end{gather}
-where the observer estimates the states and the projection the disturbance. The error dynamics of the observer is obtained as follows,
-\begin{gather} 
-    \dot{\hat{x}}=A \hat{x}+L(y-\hat{y})+B_w\hat{w},\,\hat{y}=C \hat{x}+D_w\hat{w}\\
-    \hat{w}=(\Pi D_w)^\dagger(\Pi y)
-\end{gather}
+where the observer estimates the states and the projection the disturbance. 
 
