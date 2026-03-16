@@ -1,0 +1,17 @@
+clear;clc;
+
+%% System model
+A=[1,2;-3,-4];
+C=[1,0;2,0;1,2];
+Cperp=null(C');
+Dw=Cperp+C*[1;1];
+
+n=size(A,1);
+p=size(C,1);
+%% Projection
+proj=@(C)eye(size(C,1))-C*pinv(C'*C)*C';
+Pival=proj(C);
+
+%% err
+
+

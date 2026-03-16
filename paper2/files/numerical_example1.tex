@@ -1,4 +1,43 @@
 \subsection{Example 1}
+$C_t=2.2\mathrm{mF}$, $L_t=1.8\mathrm{mH}$, $R_t=0.2\Omega$
+
+\begin{equation}
+A=\begin{bmatrix}
+    0& \frac{1}{C_t}\\
+    -\frac{1}{L_t}& -\frac{-R_t}{L_t}    
+\end{bmatrix},\,
+B_w=\begin{bmatrix}
+    -\frac{1}{C_t}\\
+    0    
+\end{bmatrix},\,
+C=\begin{bmatrix}
+    1& 0\\    
+    1& 0\\    
+    0& 1    
+\end{bmatrix}
+\end{equation}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.85\linewidth]{img/ex1_states1}
+    \caption{States}
+    \label{fig:ex1_states1}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.85\linewidth]{img/ex1_outputs}
+    \caption{Outputs}
+    \label{fig:ex1_outputs}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.85\linewidth]{img/ex1_disturbance}
+    \caption{Disturbance}
+    \label{fig:ex1_disturbance}
+\end{figure}
+
 % The system is given as, $A=-1$, $B_w=1$,
 % \begin{equation}
 %     C=\begin{bmatrix}

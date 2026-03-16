@@ -1,7 +1,7 @@
 @echo off
 pdflatex autosam
-pdflatex autosam
 bibtex autosam
+pdflatex autosam
 pdflatex autosam
 del *.log;
 del *.aux;
