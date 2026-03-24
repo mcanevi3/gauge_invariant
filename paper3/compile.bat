@@ -1,0 +1,10 @@
+@echo off
+pdflatex autosam
+bibtex autosam
+pdflatex autosam
+pdflatex autosam
+del *.log;
+del *.aux;
+del *.bbl;
+del *.blg;
+del *.out;
