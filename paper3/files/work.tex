@@ -79,62 +79,9 @@ with the least square estimator,
 \begin{gather}
     \hat{\omega}=(\Pi D_w)^\dagger(\Pi y)
 \end{gather}
-where $(.)^\dagger$ is the Moore-Penrose pseudoinverse. The exogenous signal recovery fails if 
+where $(.)^\dagger$ is the Moore-Penrose pseudo-inverse. The exogenous signal recovery fails if 
 \begin{gather}
 D_w w \in \mathrm{Im}(C),
 \end{gather}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Let the following output be given as,
-\begin{equation}
-    y=\begin{bmatrix}
-        \sin(x+\alpha)\\ \sin(x+\beta)
-    \end{bmatrix}+D_w w
-\end{equation}
-The projection $\Pi$ to eliminate $D_w$ when applied to the output gives,
-\begin{equation}
-    \Pi y=\Pi\begin{bmatrix}
-        \sin(x+\alpha)\\ \sin(x+\beta)
-    \end{bmatrix}=\begin{bmatrix}
-        \Pi_{11}\sin(x+\alpha)+\Pi_{12}\sin(x+\beta)\\
-        \Pi_{12}\sin(x+\alpha)+\Pi_{22}\sin(x+\beta)
-    \end{bmatrix}
-\end{equation}
-Without loss of generality choosing the first projected output via,
-\begin{equation}
-    \begin{bmatrix}I& 0\end{bmatrix}\Pi y=\Pi_{11}\sin(x+\alpha)+\Pi_{12}\sin(x+\beta)
-\end{equation}
-which is simplified into,
-\begin{gather}
-   \Pi_{11}\sin(x+\alpha)+\Pi_{12}\sin(x+\beta)=\\
-    \left(\Pi_{11}\cos(\alpha)+\Pi_{12}\cos(\beta)\right)\sin(x)\\
-    +\left(\Pi_{11}\sin(\alpha)+\Pi_{12}\sin(\beta)\right)\cos(x)
-\end{gather}
-and into,
-\begin{equation}
-   \begin{bmatrix}I& 0\end{bmatrix}\Pi y=A\sin(x+\theta)
-\end{equation}
-where 
-\begin{equation}
-    A=\sqrt{\left(\Pi_{11}\cos(\alpha)+\Pi_{12}\cos(\beta)\right)^2+\left(\Pi_{11}\sin(\alpha)+\Pi_{12}\sin(\beta)\right)^2}
-\end{equation}
-and
-\begin{equation}
-    \theta=\tan^{-1}\left(
-        \frac{\Pi_{11}\sin(\alpha)+\Pi_{12}\sin(\beta)}{\Pi_{11}\cos(\alpha)+\Pi_{12}\cos(\beta)}\right)
-\end{equation}
-The following is stated,
-\begin{equation}
-    A \sin(x+\theta)=\begin{bmatrix}I& 0\end{bmatrix}\Pi y
-\end{equation}
-another solution is,
-\begin{equation}
-    A \sin(\pi-x-\theta)=\begin{bmatrix}I& 0\end{bmatrix}\Pi y
-\end{equation}
-Hence,
-\begin{gather}
-     x=-\theta+\sin^{-1}\left(\frac{1}{A}\begin{bmatrix}I& 0\end{bmatrix}\Pi y \right) \\
-     x=-\theta+\pi-\sin^{-1}\left(\frac{1}{A}\begin{bmatrix}I& 0\end{bmatrix}\Pi y \right) 
-\end{gather}
-
 
 
