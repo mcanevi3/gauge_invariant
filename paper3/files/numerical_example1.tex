@@ -1,6 +1,5 @@
 \subsection{Example 1}
-$C_t=2.2\mathrm{mF}$, $L_t=1.8\mathrm{mH}$, $R_t=0.2\Omega$
-
+The electrical system given in\cite{yang2025output} with parameters $C_t=2.2\mathrm{mF}$, $L_t=1.8\mathrm{mH}$ and $R_t=0.2\Omega$ is defined as the following state space model,
 \begin{equation}
 A=\begin{bmatrix}
     0& \frac{1}{C_t}\\
@@ -16,25 +15,63 @@ C=\begin{bmatrix}
     0& 1    
 \end{bmatrix}
 \end{equation}
+where output redundancy is created by replicating the first output sensor as the second output sensor. The exogenous input matrix is chosen by combining the orthogonal component of output matrix with the output matrix as,
+\begin{equation}
+    D_w=C^\perp+C\begin{bmatrix}1\\1\end{bmatrix}=\begin{bmatrix}
+    1.7071\\
+    0.2929\\
+    1.0000
+    \end{bmatrix}
+\end{equation}
+A Luenberger observer is designed solving the LMI given in Eq~\ref{eq:lmi1} and is obtained as,
+\begin{equation}
+    L=\begin{bmatrix}
+    -326.1332&  366.9908&   -5.2903\\
+    -33.4833&   28.1920&   48.9023
+    \end{bmatrix}
+\end{equation}
+noting that $B_w-LD_w=0$ is satisfies, hence the state estimation is not affected by the exogenous input. The estimated stae can be used to obtain the exogenous input by utilizing,
+\begin{equation}
+    \hat{w}=D_w^\dagger(y-Cx)
+\end{equation}
+For the projection filtering the projection matrix given by Eq~\ref{eq:projection} is calculated for $C$ as,
+\begin{equation}
+\Pi^C\begin{bmatrix}
+    0.5&   -0.5&         0\\
+    -0.5&    0.5&         0\\
+    0&        0&         0
+\end{bmatrix}
+\end{equation}
+where the projection for $D_w$ is,
+\begin{equation}
+\Pi^D_w\begin{bmatrix}
+    0.2714&   -0.1250&   -0.4268\\
+   -0.1250&    0.9786&   -0.0732\\
+   -0.4268&   -0.0732&    0.7500\\
+\end{bmatrix}
+\end{equation}
+The state is filtered using,
+\begin{equation}
+    \hat{x}=(\Pi^D_w C)^\dagger (\Pi^D_w y)
+\end{equation}
+and the exogenous input is filtered using,
+\begin{equation}
+    \hat{w}=(\Pi^C D_w)^\dagger (\Pi^C y)
+\end{equation}
+The state estimation and the projection state filtering is compared in Figure~\ref{fig:ex1_states1}.
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.85\linewidth]{img/ex1_states1}
+    \caption{State filtering versus estimation of Example 1.}
+    \label{fig:ex1_states1}
+\end{figure}
 
-% \begin{figure}[!htb]
-%     \centering
-%     \includegraphics[width=0.85\linewidth]{img/ex1_states1}
-%     \caption{States}
-%     \label{fig:ex1_states1}
-% \end{figure}
+The exogenous input estimated and filtered is depicted in Figure~\ref{fig:ex1_disturbance}.
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.85\linewidth]{img/ex1_disturbance}
+    \caption{Disturbance}
+    \label{fig:ex1_disturbance}
+\end{figure}
 
-% \begin{figure}[!htb]
-%     \centering
-%     \includegraphics[width=0.85\linewidth]{img/ex1_outputs}
-%     \caption{Outputs}
-%     \label{fig:ex1_outputs}
-% \end{figure}
-
-% \begin{figure}[!htb]
-%     \centering
-%     \includegraphics[width=0.85\linewidth]{img/ex1_disturbance}
-%     \caption{Disturbance}
-%     \label{fig:ex1_disturbance}
-% \end{figure}
-
+The projection filtering method utilizes the geometric proporties of the output mapping, hence no dynamic estimation is present, it directly extracts the output map into its components. Despite the fact that the Luenberger observer gain for output redundant systems is able to eliminate the exogenous input term in the error dynamic by setting $B_w-LD_w$ to zero, the structure exploit performs better for the given example since no estimation takes place.

@@ -23,7 +23,7 @@ where $L\in\mathbb{R}^{n\times p}$ is the observer gain. Assuming $(A,C)$-pair o
     \dot{e}=(A-LC)e+(B_w-L D_w)w
 \end{gather}
 The $\mathcal{H}_\infty$ optimal observer for objective function $z=C_ze$ is designed using the following LMI problem\cite{duan2013lmis},
-\begin{equation*} \label{eq:p_lmi1}
+\begin{equation*} \label{eq:lmi1}
 \begin{split} 
     \min_{Y,P}{(\gamma)}\quad \mathrm{s.t.}\\
     \begin{bmatrix}
@@ -45,7 +45,7 @@ where the observer gain is recovered with $L=P^{-1}Y$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The projection operator defined using Gauge-Invariance principle is "proposed" as follows,
 \begin{gather}
-    \Pi\triangleq I-C(C^TC)^{-1}C^T
+    \Pi\triangleq I-C(C^TC)^{-1}C^T \label{eq:projection}
 \end{gather}
 which satisfies,
 \begin{gather}
