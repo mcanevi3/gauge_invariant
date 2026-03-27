@@ -8,17 +8,9 @@ Let $x\in\mathbb{R}^{n\times 1}$, $y\in\mathbb{R}^{p\times 1}$ and $w\in\mathbb{
 \end{gather}
 where $A\in\mathbb{R}^{n\times n}$, $B_w\in\mathbb{R}^{n\times r}$, $C\in\mathbb{R}^{p\times n}$ and $D_w\in\mathbb{R}^{p\times r}$. The following additional rank condition
 \begin{gather}
-    \mathrm{rank}(C)=r<p
+    \mathrm{rank}(C)<p
 \end{gather}
-arises in sparse sensor applications\cite{shoukry2015event}, topologies used in Multi Agen Systems(MAS)\cite{olfati2007consensus} and distributed networks \cite{yang2022sensor}, and is also called Strictly Output Redundant(SOR) system \cite{yang2025output}. Here, the system output is overdetermined, therefore, 
-\begin{gather}  
-    \mathrm{dim}\,\mathcal{N}(C^T)=p-r\geq 1
-\end{gather}  
-or using orthogonality $C^TC^\perp=0$,
-\begin{gather}  
-    \mathrm{dim}\,\mathcal{N}(C^\perp)=p-r\geq 1
-\end{gather}  
-which ensures nontrivial orthogonal component in the output space. 
+arises in sparse sensor applications\cite{shoukry2015event}, topologies used in Multi Agen Systems(MAS)\cite{olfati2007consensus} and distributed networks \cite{yang2022sensor}, and is also called Strictly Output Redundant(SOR) system \cite{yang2025output}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Luenberger Observer}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -55,33 +47,37 @@ The projection operator defined using Gauge-Invariance principle is "proposed" a
 \begin{gather}
     \Pi\triangleq I-C(C^TC)^{-1}C^T
 \end{gather}
-which satisfies the following properties,
+which satisfies,
 \begin{gather}
-\begin{split}
-    &\Pi C= (I-C(C^TC)^{-1}C^T)C=0\\
-    &\Pi C^\perp=(I-C(C^TC)^{-1}C^T)C^\perp=C^\perp,\,C^TC^\perp=0\\
-    &\Pi^2=\Pi,\,\Pi\in\mathbb{R}^{p\times p}
-\end{split}
+    \Pi C= (I-C(C^TC)^{-1}C^T)C=0
 \end{gather}
+Let $C^\perp=\mathcal{N}(C^T)$,
+\begin{gather}
+    \Pi C^\perp= (I-C(C^TC)^{-1}C^T)C^\perp=C^\perp
+\end{gather}
+and for the projection the following holds,
+\begin{gather}
+    \Pi^2=\Pi,\,\Pi\in\mathbb{R}^{p\times p}
+\end{gather}
+
 Using the projection operator on the measured output yields,
 \begin{gather}
     \Pi y=\Pi(C x+D_w w)=\Pi D_w w
 \end{gather}
 The projection eliminates the state dependent component of the output, isolating the exogenous component establishing state invariance. This is an algebraic measurement of the disturbance reflected to the output.The exogenous input is recovered under the following condition,
 \begin{gather}
-    \mathrm{rank}(\Pi D_w)=r
+    \mathcal{R}(D_w) \not\subseteq \mathcal{R}(C)
 \end{gather}
-or equivalently,
+so that 
 \begin{gather}
-\ker(\Pi D_w) = {0}.
+    \Pi D_w \neq 0
 \end{gather}
 with the least square estimator,
 \begin{gather}
     \hat{\omega}=(\Pi D_w)^\dagger(\Pi y)
 \end{gather}
-where $(.)^\dagger$ is the Moore-Penrose pseudo-inverse. The exogenous signal recovery fails if 
+where $(.)^\dagger$ is the Moore-Penrose pseudo-inverse. This recovery is possible if and only if,
 \begin{gather}
-D_w w \in \mathrm{Im}(C),
+    \mathcal{N}(\Pi D_w) = \{0\}
 \end{gather}
-
 
