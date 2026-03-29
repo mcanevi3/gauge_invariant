@@ -45,24 +45,24 @@ where the observer gain is recovered with $L=P^{-1}Y$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The projection operator defined using Gauge-Invariance principle is "proposed" as follows,
 \begin{gather}
-    \Pi\triangleq I-C(C^TC)^{-1}C^T \label{eq:projection}
+    \Pi^C\triangleq I-C(C^TC)^{-1}C^T \label{eq:projection}
 \end{gather}
 which satisfies,
 \begin{gather}
-    \Pi C= (I-C(C^TC)^{-1}C^T)C=0
+    \Pi^C C= (I-C(C^TC)^{-1}C^T)C=0
 \end{gather}
 Let $C^\perp=\mathcal{N}(C^T)$,
 \begin{gather}
-    \Pi C^\perp= (I-C(C^TC)^{-1}C^T)C^\perp=C^\perp
+    \Pi^C C^\perp= (I-C(C^TC)^{-1}C^T)C^\perp=C^\perp
 \end{gather}
 and for the projection the following holds,
 \begin{gather}
-    \Pi^2=\Pi,\,\Pi\in\mathbb{R}^{p\times p}
+    (\Pi^C)^2=\Pi^C,\,\Pi^C\in\mathbb{R}^{p\times p}
 \end{gather}
 
 Using the projection operator on the measured output yields,
 \begin{gather}
-    \Pi y=\Pi(C x+D_w w)=\Pi D_w w
+    \Pi^C y=\Pi^C(C x+D_w w)=\Pi^C D_w w
 \end{gather}
 The projection eliminates the state dependent component of the output, isolating the exogenous component establishing state invariance. This is an algebraic measurement of the disturbance reflected to the output.The exogenous input is recovered under the following condition,
 \begin{gather}
@@ -70,14 +70,14 @@ The projection eliminates the state dependent component of the output, isolating
 \end{gather}
 so that 
 \begin{gather}
-    \Pi D_w \neq 0
+    \Pi^C D_w \neq 0
 \end{gather}
 with the least square estimator,
 \begin{gather}
-    \hat{\omega}=(\Pi D_w)^\dagger(\Pi y)
+    \hat{\omega}=(\Pi^C D_w)^\dagger(\Pi^C y)
 \end{gather}
 where $(.)^\dagger$ is the Moore-Penrose pseudo-inverse. This recovery is possible if and only if,
 \begin{gather}
-    \mathcal{N}(\Pi D_w) = \{0\}
+    \mathcal{N}(\Pi^C D_w) = \{0\}
 \end{gather}
 
