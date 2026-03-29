@@ -42,3 +42,14 @@ plot(t,xhat(2,:),'b','LineWidth',2,'DisplayName','xhat_2');
 
 
 exportgraphics(gcf,"../img/ex2_results.pdf",'ContentType',"vector");
+
+
+
+M=[C Dn];
+what=pinv(proj(M)*Dw)*(proj(M)*phi);
+figure(2);clf;hold on;grid on;legend("show");
+xlabel("time(sec)");
+
+plot(t,w,'k','LineWidth',3,'DisplayName','w');
+plot(t,what,'r','LineWidth',2,'DisplayName','what');
+exportgraphics(gcf,"../img/ex2_results2.pdf",'ContentType',"vector");
