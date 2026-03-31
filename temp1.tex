@@ -1,0 +1,27 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\begin{document}
+
+Gauge invariance is a central organizing principle of modern physics, expressing the idea that observable quantities should remain unchanged under certain local transformations of the mathematical description. In classical field theories and quantum electrodynamics, this concept ensures that different representations related by gauge transformations correspond to the same physical reality~\cite{Peskin1995, YangMills1954}. From an abstract viewpoint, gauge invariance provides a systematic way to separate physically meaningful dynamics from redundant coordinate or potential offsets. This symmetry-based perspective has proven essential for constructing robust and consistent models in physics, and it motivates the extension of invariance principles beyond their traditional domain toward engineered dynamical systems subject to measurement distortions and unknown offsets.
+
+In linear control systems, similar representation issues arise in the presence of redundant measurements or sensing architectures with non-minimal output representations. In particular, when the output matrix does not have full row rank, multiple output vectors may correspond to the same underlying state. This situation naturally appears in multi-sensor configurations, distributed systems, and sparse measurement settings, where the dimension of the measurement space exceeds the effective information content~\cite{Chen1999, Kailath1980}. As a result, the output representation contains directions that do not contribute to state observability but nevertheless affect the estimation process.
+
+From this perspective, the measurement space can be decomposed into physically meaningful components and redundant directions that do not affect the underlying state. However, conventional observer designs typically treat all output components uniformly, without explicitly distinguishing between these subspaces. This may lead to estimation dynamics that are influenced by representation-dependent artifacts, rather than purely by physically relevant discrepancies.
+
+This observation suggests that the estimation process should be constructed in a way that isolates the physically relevant part of the output from its redundant representation. A natural mechanism to achieve this separation is through a projection operator acting on the measurement space, which removes components lying in the non-informative directions while preserving the observable content. Such projection-based constructions are also well known in physics, particularly in gauge theories, where physically equivalent configurations are related by symmetry transformations and a representative is selected via gauge fixing~\cite{Peskin1995}.
+
+In this work, we develop a projection-based observer framework for linear systems with redundant outputs, motivated by an invariance viewpoint. The proposed approach combines an invariant error construction with a projection mechanism that systematically removes redundant measurement components. This leads to estimation dynamics that depend only on physically meaningful information, providing a structured alternative to conventional observer designs.
+
+
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}
+
