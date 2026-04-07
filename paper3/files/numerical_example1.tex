@@ -15,7 +15,7 @@ C=\begin{bmatrix}
     0& 1    
 \end{bmatrix}
 \end{equation}
-where output redundancy is created by replicating the first output sensor as the second output sensor. The exogenous input matrix is chosen by combining the orthogonal component of output matrix with the output matrix as,
+where output redundancy is created by replicating the sensor. The exogenous input matrix is constructed as follows,
 \begin{equation}
     D_w=C^\perp+C\begin{bmatrix}1\\1\end{bmatrix}=\begin{bmatrix}
     1.7071\\
@@ -23,7 +23,7 @@ where output redundancy is created by replicating the first output sensor as the
     1.0000
     \end{bmatrix}
 \end{equation}
-A Luenberger observer is designed solving the LMI given in Eq~\ref{eq:lmi1} and is obtained as,
+A Luenberger observer is designed solving the LMI given in (\ref{eqn:lmi1}) and is obtained as,
 \begin{equation}
     L=\begin{bmatrix}
     -326.1332&  366.9908&   -5.2903\\
@@ -34,7 +34,8 @@ noting that $B_w-LD_w=0$ is satisfied, hence the state estimation is not affecte
 \begin{equation}
     \hat{w}=D_w^\dagger(y-Cx)
 \end{equation}
-For the projection filtering the projection matrix given by Eq~\ref{eq:projection} is calculated for $C$ as,
+
+On the other hand, using the projection filtering the projection matrix given by (\ref{eq:projection}) is calculated for $C$ as,
 \begin{equation}
 \Pi^C=\begin{bmatrix}
     0.5&   -0.5&         0\\
@@ -42,22 +43,15 @@ For the projection filtering the projection matrix given by Eq~\ref{eq:projectio
     0&        0&         0
 \end{bmatrix}
 \end{equation}
-where the projection for $D_w$ is,
+and for $D_w$ as,
 \begin{equation}
-\Pi^D_w=\begin{bmatrix}
+\Pi^{D_w}=\begin{bmatrix}
     0.2714&   -0.1250&   -0.4268\\
    -0.1250&    0.9786&   -0.0732\\
    -0.4268&   -0.0732&    0.7500\\
 \end{bmatrix}
 \end{equation}
-The state is filtered using,
-\begin{equation}
-    \hat{x}=(\Pi^D_w C)^\dagger (\Pi^D_w y)
-\end{equation}
-and the exogenous input is filtered using,
-\begin{equation}
-    \hat{w}=(\Pi^C D_w)^\dagger (\Pi^C y)
-\end{equation}
+The disturbance and the states are filtered using (\ref{eqn:filtering_w}) and (\ref{eqn:filtering_x}), respectively.
 The state estimation and the projection state filtering is compared in Figure~\ref{fig:ex1_states1}.
 \begin{figure}[!htb]
     \centering
