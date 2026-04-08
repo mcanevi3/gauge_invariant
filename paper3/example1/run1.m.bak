@@ -1,5 +1,4 @@
 clear;clc;
-%%%"Location","best"
 
 %% System model
 Ct=2.2*1e-3;
@@ -61,26 +60,26 @@ y=results(2:4,:);
 yluen=results(5:7,:);
 ygi=results(8:10,:);
 
-color_luen='r--';
-color_gi='c--';
+color_luen='r';
+color_gi='b';
 figure(1);clf;
-subplot(2,1,1);cla;hold on;grid on;xlabel("time(s)");ylabel("x_1(t)");title("State 1");legend("show");ax1=gca;
-subplot(2,1,2);cla;hold on;grid on;xlabel("time(s)");ylabel("x_2(t)");title("State 2");legend("show");ax2=gca;
-plot(ax1,t,x(1,:),'k','LineWidth',3,'DisplayName','state');
-plot(ax1,t,xluen(1,:),color_luen,'LineWidth',2,'DisplayName','luenberger');
-plot(ax1,t,xgi(1,:),color_gi,'LineWidth',2,'DisplayName','projection');
+subplot(2,1,1);cla;hold on;grid on;xlabel("time(s)");ylabel("x_1(t)");title("State 1");legend("show","Location","best");ax1=gca;
+subplot(2,1,2);cla;hold on;grid on;xlabel("time(s)");ylabel("x_2(t)");title("State 2");legend("show","Location","best");ax2=gca;
+plot(ax1,t,x(1,:),'k','LineWidth',3,'DisplayName','x_1');
+plot(ax1,t,xluen(1,:),color_luen,'LineWidth',2,'DisplayName','x_1 luenberger');
+plot(ax1,t,xgi(1,:),color_gi,'LineWidth',2,'DisplayName','x_1 gi');
 
-plot(ax2,t,x(2,:),'k','LineWidth',3,'DisplayName','state');
-plot(ax2,t,xluen(2,:),color_luen,'LineWidth',2,'DisplayName','luenberger');
-plot(ax2,t,xgi(2,:),color_gi,'LineWidth',2,'DisplayName','projection');
+plot(ax2,t,x(2,:),'k','LineWidth',3,'DisplayName','x_2');
+plot(ax2,t,xluen(2,:),color_luen,'LineWidth',2,'DisplayName','x_2 luenberger');
+plot(ax2,t,xgi(2,:),color_gi,'LineWidth',2,'DisplayName','x_2 gi');
 
 exportgraphics(gcf,"../img/ex1_states1.pdf",'ContentType',"vector");
 
 figure(2);clf;hold on;grid on;
-xlabel("time(s)");ylabel("w(t)");title("Disturbance");legend("show");
-plot(t,w,'k','LineWidth',3,'DisplayName','disturbance');
-plot(t,wluen,color_luen,'LineWidth',2,'DisplayName','luenberger');
-plot(t,wgi,color_gi,'LineWidth',2,'DisplayName','projection');
+xlabel("time(s)");ylabel("w(t)");title("Disturbance");legend("show","Location","best");
+plot(t,w,'k','LineWidth',3,'DisplayName','w');
+plot(t,wluen,color_luen,'LineWidth',2,'DisplayName','w luenberger');
+plot(t,wgi,color_gi,'LineWidth',2,'DisplayName','w gi');
 
 exportgraphics(gcf,"../img/ex1_disturbance.pdf",'ContentType',"vector");
 

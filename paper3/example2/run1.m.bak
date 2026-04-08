@@ -22,8 +22,6 @@ t=0:0.001:5;
 x1=sin(2*t);
 x2=cos(2*t);
 w=t.^2-4*t;
-
-rng(222);
 n=randn(size(t));
 n=n/var(n);
 n=n-mean(n);
@@ -31,22 +29,16 @@ n=n-mean(n);
 phi=C*[x1;x2]+Dw*w+Dn*n;
 % proj(M)*(Dw*w+Dn*n)
 % proj(M)*(C*[x1;x2])
-figure(1);clf;
-subplot(2,1,1);cla;hold on;grid on;legend("show");
-xlabel("time(sec)");title("Measured Output");
+figure(1);clf;hold on;grid on;legend("show");
+xlabel("time(sec)");
 
 xhat=pinv(proj(M)*C)*(proj(M)*phi);
-plot(t,phi(1,:),'m','LineWidth',2,'DisplayName','y_1');
-plot(t,phi(2,:),'c','LineWidth',2,'DisplayName','y_2');
-plot(t,phi(3,:),'g','LineWidth',2,'DisplayName','y_3');
-plot(t,phi(4,:),'k','LineWidth',2,'DisplayName','y_4');
-
-subplot(2,1,2);cla;hold on;grid on;legend("show");
-xlabel("time(sec)");title("States");
-plot(t,x1,'k','LineWidth',3,'DisplayName','x_1');
-plot(t,x2,'k','LineWidth',3,'DisplayName','x_2');
-plot(t,xhat(1,:),'r--','LineWidth',2,'DisplayName','xhat_1');
-plot(t,xhat(2,:),'b--','LineWidth',2,'DisplayName','xhat_2');
+plot(t,phi(1,:),'m','LineWidth',1,'DisplayName','y_1');
+plot(t,phi(2,:),'c','LineWidth',1,'DisplayName','y_2');
+plot(t,phi(3,:),'g','LineWidth',1,'DisplayName','y_3');
+plot(t,phi(4,:),'k','LineWidth',1,'DisplayName','y_4');
+plot(t,xhat(1,:),'r','LineWidth',2,'DisplayName','xhat_1');
+plot(t,xhat(2,:),'b','LineWidth',2,'DisplayName','xhat_2');
 
 
 exportgraphics(gcf,"../img/ex2_results.pdf",'ContentType',"vector");
@@ -59,5 +51,5 @@ figure(2);clf;hold on;grid on;legend("show");
 xlabel("time(sec)");
 
 plot(t,w,'k','LineWidth',3,'DisplayName','w');
-plot(t,what,'r--','LineWidth',2,'DisplayName','what');
+plot(t,what,'r','LineWidth',2,'DisplayName','what');
 exportgraphics(gcf,"../img/ex2_results2.pdf",'ContentType',"vector");

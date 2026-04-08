@@ -10,6 +10,11 @@ Guang-Ren Duan and Hai-Hua Yu.
 \newblock {\em LMIs in control systems: analysis, design and applications}.
 \newblock CRC press, 2013.
 
+\bibitem{Kailath1980}
+Thomas Kailath.
+\newblock {\em Linear Systems}.
+\newblock Prentice-Hall, 1980.
+
 \bibitem{olfati2007consensus}
 Reza Olfati-Saber, J~Alex Fax, and Richard~M Murray.
 \newblock Consensus and cooperation in networked multi-agent systems.

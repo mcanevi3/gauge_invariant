@@ -8,7 +8,7 @@ Multi output linear time invariant dynamical systems are expressed as,
 \end{gather}
 where $x\in\mathbb{R}^{n\times 1}$ represents the state, $w\in\mathbb{R}^{r\times 1}$ originally the bias or more generally the exogenous input and $y\in\mathbb{R}^{p\times 1}$ is the measured output. The system matrices are defined as $A\in\mathbb{R}^{n\times n}$, $B_w\in\mathbb{R}^{n\times r}$, $C\in\mathbb{R}^{p\times n}$ and $D_w\in\mathbb{R}^{p\times r}$. Output redundant systems, which is a subset of dynamical control systems given in (\ref{eqn:lti1}), satisfy the following rank condition
 \begin{gather}
-    \mathrm{rank}(C)<p
+    \mathrm{rank}(C)<p\label{eqn:rank_cond_sor}
 \end{gather}
 and arise in sparse sensor applications\cite{shoukry2015event}, topologies used in Multi Agenr Systems(MAS)\cite{olfati2007consensus} and distributed networks \cite{yang2022sensor}. These systems are named Strictly Output Redundant(SOR) system according to \cite{yang2025output}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,7 +65,10 @@ and
 \begin{gather}
     \Pi^X X^\perp=X^\perp
 \end{gather}
-where $\Pi^X\in\mathbb{R}^{s\times s}$.
+where $\Pi^X\in\mathbb{R}^{s\times s}$. In order to result in a meaningful projection, the output redundancy dependency defined in (\ref{eqn:rank_cond_sor}) for this projection is defined as,
+\begin{gather}
+    \mathrm{rank}(X)<s\label{eqn:rank_cond_proj}
+\end{gather}
 
 The projection operator can be applied to the measured output defined in (\ref{eqn:lti1}) to eliminate $x$ or $w$. To eliminate $x$ the projection $\Pi^C$ is used as follows,
 \begin{gather}

@@ -52,20 +52,21 @@
                                               % is over 5 words. Running title 
                                               % is not shown in output.
 
-\title{In Catilinam IV\thanksref{footnoteinfo}} % Title, preferably not more 
+\title{A Projection Filtering Method for Output Redundant Systems} % Title, preferably not more \thanksref{footnoteinfo}
                                                 % than 10 words.
 
-\thanks[footnoteinfo]{This paper was not presented at any IFAC 
-meeting. Corresponding author M.~T.~Cicero. Tel. +XXXIX-VI-mmmxxi. 
-Fax +XXXIX-VI-mmmxxv.}
+% \thanks[footnoteinfo]{This paper was not presented at any IFAC 
+% meeting. Corresponding author M.~T.~Cicero. Tel. +XXXIX-VI-mmmxxi. 
+% Fax +XXXIX-VI-mmmxxv.}
 
-\author[Paestum]{Marcus Tullius Cicero}\ead{cicero@senate.ir},    % Add the 
-\author[Rome]{Julius Caesar}\ead{julius@caesar.ir},               % e-mail address 
-\author[Baiae]{Publius Maro Vergilius}\ead{vergilius@culture.ir}  % (ead) as shown
+\author[canevi]{Mehmet Canevi}\ead{mehmet.canevi@ohu.edu.tr},    % Add the 
+\author[kara]{Seyit Okan Kara}%\ead{@ohu.edu.tr},               % e-mail address 
+% \author[Baiae]{Publius Maro Vergilius}\ead{vergilius@culture.ir}  % (ead) as shown
 
-\address[Paestum]{Buckingham Palace, Paestum}  % Please supply                                              
-\address[Rome]{Senate House, Rome}             % full addresses
-\address[Baiae]{The White House, Baiae}        % here.
+\address[canevi]{Electrical-Electronics Engineering Department, Engineering Faculty, Niğde Ömer Halisdemir University, Niğde 51240, Turkey}  % Please supply                                              
+\address[kara]{Bor Vocational School, Niğde Ömer Halisdemir University, Niğde 51240, Turkey}  % Please supply                                              
+% \address[Rome]{Senate House, Rome}             % full addresses
+% \address[Baiae]{The White House, Baiae}        % here.
 
           
 \begin{keyword}                           % Five to ten keywords,  
@@ -91,7 +92,7 @@ ac vinculis sempiternis tenendos existimabat.
 
 Gauge invariance is a central organizing principle of modern physics, expressing the idea that observable quantities should remain unchanged under certain local transformations of the mathematical description. In classical field theories and quantum electrodynamics, this concept ensures that different representations related by gauge transformations correspond to the same physical reality~\cite{Peskin1995},\cite{YangMills1954}. From an abstract viewpoint, gauge invariance provides a systematic way to separate physically meaningful dynamics from redundant coordinate or potential offsets. This symmetry-based perspective has proven essential for constructing robust and consistent models in physics, and it motivates the extension of invariance principles beyond their traditional domain toward engineered dynamical systems subject to measurement distortions and unknown offsets.
 
-In linear control systems, similar representation issues arise in the presence of redundant measurements or sensing architectures with non-minimal output representations. In particular, when the output matrix does not have full row rank, multiple output vectors may correspond to the same underlying state. This situation naturally appears in multi-sensor configurations, distributed systems, and sparse measurement settings, where the dimension of the measurement space exceeds the effective information content~\cite{Chen1999, Kailath1980}. As a result, the output representation contains directions that do not contribute to state observability but nevertheless affect the estimation process.
+In linear control systems, similar representation issues arise in the presence of redundant measurements or sensing architectures with non-minimal output representations. In particular, when the output matrix does not have full row rank, multiple output vectors may correspond to the same underlying state. This situation naturally appears in multi-sensor configurations, distributed systems, and sparse measurement settings, where the dimension of the measurement space exceeds the effective information content~\cite{Chen1999},\cite{Kailath1980}. As a result, the output representation contains directions that do not contribute to state observability but nevertheless affect the estimation process.
 
 From this perspective, the measurement space can be decomposed into physically meaningful components and redundant directions that do not affect the underlying state. However, conventional observer designs typically treat all output components uniformly, without explicitly distinguishing between these subspaces. This may lead to estimation dynamics that are influenced by representation-dependent artifacts, rather than purely by physically relevant discrepancies.
 
@@ -100,14 +101,16 @@ This observation suggests that the estimation process should be constructed in a
 
 In this work, we propose a way of constructing a projection that acts as a static filter to recover the linear output mapping in terms of its components under given constraints. This projection is given as an alternative to the classical observer design for output redundant systems, due to the fact that no dynamical estimation is necessary to reconstruct states and disturbances. 
 
-The paper is organized as follows; section 2 gives preliminaries, section 3 ...
-% In this work, we develop a projection-based observer framework for linear systems with redundant outputs, motivated by an invariance viewpoint. The proposed approach combines an invariant error construction with a projection mechanism that systematically removes redundant measurement components. This leads to estimation dynamics that depend only on physically meaningful information, providing a structured alternative to conventional observer designs.
+The paper is organized as follows; preliminaries are given in section 2, the proposed projection filtering method is addressed in section 3. The proposed method is exemplified in section 4 with numerical examples. The conclusion and future work is given in section 5.
 
+% In this work, we develop a projection-based observer framework for linear systems with redundant outputs, motivated by an invariance viewpoint. The proposed approach combines an invariant error construction with a projection mechanism that systematically removes redundant measurement components. This leads to estimation dynamics that depend only on physically meaningful information, providing a structured alternative to conventional observer designs.
 
 
 \input{files/work}
 \section{Numerical Examples}
 \input{files/numerical_example1}
+
+\input{files/conclusion}
 % \begin{figure}
 % \begin{center}
 % \includegraphics[height=4cm]{jcaesar.eps}    % The printed column  
@@ -194,8 +197,8 @@ The paper is organized as follows; section 2 gives preliminaries, section 3 ...
 
 %\end{thebibliography}
 
-\appendix
-\section{A summary of Latin grammar}    % Each appendix must have a short title.
-\section{Some Latin vocabulary}         % Sections and subsections are supported  
+% \appendix
+% \section{A summary of Latin grammar}    % Each appendix must have a short title.
+% \section{Some Latin vocabulary}         % Sections and subsections are supported  
                                         % in the appendices.
 \end{document}
