@@ -52,6 +52,24 @@ In any linear dynamical system with linear output mapping where output redundanc
 The idea of separating disturbance and state components is closely related to disturbance decoupling problems studied in geometric control theory \cite{BasileMarro1992}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Projection(New)}
+\begin{theorem}{Orthogonal Complement Projection}
+Let $X\in \mathbb{R}^{nxn}$ be a matrix with $\mathrm{rank}(X)=n<s$. There exists a unique orthogonal projection matrix $\Pi^X\in\mathbb{R}^{sxs}$ that maps the space $\mathbb{R}^s$ onto the left null space $\matcal{N}(X^T)$, defined by:
+\begin{equation*}
+    \Pi^X\triangleq I-X(X^TX)^{-1}X^T \label{eq:projection}
+\end{equation*}
+This operator satifies the following properties:
+\begin{enumerate}
+    \item Annihilation:$\Pi^X X=0$.
+    \item Invariance:$\Pi^X z=z\,\forall z\in\mathcal{N}(X^T)$.
+    \item Existence:$\Pi^X \neq 0 \iff \mathrm{rank}(X)<s$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+    test
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Projection}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Let $X$ be a matrix and $X^\perp=\mathcal{N}(X^T)$ be its orthogonal representation, to separate the linear mapping 
