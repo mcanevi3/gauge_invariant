@@ -95,7 +95,7 @@ with the least square estimator,
 % \end{gather}
 In a similar manner the state can be recovered using,
 \begin{gather}
-    \hat{x}=(\Pi^{D_w})^\dagger(\Pi^{D_w} y)\label{eqn:filtering_x}
+    \hat{x}=(\Pi^{D_w}C)^\dagger(\Pi^{D_w} y)\label{eqn:filtering_x}
 \end{gather}
 Thus, both the state and disturbance signals are reconstructed rather than being estimated, exploiting the structural advantage of the output redundancy of systems defined with (\ref{eqn:lti1}). As it is illustrated in the next section, using the projection filtering, the measured output is decomposed into its state and disturbance components algebraically, which shows that the projection filtering eliminates the requirement of individual observers to estimate the states and disturbances of such systems.
 % This is an algebraic measurement of the disturbance reflected to the output. 
