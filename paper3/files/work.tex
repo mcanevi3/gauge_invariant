@@ -35,6 +35,9 @@ The $\mathcal{H}_\infty$ optimal observer for objective function $z=C_ze$ is des
 \end{split} 
 \end{equation}
 where the observer gain is recovered with $L=P^{-1}Y$. 
+
+In addition to classical observers, unknown input observer (UIO) frameworks have been developed to decouple disturbances from state estimation \cite{ChenPatton1999}.
+
 \subsection{Miscellaneous}
 The null space of a matrix $X$ is denoted by $\mathcal{N}(X)$ where the columns space of $X$ is denoted by $\mathcal{R}(X)$. 
 The Moore-Penrose pseudo-inverse is $(.)^\dagger$ and defined as,
@@ -45,6 +48,8 @@ The Moore-Penrose pseudo-inverse is $(.)^\dagger$ and defined as,
 \section{Projection Filtering}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 In any linear dynamical system with linear output mapping where output redundancy is present, the structure can be exploited to separate the output into its components. By using Gauge-Invariance principle a projection operator can be chosen to truncate some of the subcomponents of the output mapping to isolate the component under interest. 
+
+The idea of separating disturbance and state components is closely related to disturbance decoupling problems studied in geometric control theory \cite{BasileMarro1992}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Projection}
