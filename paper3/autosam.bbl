@@ -1,14 +1,36 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{BasileMarro1992}
+Giuseppe Basile and Gianni Marro.
+\newblock {\em Controlled and Conditioned Invariants in Linear System Theory}.
+\newblock Prentice Hall, 1992.
 
 \bibitem{Chen1999}
 Chi-Tsong Chen.
 \newblock {\em Linear System Theory and Design}.
 \newblock Oxford University Press, 1999.
 
+\bibitem{ChenPatton1999}
+Jie Chen and Ron~J. Patton.
+\newblock {\em Robust Model-Based Fault Diagnosis for Dynamic Systems}.
+\newblock Kluwer Academic Publishers, 1999.
+
 \bibitem{duan2013lmis}
 Guang-Ren Duan and Hai-Hua Yu.
 \newblock {\em LMIs in control systems: analysis, design and applications}.
 \newblock CRC press, 2013.
+
+\bibitem{gb08}
+Michael Grant and Stephen Boyd.
+\newblock Graph implementations for nonsmooth convex programs.
+\newblock In V.~Blondel, S.~Boyd, and H.~Kimura, editors, {\em Recent Advances
+  in Learning and Control}, Lecture Notes in Control and Information Sciences,
+  pages 95--110. Springer-Verlag Limited, 2008.
+
+\bibitem{cvx}
+Michael Grant and Stephen Boyd.
+\newblock {CVX}: Matlab software for disciplined convex programming, version
+  2.1, March 2014.
 
 \bibitem{Kailath1980}
 Thomas Kailath.
