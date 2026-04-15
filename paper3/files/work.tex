@@ -53,8 +53,8 @@ The idea of separating disturbance and state components is closely related to di
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Projection(New)}
-\begin{theorem}{Orthogonal Complement Projection}
-Let $X\in \mathbb{R}^{nxn}$ be a matrix with $\mathrm{rank}(X)=n<s$. There exists a unique orthogonal projection matrix $\Pi^X\in\mathbb{R}^{sxs}$ that maps the space $\mathbb{R}^s$ onto the left null space $\matcal{N}(X^T)$, defined by:
+\begin{thm}[Orthogonal Complement Projection]
+Let $X\in \mathbb{R}^{nxn}$ be a matrix with $\mathrm{rank}(X)=n<s$. There exists a unique orthogonal projection matrix $\Pi^X\in\mathbb{R}^{sxs}$ that maps the space $\mathbb{R}^s$ onto the left null space $\mathcal{N}(X^T)$, defined by:
 \begin{equation*}
     \Pi^X\triangleq I-X(X^TX)^{-1}X^T \label{eq:projection}
 \end{equation*}
@@ -64,10 +64,10 @@ This operator satifies the following properties:
     \item Invariance:$\Pi^X z=z\,\forall z\in\mathcal{N}(X^T)$.
     \item Existence:$\Pi^X \neq 0 \iff \mathrm{rank}(X)<s$.
 \end{enumerate}
-\end{theorem}
-\begin{proof}
+\end{thm}
+\begin{pf}
     test
-\end{proof}
+\end{pf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Projection}
