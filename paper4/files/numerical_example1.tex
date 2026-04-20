@@ -24,11 +24,32 @@ where output redundancy is created by replicating the sensor measuring first sta
     1.0000
     \end{bmatrix}
 \end{equation}
-A Luenberger observer is designed solving the LMI given in (\ref{eqn:lmi1}) and is obtained as,
+A Luenberger observer is designed solving the LMI given in (\ref{eqn:lmi1}) assuming $C_z=I$. Solving the corresponding LMI, yields,
+\begin{equation}
+    Y=\begin{bmatrix}
+ -159314.9& 7541099.0& -12347840.0\\
+-1741760.0& 3556493.0&   3485615.0
+    \end{bmatrix}
+\end{equation}
+and
+\begin{equation}
+    Z=\begin{bmatrix}
+    0.0000449847& 0.00000887586\\
+    0.00000887586&  0.0000594674
+    \end{bmatrix}
+\end{equation}
+with $\gamma_\infty=0.0012$, $\gamma_2=0.0001044$. The observer gain and Lyapunov matrix are determined as,
 \begin{equation}
     L=\begin{bmatrix}
-    -326.1332&  366.9908&   -5.2903\\
-    -33.4833&   28.1920&   48.9023
+    -22.6263&  370.8001& -524.5247\\
+    -104.9918&  278.4287&   97.6824
+    \end{bmatrix}
+\end{equation}
+and 
+\begin{equation}
+    P=\begin{bmatrix}
+    22904.36& -3418.62\\
+    -3418.62&  17326.22
     \end{bmatrix}
 \end{equation}
 noting that $B_w-LD_w=0$ is satisfied, hence the state estimation is not affected by the exogenous input. The estimated state can be used to obtain the exogenous input by utilizing,
