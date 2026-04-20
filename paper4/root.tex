@@ -1,0 +1,123 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
+
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
+
+\IEEEoverridecommandlockouts                              % This command is only needed if 
+                                                          % you want to use the \thanks command
+
+\overrideIEEEmargins                                      % Needed to meet printer requirements.
+
+%In case you encounter the following error:
+%Error 1010 The PDF file may be corrupt (unable to open PDF file) OR
+%Error 1000 An error occurred while parsing a contents stream. Unable to analyze the PDF file.
+%This is a known problem with pdfLaTeX conversion filter. The file cannot be opened with acrobat reader
+%Please use one of the alternatives below to circumvent this error by uncommenting one or the other
+%\pdfobjcompresslevel=0
+%\pdfminorversion=4
+
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage{graphicx} 
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\title{\LARGE \bf
+A Projection Filtering Method for Output Redundant Systems
+}
+
+
+\author{Mehmet Canevi$^{1}$ and Seyit Okan Kara$^{2}$% <-this % stops a space
+\thanks{*This work was not supported by any organization}% <-this % stops a space
+\thanks{$^{1}$Mehmet Canevi is with Electrical-Electronics Engineering Department, Engineering Faculty, Nigde Omer Halisdemir University, Nigde 51240, Turkey
+        {\tt\small mehmet.canevi@ohu.edu.tr}}%
+\thanks{$^{2}$Seyit Okan Kara is with Bor Vocational School, Nigde Omer Halisdemir University, Nigde 51240, Turkey
+        % {\tt\small b.d.researcher@ieee.org}
+        }%
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+We present a Projection Filtering Method(PFM) based on the gauge-invariance principle of modern physics, applicable to Output Redundant systems. A projection is proposed to use the invariance principle to decompose a linear output map into its components. In this work it is shown that, PFM can reconstruct states during the transient and steady state regime of dynamical systems and can be employed instead of a classical observer for output redundant systems. Additionally, with PFM the reconstruction of states also translates into the reconstruction of disturbance, without the dependency on additional assumptions or a model of the disturbance, even with noisy outputs. The PFM is an alternative to classical observers for output redundant systems in this regard.
+
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{INTRODUCTION}
+
+Gauge invariance is a central organizing principle of modern physics, expressing the idea that observable quantities should remain unchanged under certain local transformations of the mathematical description. In classical field theories and quantum electrodynamics, this concept ensures that different representations related by gauge transformations correspond to the same physical reality~\cite{Peskin1995},\cite{YangMills1954}. From an abstract viewpoint, gauge invariance provides a systematic way to separate physically meaningful dynamics from redundant coordinate or potential offsets. This symmetry-based perspective has proven essential for constructing robust and consistent models in physics, and it motivates the extension of invariance principles beyond their traditional domain toward engineered dynamical systems subject to measurement distortions and unknown offsets.
+
+In linear control systems, similar representation issues arise in the presence of redundant measurements or sensing architectures with non-minimal output representations. In particular, when the output matrix does not have full row rank, multiple output vectors may correspond to the same underlying state. This situation naturally appears in multi-sensor configurations, distributed systems, and sparse measurement settings, where the dimension of the measurement space exceeds the effective information content~\cite{Chen1999},\cite{Kailath1980}. As a result, the output representation contains directions that do not contribute to state observability but nevertheless affect the estimation process.
+
+From this perspective, the measurement space can be decomposed into physically meaningful components and redundant directions that do not affect the underlying state. However, conventional observer designs typically treat all output components uniformly, without explicitly distinguishing between these subspaces. This may lead to estimation dynamics that are influenced by representation-dependent artifacts, rather than purely by physically relevant discrepancies.
+
+This observation suggests that the estimation process should be constructed in a way that isolates the physically relevant part of the output from its redundant representation. A natural mechanism to achieve this separation is through a projection operator acting on the measurement space, which removes components lying in the non-informative directions while preserving the observable content. Such projection-based constructions are also well known in physics, particularly in gauge theories, where physically equivalent configurations are related by symmetry transformations and a representative is selected via gauge fixing~\cite{Peskin1995}.
+
+
+In this work, we propose a way of constructing a projection that acts as a static filter to recover the linear output mapping in terms of its components under given constraints. This projection is given as an alternative to the classical observer design for output redundant systems, due to the fact that no dynamical estimation is necessary to reconstruct states and disturbances. 
+
+The paper is organized as follows; preliminaries are given in section 2, the proposed projection filtering method is addressed in section 3. The proposed method is exemplified in section 4 with numerical examples. The conclusion and future work is given in section 5.
+
+\input{files/work}
+\section{Numerical Examples}
+\input{files/numerical_example1}
+
+\input{files/conclusion}
+
+\addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
+                                  % on the last page of the document manually. It shortens
+                                  % the textheight of the last page by a suitable amount.
+                                  % This command does not take effect until the next page
+                                  % so it should come on the page before the last. Make
+                                  % sure that you do not shorten the textheight too much.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section*{APPENDIX}
+
+% Appendixes should appear before the acknowledgment.
+
+% \section*{ACKNOWLEDGMENT}
+
+% The preferred spelling of the word �acknowledgment� in America is without an �e� after the �g�. Avoid the stilted expression, �One of us (R. B. G.) thanks . . .�  Instead, try �R. B. G. thanks�. Put sponsor acknowledgments in the unnumbered footnote on the first page.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{plain}        % Include this if you use bibtex 
+\bibliography{library}           % and a bib file to produce the 
+                                 % bibliography (preferred). The
+                                 % correct style is generated by
+                                 % Elsevier at the time of printing.
+
+\end{document}

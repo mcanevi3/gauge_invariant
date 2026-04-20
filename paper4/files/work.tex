@@ -1,0 +1,124 @@
+\section{Preliminaries}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The System Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Multi output linear time invariant dynamical systems are expressed as,
+\begin{gather} 
+    \dot{x}=A x+B_w w,\,y=C x+D_w w\label{eqn:lti1}
+\end{gather}
+where $x\in\mathbb{R}^{n\times 1}$ represents the state, $w\in\mathbb{R}^{r\times 1}$ originally the bias or more generally the exogenous input and $y\in\mathbb{R}^{p\times 1}$ is the measured output. The system matrices are defined as $A\in\mathbb{R}^{n\times n}$, $B_w\in\mathbb{R}^{n\times r}$, $C\in\mathbb{R}^{p\times n}$ and $D_w\in\mathbb{R}^{p\times r}$. Output redundant systems, which is a subset of dynamical control systems given in (\ref{eqn:lti1}), satisfy the following rank condition
+\begin{gather}
+    \mathrm{rank}(C)<p\label{eqn:rank_cond_sor}
+\end{gather}
+and arise in sparse sensor applications\cite{shoukry2015event}, topologies used in Multi Agenr Systems(MAS)\cite{olfati2007consensus} and distributed networks \cite{yang2022sensor}. These systems are named Strictly Output Redundant(SOR) system according to \cite{yang2025output}. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Luenberger Observer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The Luenberger Observer is defined as,    
+\begin{gather} 
+    \dot{\hat{x}}=A \hat{x}+L(y-\hat{y}),\,\hat{y}=C \hat{x}
+\end{gather}
+where $L\in\mathbb{R}^{n\times p}$ is the observer gain. Assuming $(A,C)$-pair observable, the error dynamics are obtained for the error $e\triangleq x-\hat{x}$ as,
+\begin{gather} 
+    \dot{e}=(A-LC)e+(B_w-L D_w)w
+\end{gather}
+The $\mathcal{H}_\infty$ optimal observer for objective function $z=C_ze$ is designed using the following LMI problem\cite{duan2013lmis},
+\begin{equation} \label{eqn:lmi1}
+\begin{split} 
+    \min_{Y,P}{(\gamma)}\quad \mathrm{s.t.}\\
+    \begin{bmatrix}
+        (PA-YC)+\star& PB_w-YD_w& C_z^T\\
+        \star& -\gamma I& 0\\
+        \star& 0& -\gamma I
+    \end{bmatrix}\prec 0\\
+    P\succ 0
+\end{split} 
+\end{equation}
+where the observer gain is recovered with $L=P^{-1}Y$ and the problem can be solved using convex programs \cite{cvx},\cite{gb08}. 
+
+In addition to classical observers, unknown input observer (UIO) frameworks have been developed to decouple disturbances from state estimation \cite{ChenPatton1999}.
+
+\subsection{Miscellaneous}
+The null space of a matrix $X$ is denoted by $\mathcal{N}(X)$ where the columns space of $X$ is denoted by $\mathcal{R}(X)$. 
+The Moore-Penrose pseudo-inverse is $(.)^\dagger$ and defined as,
+\begin{equation}
+    X^\dagger=X^T(XX^T)^{-1}
+\end{equation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Projection Filtering}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In any linear dynamical system with linear output mapping where output redundancy is present, the structure can be exploited to separate the output into its components. By using Gauge-Invariance principle a projection operator can be chosen to truncate some of the subcomponents of the output mapping to isolate the component under interest. 
+
+The idea of separating disturbance and state components is closely related to disturbance decoupling problems studied in geometric control theory \cite{BasileMarro1992}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Projection(New)}
+\begin{theorem}[Orthogonal Complement Projection]
+Let $X\in \mathbb{R}^{nxn}$ be a matrix with $\mathrm{rank}(X)=n<s$. There exists a unique orthogonal projection matrix $\Pi^X\in\mathbb{R}^{sxs}$ that maps the space $\mathbb{R}^s$ onto the left null space $\mathcal{N}(X^T)$, defined by:
+\begin{equation*}
+    \Pi^X\triangleq I-X(X^TX)^{-1}X^T \label{eq:projection}
+\end{equation*}
+This operator satifies the following properties:
+\begin{enumerate}
+    \item Annihilation:$\Pi^X X=0$.
+    \item Invariance:$\Pi^X z=z\,\forall z\in\mathcal{N}(X^T)$.
+    \item Existence:$\Pi^X \neq 0 \iff \mathrm{rank}(X)<s$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+    test
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Projection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let $X$ be a matrix and $X^\perp=\mathcal{N}(X^T)$ be its orthogonal representation, to separate the linear mapping 
+\begin{gather}
+    X+X^\perp
+\end{gather}
+into its components, the following projection is proposed,
+\begin{gather}
+    \Pi^X\triangleq I-X(X^TX)^{-1}X^T \label{eq:projection}
+\end{gather}
+which satisfies,
+\begin{gather}
+    \Pi^X X=0
+\end{gather}
+and
+\begin{gather}
+    \Pi^X X^\perp=X^\perp
+\end{gather}
+where $\Pi^X\in\mathbb{R}^{s\times s}$. In order to result in a meaningful projection, the output redundancy dependency defined in (\ref{eqn:rank_cond_sor}) for this projection is defined as,
+\begin{gather}
+    \mathrm{rank}(X)<s\label{eqn:rank_cond_proj}
+\end{gather}
+
+The projection operator can be applied to the measured output defined in (\ref{eqn:lti1}) to eliminate $x$ or $w$. To eliminate $x$ the projection $\Pi^C$ is used as follows,
+\begin{gather}
+    \Pi^C y=\Pi^C D_w w\label{eqn:proj_on_c}
+\end{gather}
+and similarly, $w$ is eliminated as follows,
+\begin{gather}
+    \Pi^{D_w} y=\Pi^{D_w}C x
+\end{gather}
+In (\ref{eqn:proj_on_c}) the projection eliminates the state dependent component of the output, isolating the exogenous component establishing state invariance. The exogenous input can be recovered under the following condition,
+\begin{gather}
+    \mathcal{R}(D_w) \not\subseteq \mathcal{R}(C)
+\end{gather}
+so that 
+\begin{gather}
+    \Pi^C D_w \neq 0
+\end{gather}
+with the least square estimator,
+\begin{gather}
+    \hat{\omega}=(\Pi^C D_w)^\dagger(\Pi^C y)\label{eqn:filtering_w}
+\end{gather}
+% \begin{gather}
+%     \mathcal{N}(\Pi^C D_w) = \{0\}
+% \end{gather}
+In a similar manner the state can be recovered using,
+\begin{gather}
+    \hat{x}=(\Pi^{D_w}C)^\dagger(\Pi^{D_w} y)\label{eqn:filtering_x}
+\end{gather}
+Thus, both the state and disturbance signals are reconstructed rather than being estimated, exploiting the structural advantage of the output redundancy of systems defined with (\ref{eqn:lti1}). As it is illustrated in the next section, using the projection filtering, the measured output is decomposed into its state and disturbance components algebraically, which shows that the projection filtering eliminates the requirement of individual observers to estimate the states and disturbances of such systems.
+% This is an algebraic measurement of the disturbance reflected to the output. 
