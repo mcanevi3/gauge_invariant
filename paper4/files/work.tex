@@ -57,21 +57,21 @@ In any linear dynamical system with linear output mapping where output redundanc
 The idea of separating disturbance and state components is closely related to disturbance decoupling problems studied in geometric control theory \cite{BasileMarro1992}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The Projection}
+% \subsection{The Projection}
 \begin{theorem}%[Orthogonal Complement Projection]
 Let $X\in \mathbb{R}^{s\times n}$ be a matrix with $\mathrm{rank}(X)=n\leq s$. There exists a unique projection matrix $\Pi^X\in\mathbb{R}^{s\times s}$ that is defined by:
 \begin{equation*}
     \Pi^X\triangleq I_s-X{(X^T X)}^{-1}X^T \label{eq:projection}
 \end{equation*}
 satisfying the following properties:
-\begin{enumerate}
+\begin{itemize}
     \item (\textit{Annihilation}) $\Pi^X X=0$.
     \item (\textit{Invariance}) $\Pi^X z=z,\,\forall z\in\mathcal{N}(X^T)$.
     \item (\textit{Existence}) $\Pi^X \neq 0 \iff \mathrm{rank}(X)<s$.
-\end{enumerate}
+\end{itemize}
 \end{theorem}
     \begin{proof}
-        \begin{enumerate}
+        \begin{itemize}
         \item (\textit{Annihilation}) 
         Plugging in the definition of $\Pi^X$ gives,
         \begin{equation*}
@@ -111,23 +111,23 @@ satisfying the following properties:
             \Pi^X v=(I_s-X{(X^T X)}^{-1}X^T)v=v-0=v
         \end{equation*}
         Since $\Pi^X v=v$ and $v\neq 0$, $\Pi^X v\neq 0$, hence $\Pi^X\neq 0$.
-    \end{enumerate}
+    \end{itemize}
 \end{proof}
 
 
 \begin{corollary}[Component Decoupling and Recovery]
 For the measurement equation $y = Cx + D_w w$ and under assumptions $\mathrm{rank}(C) < p$ and $\mathrm{rank}(D_w) < p$, the following decoupling and recovery properties hold:
-\begin{enumerate}
+\begin{itemize}
     \item (\textit{State Invariance}) $\Pi^C y$ isolates the state invariant part $\Pi^C D_w w$ of the measurement equation. 
     \item (\textit{Disturbance invariance}) $\Pi^{D_w}$ isolates the disturbance invariant part $\Pi^{D_w} C x$ of the measurement equation.
     \item (\textit{Recoverability}) The disturbance $w$ can be uniquely recovered via $\hat{w} = (\Pi^C D_w)^\dagger \Pi^C y$ if and only if $\mathcal{R}(D_w) \not\subseteq \mathcal{R}(C)$, ensuring $\Pi^C D_w \neq 0$.
-\end{enumerate}
+\end{itemize}
 \end{corollary}
 
 \begin{proof}
     Applying $\Pi^C$ to the output yields $\Pi^C y = \Pi^C Cx + \Pi^C D_w w$. From the \textit{Annihilation} property of Theorem 1, $\Pi^C C = 0$, which proves (\textit{State Invariance}). 
     
-    Similarly, for (\textit{Disturbance invariance}), $\Pi^{D_w} (Cx + D_w w)=\Pi^{D_w} w$.
+    Similarly, for (\textit{Disturbance invariance}), $\Pi^{D_w} (Cx + D_w w)=\Pi^{D_w} Cx$.
     
     The condition $\mathcal{R}(D_w) \not\subseteq \mathcal{R}(C)$ ensures that $D_w$ is not in the null space of $\Pi^C$ and by the \textit{Existence} property, $\Pi^C D_w$ is remains, which proves (\textit{Recoverability}).
 \end{proof}
