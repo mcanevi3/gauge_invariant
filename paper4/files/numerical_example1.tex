@@ -52,12 +52,12 @@ and
     -3418.62&  17326.22
     \end{bmatrix}
 \end{equation}
-noting that $B_w-LD_w=0$ is satisfied, hence the state estimation is not affected by the exogenous input. The estimated state can be used to obtain the exogenous input by utilizing,
+noting that $B_w-LD_w=0$ is satisfied, hence the state estimation is not affected by the exogenous input. No assumption about the exogenous input is added, thus the estimated state is utilized to obtain the exogenous input with,
 \begin{equation}
     \hat{w}=D_w^\dagger(y-Cx)
 \end{equation}
 
-On the other hand, using the projection filtering the projection matrix given by (\ref{eq:projection}) is calculated for $C$ as,
+On the other hand, using PFM the projection matrix given by Theorem~1 is determined for $C$ as,
 \begin{equation}
 \Pi^C=\begin{bmatrix}
     0.5&   -0.5&         0\\
@@ -82,7 +82,7 @@ The state estimation and the projection state filtering is compared in Figure~\r
     \label{fig:ex1_states1}
 \end{figure}
 
-The estimation process of the Luenberger observer takes $0.04$ seconds due to the fact that the observer is a dynamic observer, whereas the projection filtering directly matches the original system states at $t=0$ seconds as illustrated in Figure~\ref{fig:ex1_states1}. It is possible to decrease the estimation duration of the observer by speeding up the observer eigenvalues, but in return the observer gain and therefore noise amplification would increase. 
+The estimation process of the Luenberger observer takes $0.01$ seconds due to the fact that the observer is a dynamic observer, whereas the projection filtering directly matches the original system states at $t=0$ seconds as illustrated in Figure~\ref{fig:ex1_states1}. It is possible to decrease the estimation duration of the observer by speeding up the observer eigenvalues, but in return the observer gain and therefore noise amplification would increase. 
 
 
 % The exogenous input estimated and filtered is depicted in Figure~\ref{fig:ex1_disturbance}.
@@ -138,7 +138,8 @@ where $w(t)$ is disturbance, $n(t)$ is noise and $x(t)$, which represent some sy
         \sin(t)\\ \cos(t)
     \end{bmatrix}
 \end{equation}
-In order to be able to recover both the states and the disturbance in such a system, the number of sensors for measurement needs to increase due to the condition given in (\ref{eqn:rank_cond_proj}).
+In order to be able to recover both the states and the disturbance in such a system, the number of sensors for measurement needs to increase, otherwise, the least square estimation will be the only recovery attainable. 
+
 The disturbance matrix is defined using 
 \begin{equation}
     D_w=C\begin{bmatrix}1\\1\end{bmatrix}+C^\perp\begin{bmatrix}1\\1\end{bmatrix}
@@ -153,7 +154,7 @@ The output mapping in (\ref{eqn:ex2_output_mapping1}) is rewritten as,
     w\\n        
     \end{bmatrix}
 \end{equation}
-and the projection defined in (\ref{eq:projection}) to recover the state information $x(t)$ can be calculated using,
+and the projection defined using Corollary~1.2 to recover the state information $x(t)$ can be calculated using,
 \begin{equation}
     \Pi^{wn}=I-\begin{bmatrix}
         D_w& D_n
