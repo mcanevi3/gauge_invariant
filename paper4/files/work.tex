@@ -10,7 +10,7 @@ where $x\in\mathbb{R}^{n\times 1}$ represents the state, $w\in\mathbb{R}^{r\time
 \begin{gather}
     \mathrm{rank}(C)<p\label{eqn:rank_cond_sor}
 \end{gather}
-and arise in sparse sensor applications\cite{shoukry2015event}, topologies used in Multi Agenr Systems(MAS)\cite{olfati2007consensus} and distributed networks \cite{yang2022sensor}. These systems are named Strictly Output Redundant(SOR) system according to \cite{yang2025output}. 
+and arise in sparse sensor applications\cite{shoukry2015event}, topologies used in Multi Agent Systems(MAS)\cite{olfati2007consensus} and distributed networks \cite{yang2022sensor}. These systems are named Strictly Output Redundant(SOR) system according to \cite{yang2025output}. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{The Luenberger Observer}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -45,7 +45,7 @@ In addition to classical observers, unknown input observer (UIO) frameworks have
 
 \subsection{Miscellaneous}
 The null space of a matrix $X$ is denoted by $\mathcal{N}(X)$ where the columns space of $X$ is denoted by $\mathcal{R}(X)$. 
-The Moore-Penrose pseudo-inverse is $(.)^\dagger$ and defined as,
+The Moore-Penrose pseudo-inverse is denoted with $(.)^\dagger$ and for full row-rank matrix $X$ is defined as,
 \begin{equation}
     X^\dagger=X^T(XX^T)^{-1}
 \end{equation}
@@ -120,7 +120,7 @@ For the measurement equation $y = Cx + D_w w$ and under assumptions $\mathrm{ran
 \begin{itemize}
     \item (\textit{State Invariance}) $\Pi^C y$ isolates the state invariant part $\Pi^C D_w w$ of the measurement equation. 
     \item (\textit{Disturbance invariance}) $\Pi^{D_w}$ isolates the disturbance invariant part $\Pi^{D_w} C x$ of the measurement equation.
-    \item (\textit{Recoverability}) The disturbance $w$ can be uniquely recovered via $\hat{w} = (\Pi^C D_w)^\dagger \Pi^C y$ and the state $x$ can be uniquely recovered via $\hat{x} = (\Pi^{D_w}C)^\dagger \Pi^{D_w} y$ if and only if $\mathcal{R}(D_w) \not\subseteq \mathcal{R}(C)$.
+    \item (\textit{Recoverability}) The disturbance $w$ is recoverable via $\hat{w} = (\Pi^C D_w)^\dagger \Pi^C y$ and the state $x$ is recoverable via $\hat{x} = (\Pi^{D_w}C)^\dagger \Pi^{D_w} y$ if and only if $\mathcal{R}(D_w) \not\subseteq \mathcal{R}(C)$.
 \end{itemize}
 \end{corollary}
 
@@ -134,7 +134,7 @@ For the measurement equation $y = Cx + D_w w$ and under assumptions $\mathrm{ran
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The projection filtering method (PFM) is based on the projection matrix defined in Theorem~1 where both the states and the disturbance of (\ref{eqn:lti1}) can be isolated and thereby invariance to each component can achieved. The states and the disturbance are recovered using Corollary~1.1 (\textit{Recoverability}). Theorem~1 (\textit{Existence}) is aligned with the output redundancy of (\ref{eqn:lti1}). Assuming Corollary~1.1 (\textit{Recoverability}) holds, the least square estimator for disturbance is given as,
+The projection filtering method (PFM) is based on the projection matrix defined in Theorem~1 where both the states and the disturbance of (\ref{eqn:lti1}) can be isolated and thereby invariance to each component can be achieved. The states and the disturbance are recovered using Corollary~1.1 (\textit{Recoverability}). Theorem~1 (\textit{Existence}) is aligned with the output redundancy of (\ref{eqn:lti1}). Assuming Corollary~1.1 (\textit{Recoverability}) holds, the least square estimator for disturbance is given as,
 \begin{gather}
     \hat{\omega}=(\Pi^C D_w)^\dagger(\Pi^C y)\label{eqn:filtering_w}
 \end{gather}
