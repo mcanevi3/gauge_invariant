@@ -1,0 +1,192 @@
+%Version 3.1 December 2024
+% See section 11 of the User Manual for version history
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%% Please do not use \input{...} to include other tex files.       %%
+%% Submit your LaTeX manuscript as one .tex document.              %%
+%%                                                                 %%
+%% All additional figures and files should be attached             %%
+%% separately and not embedded in the \TeX\ document itself.       %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
+
+%%=======================================================%%
+%% to print line numbers in the margin use lineno option %%
+%%=======================================================%%
+
+%%\documentclass[lineno,pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%=========================================================================================%%
+%% the documentclass is set to pdflatex as default. You can delete it if not appropriate.  %%
+%%=========================================================================================%%
+
+%%\documentclass[sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+
+%%Note: the following reference styles support Namedate and Numbered referencing. By default the style follows the most common style. To switch between the options you can add or remove �Numbered� in the optional parenthesis. 
+%%The option is available for: sn-basic.bst, sn-chicago.bst%  
+ 
+%%\documentclass[pdflatex,sn-nature]{sn-jnl}% Style for submissions to Nature Portfolio journals
+%%\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style/Chemistry Reference Style
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style
+%%\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}% Math and Physical Sciences Author Year Reference Style
+%%\documentclass[pdflatex,sn-aps]{sn-jnl}% American Physical Society (APS) Reference Style
+%%\documentclass[pdflatex,sn-vancouver-num]{sn-jnl}% Vancouver Numbered Reference Style
+%%\documentclass[pdflatex,sn-vancouver-ay]{sn-jnl}% Vancouver Author Year Reference Style
+%%\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style
+%%\documentclass[pdflatex,sn-chicago]{sn-jnl}% Chicago-based Humanities Reference Style
+
+%%%% Standard Packages
+%%<additional latex packages if required can be included here>
+
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+%%%%
+
+%%%%%=============================================================================%%%%
+%%%%  Remarks: This template is provided to aid authors with the preparation
+%%%%  of original research articles intended for submission to journals published 
+%%%%  by Springer Nature. The guidance has been prepared in partnership with 
+%%%%  production teams to conform to Springer Nature technical requirements. 
+%%%%  Editorial and presentation requirements differ among journal portfolios and 
+%%%%  research disciplines. You may find sections in this template are irrelevant 
+%%%%  to your work and are empowered to omit any such section if allowed by the 
+%%%%  journal you intend to submit to. The submission guidelines and policies 
+%%%%  of the journal take precedence. A detailed User Manual is available in the 
+%%%%  template package for technical guidance.
+%%%%%=============================================================================%%%%
+
+%% as per the requirement new theorem styles can be included as shown below
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%  meant for continuous numbers
+%%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
+%% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
+\newtheorem{proposition}[theorem]{Proposition}% 
+%%\newtheorem{proposition}{Proposition}% to get separate numbers for theorem and proposition etc.
+
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+%%\unnumbered% uncomment this for unnumbered level heads
+
+\begin{document}
+
+\title[
+A Projection Filtering Method for Output Redundant Systems
+]{
+A Projection Filtering Method for Output Redundant Systems
+}
+
+%%=============================================================%%
+%% GivenName	-> \fnm{Joergen W.}
+%% Particle	-> \spfx{van der} -> surname prefix
+%% FamilyName	-> \sur{Ploeg}
+%% Suffix	-> \sfx{IV}
+%% \author*[1,2]{\fnm{Joergen W.} \spfx{van der} \sur{Ploeg} 
+%%  \sfx{IV}}\email{iauthor@gmail.com}
+%%=============================================================%%
+
+% \author{Mehmet Canevi$^{1}$ and Seyit Okan Kara$^{2}$% <-this % stops a space
+% \thanks{*This work was not supported by any organization}% <-this % stops a space
+% \thanks{$^{1}$Mehmet Canevi is with Electrical-Electronics Engineering Department, Engineering Faculty, Nigde Omer Halisdemir University, Nigde 51240, Turkey
+%         {\tt\small mehmet.canevi@ohu.edu.tr}}%
+% \thanks{$^{2}$Seyit Okan Kara is with Bor Vocational School, Nigde Omer Halisdemir University, Nigde 51240, Turkey
+%         % {\tt\small b.d.researcher@ieee.org}
+%         }%
+% }
+
+
+
+% \author*[1,2]{\fnm{First} \sur{Author}}\email{iauthor@gmail.com}
+
+% \author[2,3]{\fnm{Second} \sur{Author}}\email{iiauthor@gmail.com}
+% \equalcont{These authors contributed equally to this work.}
+
+% \author[1,2]{\fnm{Third} \sur{Author}}\email{iiiauthor@gmail.com}
+% \equalcont{These authors contributed equally to this work.}
+
+% \affil*[1]{\orgdiv{Department}, \orgname{Organization}, \orgaddress{\street{Street}, \city{City}, \postcode{100190}, \state{State}, \country{Country}}}
+
+% \affil[2]{\orgdiv{Department}, \orgname{Organization}, \orgaddress{\street{Street}, \city{City}, \postcode{10587}, \state{State}, \country{Country}}}
+
+% \affil[3]{\orgdiv{Department}, \orgname{Organization}, \orgaddress{\street{Street}, \city{City}, \postcode{610101}, \state{State}, \country{Country}}}
+
+%%==================================%%
+%% Sample for unstructured abstract %%
+%%==================================%%
+
+\abstract{
+
+    We present a Projection Filtering Method(PFM) based on the gauge-invariance principle of modern physics, applicable to Output Redundant systems. A projection is proposed to use the invariance principle to decompose a linear output map into its components. In this work it is shown that, PFM can reconstruct states during the transient and steady state regime of dynamical systems and can serve as an alternative to classical observers for output redundant systems. Additionally, with PFM the reconstruction of states also translates into the reconstruction of disturbance, without the dependency on additional assumptions or a model of the disturbance, even with noisy outputs. The PFM is an alternative to classical observers for output redundant systems in this regard.
+
+}
+
+%%================================%%
+%% Sample for structured abstract %%
+%%================================%%
+
+% \abstract{\textbf{Purpose:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+% 
+% \textbf{Methods:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+% 
+% \textbf{Results:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
+% 
+% \textbf{Conclusion:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.}
+
+\keywords{keyword1, Keyword2, Keyword3, Keyword4}
+
+%%\pacs[JEL Classification]{D8, H51}
+
+%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
+
+\maketitle
+
+\section{INTRODUCTION}
+
+Gauge invariance is a central organizing principle of modern physics, expressing the idea that observable quantities should remain unchanged under certain local transformations of the mathematical description. In classical field theories and quantum electrodynamics, this concept ensures that different representations related by gauge transformations correspond to the same physical reality~\cite{Peskin1995,YangMills1954}. From an abstract viewpoint, gauge invariance provides a systematic way to separate physically meaningful dynamics from redundant coordinate or potential offsets. This symmetry-based perspective has proven essential for constructing robust and consistent models in physics, and it motivates the extension of invariance principles beyond their traditional domain toward engineered dynamical systems subject to measurement distortions and unknown offsets.
+
+In linear control systems, similar representation issues arise in the presence of redundant measurements or sensing architectures with non-minimal output representations. In particular, when the output matrix does not have full row rank, multiple output vectors may correspond to the same underlying state. This situation naturally appears in multi-sensor configurations, distributed systems, and sparse measurement settings, where the dimension of the measurement space exceeds the effective information content~\cite{Chen1999,Kailath1980}. As a result, the output representation contains directions that do not contribute to state observability but nevertheless affect the estimation process.
+
+From this perspective, the measurement space can be decomposed into physically meaningful components and redundant directions that do not affect the underlying state. However, conventional observer designs typically treat all output components uniformly, without explicitly distinguishing between these subspaces. This may lead to estimation dynamics that are influenced by representation-dependent artifacts, rather than purely by physically relevant discrepancies.
+
+This observation suggests that the estimation process should be constructed in a way that isolates the physically relevant part of the output from its redundant representation. A natural mechanism to achieve this separation is through a projection operator acting on the measurement space, which removes components lying in the non-informative directions while preserving the observable content. Such projection-based constructions are also well known in physics, particularly in gauge theories, where physically equivalent configurations are related by symmetry transformations and a representative is selected via gauge fixing~\cite{Peskin1995}.
+
+
+In this work, we propose a way of constructing a projection that acts as a static filter to recover the linear output mapping in terms of its components under given constraints. This projection is given as an alternative to the classical observer design for output redundant systems, due to the fact that no dynamical estimation is necessary to reconstruct states and disturbances. 
+
+The paper is organized as follows; preliminaries are given in section 2, the proposed projection filtering method is addressed in section 3. The proposed method is exemplified in section 4 with numerical examples. The conclusion and future work is given in section 5.
+
+\input{files/work}
+\section{Numerical Examples}
+\input{files/numerical_example1}
+
+\input{files/conclusion}
+
+
+% \bibliography{sn-bibliography}% common bib file
+% %% if required, the content of .bbl file can be included here once bbl is generated
+% %%\input sn-article.bbl
+
+\bibliographystyle{IEEEtran}
+\bibliography{library}         
+
+\end{document}
