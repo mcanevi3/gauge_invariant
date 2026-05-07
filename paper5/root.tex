@@ -73,6 +73,8 @@
 %% as per the requirement new theorem styles can be included as shown below
 \theoremstyle{thmstyleone}%
 \newtheorem{theorem}{Theorem}%  meant for continuous numbers
+\newtheorem{corollary}{Corollary}
+
 %%\newtheorem{theorem}{Theorem}[section]% meant for sectionwise numbers
 %% optional argument [theorem] produces theorem numbering sequence instead of independent numbers for Proposition
 \newtheorem{proposition}[theorem]{Proposition}% 
@@ -114,6 +116,13 @@ A Projection Filtering Method for Output Redundant Systems
 %         }%
 % }
 
+
+\author[1]{\fnm{Mehmet} \sur{Canevi}}\email{mehmet.canevi@ohu.edu.tr}
+\author[2]{\fnm{Seyit Okan} \sur{Kara}}%\email{mehmet.canevi@ohu.edu.tr}
+
+\affil*[1]{\orgdiv{Electrical-Electronics Engineering Department}, \orgname{Nigde Omer Halisdemir University}, \orgaddress{ \city{Nigde}, \postcode{51240}, \country{Turkey}}}
+
+\affil[2]{\orgdiv{Bor Vocational School}, \orgname{Nigde Omer Halisdemir University}, \orgaddress{\city{Nigde}, \postcode{51240},\country{Turkey}}}
 
 
 % \author*[1,2]{\fnm{First} \sur{Author}}\email{iauthor@gmail.com}
@@ -186,7 +195,7 @@ The paper is organized as follows; preliminaries are given in section 2, the pro
 % %% if required, the content of .bbl file can be included here once bbl is generated
 % %%\input sn-article.bbl
 
-\bibliographystyle{IEEEtran}
+% \bibliographystyle{IEEEtran}
 \bibliography{library}         
 
 \end{document}

@@ -1,0 +1,210 @@
+%% BioMed_Central_Bib_Style_v1.01
+
+\begin{thebibliography}{13}
+% BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{#1}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \doiurl  \undefined \def \doiurl#1{\url{https://doi.org/#1}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \binstitutionaled  \undefined \def \binstitutionaled#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{#1}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{#1}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{#1}\fi
+\bibcommenthead
+\ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
+\ifx \botherref \undefined \def \botherref #1{#1}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{#1}\fi
+\ifx \bbook \undefined \def \bbook#1{#1}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\ifx \endbibitem  \undefined \def \endbibitem {}\fi
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
+\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
+\csname PreBibitemsHook\endcsname
+
+%%% 1
+\bibitem[\protect\citeauthoryear{Peskin and Schroeder}{1995}]{Peskin1995}
+\begin{bbook}
+\bauthor{\bsnm{Peskin}, \binits{M.E.}},
+\bauthor{\bsnm{Schroeder}, \binits{D.V.}}:
+\bbtitle{An Introduction to Quantum Field Theory}.
+\bpublisher{Addison-Wesley}, \blocation{???}
+(\byear{1995})
+\end{bbook}
+\endbibitem
+
+%%% 2
+\bibitem[\protect\citeauthoryear{Yang and Mills}{1954}]{YangMills1954}
+\begin{barticle}
+\bauthor{\bsnm{Yang}, \binits{C.N.}},
+\bauthor{\bsnm{Mills}, \binits{R.L.}}:
+\batitle{Conservation of isotopic spin and isotopic gauge invariance}.
+\bjtitle{Phys. Rev.}
+\bvolume{96},
+\bfpage{191}--\blpage{195}
+(\byear{1954})
+\end{barticle}
+\endbibitem
+
+%%% 3
+\bibitem[\protect\citeauthoryear{Chen}{1999}]{Chen1999}
+\begin{bbook}
+\bauthor{\bsnm{Chen}, \binits{C.-T.}}:
+\bbtitle{Linear System Theory and Design}.
+\bpublisher{Oxford University Press}, \blocation{???}
+(\byear{1999})
+\end{bbook}
+\endbibitem
+
+%%% 4
+\bibitem[\protect\citeauthoryear{Kailath}{1980}]{Kailath1980}
+\begin{bbook}
+\bauthor{\bsnm{Kailath}, \binits{T.}}:
+\bbtitle{Linear Systems}.
+\bpublisher{Prentice-Hall}, \blocation{???}
+(\byear{1980})
+\end{bbook}
+\endbibitem
+
+%%% 5
+\bibitem[\protect\citeauthoryear{Shoukry and Tabuada}{2015}]{shoukry2015event}
+\begin{barticle}
+\bauthor{\bsnm{Shoukry}, \binits{Y.}},
+\bauthor{\bsnm{Tabuada}, \binits{P.}}:
+\batitle{Event-triggered state observers for sparse sensor noise/attacks}.
+\bjtitle{IEEE Transactions on Automatic Control}
+\bvolume{61}(\bissue{8}),
+\bfpage{2079}--\blpage{2091}
+(\byear{2015})
+\end{barticle}
+\endbibitem
+
+%%% 6
+\bibitem[\protect\citeauthoryear{Olfati-Saber
+  et~al.}{2007}]{olfati2007consensus}
+\begin{barticle}
+\bauthor{\bsnm{Olfati-Saber}, \binits{R.}},
+\bauthor{\bsnm{Fax}, \binits{J.A.}},
+\bauthor{\bsnm{Murray}, \binits{R.M.}}:
+\batitle{Consensus and cooperation in networked multi-agent systems}.
+\bjtitle{Proceedings of the IEEE}
+\bvolume{95}(\bissue{1}),
+\bfpage{215}--\blpage{233}
+(\byear{2007})
+\end{barticle}
+\endbibitem
+
+%%% 7
+\bibitem[\protect\citeauthoryear{Yang et~al.}{2022}]{yang2022sensor}
+\begin{barticle}
+\bauthor{\bsnm{Yang}, \binits{G.}},
+\bauthor{\bsnm{Rezaee}, \binits{H.}},
+\bauthor{\bsnm{Serrani}, \binits{A.}},
+\bauthor{\bsnm{Parisini}, \binits{T.}}:
+\batitle{Sensor fault-tolerant state estimation by networks of distributed
+  observers}.
+\bjtitle{IEEE Transactions on Automatic Control}
+\bvolume{67}(\bissue{10}),
+\bfpage{5348}--\blpage{5360}
+(\byear{2022})
+\end{barticle}
+\endbibitem
+
+%%% 8
+\bibitem[\protect\citeauthoryear{Yang et~al.}{2025}]{yang2025output}
+\begin{botherref}
+\oauthor{\bsnm{Yang}, \binits{G.}},
+\oauthor{\bsnm{Gallo}, \binits{A.J.}},
+\oauthor{\bsnm{Barboni}, \binits{A.}},
+\oauthor{\bsnm{Ferrari}, \binits{R.M.}},
+\oauthor{\bsnm{Serrani}, \binits{A.}},
+\oauthor{\bsnm{Parisini}, \binits{T.}}:
+On the output redundancy of lti systems: A geometric approach with application
+  to privacy.
+IEEE Transactions on Automatic Control
+(2025)
+\end{botherref}
+\endbibitem
+
+%%% 9
+\bibitem[\protect\citeauthoryear{Duan and Yu}{2013}]{duan2013lmis}
+\begin{bbook}
+\bauthor{\bsnm{Duan}, \binits{G.-R.}},
+\bauthor{\bsnm{Yu}, \binits{H.-H.}}:
+\bbtitle{LMIs in Control Systems: Analysis, Design and Applications}.
+\bpublisher{CRC press}, \blocation{???}
+(\byear{2013})
+\end{bbook}
+\endbibitem
+
+%%% 10
+\bibitem[\protect\citeauthoryear{Grant and Boyd}{2014}]{cvx}
+\begin{botherref}
+\oauthor{\bsnm{Grant}, \binits{M.}},
+\oauthor{\bsnm{Boyd}, \binits{S.}}:
+{CVX}: Matlab Software for Disciplined Convex Programming, version 2.1
+(2014)
+\end{botherref}
+\endbibitem
+
+%%% 11
+\bibitem[\protect\citeauthoryear{Grant and Boyd}{2008}]{gb08}
+\begin{bchapter}
+\bauthor{\bsnm{Grant}, \binits{M.}},
+\bauthor{\bsnm{Boyd}, \binits{S.}}:
+\bctitle{Graph implementations for nonsmooth convex programs}.
+In: \beditor{\bsnm{Blondel}, \binits{V.}},
+\beditor{\bsnm{Boyd}, \binits{S.}},
+\beditor{\bsnm{Kimura}, \binits{H.}} (eds.)
+\bbtitle{Recent Advances in Learning and Control}.
+\bsertitle{Lecture Notes in Control and Information Sciences},
+pp. \bfpage{95}--\blpage{110}.
+\bpublisher{Springer}, \blocation{???}
+(\byear{2008})
+\end{bchapter}
+\endbibitem
+
+%%% 12
+\bibitem[\protect\citeauthoryear{Chen and Patton}{1999}]{ChenPatton1999}
+\begin{bbook}
+\bauthor{\bsnm{Chen}, \binits{J.}},
+\bauthor{\bsnm{Patton}, \binits{R.J.}}:
+\bbtitle{Robust Model-Based Fault Diagnosis for Dynamic Systems}.
+\bpublisher{Kluwer Academic Publishers}, \blocation{???}
+(\byear{1999})
+\end{bbook}
+\endbibitem
+
+%%% 13
+\bibitem[\protect\citeauthoryear{Basile and Marro}{1992}]{BasileMarro1992}
+\begin{bbook}
+\bauthor{\bsnm{Basile}, \binits{G.}},
+\bauthor{\bsnm{Marro}, \binits{G.}}:
+\bbtitle{Controlled and Conditioned Invariants in Linear System Theory}.
+\bpublisher{Prentice Hall}, \blocation{???}
+(\byear{1992})
+\end{bbook}
+\endbibitem
+
+\end{thebibliography}
