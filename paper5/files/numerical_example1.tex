@@ -190,6 +190,13 @@ Then the state $x(t)$ is recovered using,
 \end{figure}
 The measured output for each sensor with noise is depicted in Figure~\ref{fig:ex2_results}. The output redundancy can be observed by comparing third output and fourth output in Figure~\ref{fig:ex2_results}. It can also be seen that the projection filtering method is able to reconstruct both states under noisy measurements.
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.85\linewidth]{img/ex2_results2}
+    \caption{Disturbance recovered by projection filtering versus actual disturbance}
+    \label{fig:ex2_results2}
+\end{figure}
+
 
 The disturbance is recovered using the projection on $\begin{bmatrix}
         C& D_n
@@ -204,12 +211,6 @@ The disturbance is recovered using the projection on $\begin{bmatrix}
 \end{gather}
 and is plotted in Figure~\ref{fig:ex2_results2}. It is observed that disturbance recovery works in a similar fashion compared to state recovery in Figure~\ref{fig:ex2_results}. 
 
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.85\linewidth]{img/ex2_results2}
-    \caption{Disturbance recovered by projection filtering versus actual disturbance}
-    \label{fig:ex2_results2}
-\end{figure}
 
 
 Throughout the examples given in this section, it has been established that, the projection filtering method exploits the output mapping using a projection matrix and recovers the states and the disturbance of a system directly. Whereas, the Luenberger observer, however fast dynamics it possesses, estimates the states of a system, due to its dynamic structure. Assuming no information about disturbance, one can also back-calculate the disturbance in a system with the Luenberger state estimates. Due to the dynamics, the disturbance and state estimations are valid for steady-state. But projection filtering gives valid results for both transient and steady-state regime. Additionally, projection filtering can handle noise, if necessary amount of sensors are present. 
