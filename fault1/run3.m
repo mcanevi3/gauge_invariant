@@ -17,10 +17,10 @@ Pi1=proj(C);
 Pi2=proj(Pi1*Dw);
 
 T=Pi2*Pi1;
-temp=T*[f1;f2;0;0;0];
+temp=T*[f1;0;0;0;0];
 vpa(temp,3)
 
-temp=T*[rand();rand();0;0;0];
+temp=T*[rand();0;0;0;0];
 temp
 %[U,S,V]=svd(T);
 %S
