@@ -1,13 +1,9 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
+\documentclass{article}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage{geometry}
 \usepackage{cancel}
 
-\geometry{margin=1in}
-
-\title{\textbf{Kalman Filtering 101: A Step-by-Step Derivation from the Ground Up}}
-\author{Control Systems Engineering Primer}
+\title{\textbf{Kalman Filter}}
+\author{Mehmet Canevi}
 \date{\today}
 
 \begin{document}
@@ -15,96 +11,131 @@
 \maketitle
 
 \begin{abstract}
-This document provides a rigorous, step-by-step mathematical derivation of the discrete-time linear Kalman filter. By formulating the estimator as a recursive linear predictor-corrector and applying optimization via trace minimization of the error covariance, we bridge the gap between stochastic derivation and deterministic optimal estimation.
+A thorough kalman filter derivation.
 \end{abstract}
 
-\section{System Modeling and Definitions}
-Consider a linear, time-invariant discrete-time system governed by the state-space equations:
+\section{The System Model}
+A linear time-invariant discrete-time system governed by the state-space equations:
 \begin{align}
     x_{k} &= A x_{k-1} + B_u u_{k-1} + w_{k-1} \\
     y_k &= C x_k + v_k
 \end{align}
 where:
 \begin{itemize}
-    \item $x_k \in \mathbb{R}^n$ is the true state vector at time step $k$.
-    \item $u_k \in \mathbb{R}^m$ is the known deterministic input vector.
-    \item $y_k \in \mathbb{R}^p$ is the sensor measurement vector.
-    \item $w_k \in \mathbb{R}^n$ is the process noise (or disturbance) with zero mean and covariance matrix $Q = E[w_k w_k^T]$.
-    \item $v_k \in \mathbb{R}^p$ is the measurement noise with zero mean and covariance matrix $R = E[v_k v_k^T]$, independent of $w_k$.
+    \item $x_k \in \mathbb{R}^n$ is the state vector.
+    \item $u_k \in \mathbb{R}^m$ is the control input vector.
+    \item $y_k \in \mathbb{R}^p$ is the measured output.
+    \item $w_k \in \mathbb{R}^n$ is the process noise with covariance $Q = E[w_k w_k^T]$.
+    \item $v_k \in \mathbb{R}^p$ is the measurement noise with covariance matrix $R = E[v_k v_k^T]$, independent of $w_k$.
 \end{itemize}
 
-\section{The Predict-Correct Structure}
-The Kalman filter operates recursively in two distinct phases:
-
-\subsection{1. Prediction (Time Update)}
-Before receiving the new sensor measurement at step $k$, we project our state estimate and error covariance forward using the system model:
+\section{The Kalman Filter}
+The filter is defined as:
 \begin{align}
-    \hat{x}_{k|k-1} &= A \hat{x}_{k-1|k-1} + B_u u_{k-1} \\
-    P_{k|k-1} &= A P_{k-1|k-1} A^T + Q
+    \hat{x}_{k|k-1} &= A \hat{x}_{k-1|k-1} + B_u u_{k-1} 
 \end{align}
-where $\hat{x}^-$ denotes the \textit{a priori} estimate and $P^-$ is the \textit{a priori} error covariance.
-
-\subsection{2. Correction (Measurement Update)}
-Once the measurement $y_k$ arrives, we correct our prediction using a linear blending gain $K_k$ (the Kalman gain):
-\begin{equation}
-    \hat{x}_{k|k} = \hat{x}_{k|k-1} + K_k \left( y_k - C \hat{x}_{k|k-1} \right)
-\end{equation}
-The term $\tilde{y}_k = y_k - C \hat{x}_{k|k-1}$ is defined as the \textbf{innovation} (or measurement residual).
-
-\section{Rigorous Derivation of the Error Covariance ($P$)}
-To find the optimal gain $K_k$, we must first determine how the estimation error propagates through the measurement update.
-
-\subsection{Step A: Defining the Error and the Joseph Form}
-The \textit{a priori} and \textit{a posteriori} estimation errors are defined as:
+The error dynamics associated is obtained as follows,
 \begin{align}
-    e_{k|k-1} &= x_k - \hat{x}_{k|k-1} \\
-    e_{k|k}   &= x_k - \hat{x}_{k|k}
+    e_{k|k-1} &= x_{k}-\hat{x}_{k|k-1}\\
+    &=A x_{k-1} + B_u u_{k-1} + w_{k-1}-A \hat{x}_{k-1|k-1} - B_u u_{k-1} \\
+    e_{k|k-1} &=A e_{k-1|k-1}+w_{k-1}
 \end{align}
-Substituting the correction equation and the measurement equation ($y_k = C x_k + v_k$) into the \textit{a posteriori} error yields:
+The covariance matrix $P_{k|k-1}$ is given by $E[e_{k|k-1}e_{k|k-1}^T]$ as follows,
 \begin{align}
-    e_{k|k} &= x_k - \left[ \hat{x}_{k|k-1} + K_k \left( C x_k + v_k - C \hat{x}_{k|k-1} \right) \right] \\
-    &= (x_k - \hat{x}_{k|k-1}) - K_k C (x_k - \hat{x}_{k|k-1}) - K_k v_k \\
-    &= (I - K_k C) e_{k|k-1} - K_k v_k
+    P_{k|k-1} &=E[e_{k|k-1}e_{k|k-1}^T]\\
+    &=E[(A e_{k-1|k-1}+w_{k-1})(A e_{k-1|k-1}+w_{k-1})^T]\\
+    &=E[A e_{k-1|k-1} e_{k-1|k-1}^T A^T] + E[A e_{k-1|k-1} w_{k-1}^T] \\
+    &+ E[w_{k-1} e_{k-1|k-1}^T] + E[w_{k-1} w_{k-1}^T]\\
+    &=A E[e_{k-1|k-1} e_{k-1|k-1}^T] A^T + E[w_{k-1} w_{k-1}^T]\\
+    P_{k|k-1} &=A P_{k-1|k-1} A^T + Q
 \end{align}
-
-The \textit{a posteriori} error covariance matrix $P_{k|k} = E[e_{k|k} e_{k|k}^T]$ is then calculated by taking the expectation. Because process/measurement noise and estimation errors are mutually uncorrelated ($E[e_{k|k-1} v_k^T] = 0$), the cross-terms vanish:
-\begin{equation}
-    P_{k|k} = (I - K_k C) P_{k|k-1} (I - K_k C)^T + K_k R K_k^T
-\end{equation}
-This expression is known as the \textbf{Joseph form} of the covariance update, which holds for any arbitrary gain $K_k$.
-
-\subsection{Step B: Expanding the Covariance Matrix}
-Expanding equation (10) algebraically:
-\begin{equation}
-    P_{k|k} = P_{k|k-1} - K_k C P_{k|k-1} - P_{k|k-1} C^T K_k^T + K_k \left( C P_{k|k-1} C^T + R \right) K_k^T
-\end{equation}
-
-\section{Deriving the Optimal Kalman Gain}
-To find the gain $K_k$ that minimizes the total estimation uncertainty, we minimize the sum of the variances on the main diagonal—represented mathematically by the trace of $P_{k|k}$:
+The state estimation is corrected in a Luenberger fashion as follows,
+\begin{align}
+    \hat{x}_{k|k} &= \hat{x}_{k|k-1} + K_k \left( y_k - C \hat{x}_{k|k-1} \right)
+\end{align}
+where the error is obtained as,
+\begin{align}
+    e_{k|k} &= x_k - \hat{x}_{k|k}\\
+    &=x_k - \hat{x}_{k|k-1} - K_k \left( y_k - C \hat{x}_{k|k-1} \right)\\
+    &=x_k - \hat{x}_{k|k-1} - K_k \left(  C x_k + v_k - C \hat{x}_{k|k-1} \right)\\
+    &=e_{k|k-1} - K_k C e_{k|k-1}-K_k v_k\\
+    e_{k|k} &= (I-K_k C) e_{k|k-1} - K_k v_k
+\end{align}
+and its covariance is calculated as,
+\begin{align}
+    P_{k|k} &= E[e_{k|k} e_{k|k}^T]\\
+    &=E[((I-K_k C) e_{k|k-1} - K_k v_k )(e_{k|k-1}(I-K_k C)^T  - v_k^T K_k^T)]\\
+    &=E[(I-K_k C) e_{k|k-1}e_{k|k-1}(I-K_k C)^T]-E[(I-K_k C) e_{k|k-1}v_k^T K_k^T]\\
+    &-E[K_k v_k e_{k|k-1}^T(I-K_k C)^T]+E[K_k v_k v_k^T K_k^T ]\\
+    &=(I-K_k C) E[e_{k|k-1}e_{k|k-1}](I-K_k C)^T-(I-K_k C)E[e_{k|k-1}v_k^T]K_k^T\\
+    &-K_k E[v_k e_{k|k-1}^T](I-K_k C)^T+K_kE[v_k v_k^T] K_k^T\\
+    &=(I-K_k C) E[e_{k|k-1}e_{k|k-1}](I-K_k C)^T+K_kE[v_k v_k^T] K_k^T\\
+    P_{k|k} &=(I-K_k C) P_{k|k-1} (I-K_k C)^T+K_k R K_k^T
+\end{align}
+The covariance equation is expanded as follows,
+\begin{align}
+    P_{k|k} &=(I-K_k C) P_{k|k-1} (I-K_k C)^T+K_k R K_k^T\\
+    &=P_{k|k-1}-K_k C P_{k|k-1}-P_{k|k-1} C^T K_k^T-K_k C P_{k|k-1} C^T K_k^T+K_k R K_k^T\\
+    &=P_{k|k-1}-K_k C P_{k|k-1}-P_{k|k-1} C^T K_k^T+K_k (C P_{k|k-1} C^T+R) K_k^T
+\end{align}
+This equation is used to choose the Kalman gain $K_k$ with the following problem,
 \begin{equation}
     \min_{K_k} \text{Tr}(P_{k|k})
 \end{equation}
-
-Using standard matrix calculus identities ($\frac{\partial \text{Tr}(AB)}{\partial A} = B^T$ and $\frac{\partial \text{Tr}(ACA^T)}{\partial A} = 2AC$ for symmetric $C$), we take the derivative of $\text{Tr}(P_{k|k})$ with respect to $K_k$ and set it to zero:
+by utilizing 
 \begin{equation}
-    \frac{\partial \text{Tr}(P_{k|k})}{\partial K_k} = -2 \left( P_{k|k-1} C^T \right)^T + 2 K_k \left( C P_{k|k-1} C^T + R \right) = 0
+    \frac{\partial \text{Tr}(AB)}{\partial A} = B^T
 \end{equation}
-
-Solving for $K_k$:
+and
 \begin{equation}
-    K_k \left( C P_{k|k-1} C^T + R \right) = P_{k|k-1} C^T
+    \frac{\partial \text{Tr}(ACA^T)}{\partial A} = 2AC
 \end{equation}
-\begin{equation}
-    \boxed{K_k = P_{k|k-1} C^T \left( C P_{k|k-1} C^T + R \right)^{-1}}
-\end{equation}
-Letting $S_k = C P_{k|k-1} C^T + R$ represent the innovation covariance, the optimal gain is written compactly as $K_k = P_{k|k-1} C^T S_k^{-1}$.
-
-\section{Simplifying the Covariance Update}
-Substituting the optimal gain condition $P_{k|k-1} C^T = K_k S_k$ back into the expanded covariance equation (11) yields a massive algebraic simplification:
+The following is obtained,
 \begin{align}
-    P_{k|k} &= P_{k|k-1} - K_k C P_{k|k-1} - \cancel{P_{k|k-1} C^T K_k^T} + \cancel{K_k S_k K_k^T} \\
-    &= \left( I - K_k C \right) P_{k|k-1}
+    \frac{\partial \text{Tr}(P_{k|k})}{\partial K_k} &= -2 \left( P_{k|k-1} C^T \right)^T + 2 K_k \left( C P_{k|k-1} C^T + R \right)\\
+    &=0
 \end{align}
-This proves the standard, highly efficient computational form for the updated error covariance.
+which gives,
+\begin{align}
+    2 \left( P_{k|k-1} C^T \right) &= 2 K_k \left( C P_{k|k-1} C^T + R \right)\\
+    P_{k|k-1} C^T  &= K_k (C P_{k|k-1} C^T + R) \\
+    P_{k|k-1} C^T(C P_{k|k-1} C^T + R)^{-1}  &= K_k \\
+    K_k&= P_{k|k-1} C^T(C P_{k|k-1} C^T + R)^{-1}\\
+    K_k&= P_{k|k-1} C^T S_k^{-1}
+\end{align}
+where $S_k = C P_{k|k-1}C^T+R$.
+
+The covariance equation 
+\begin{align}
+    P_{k|k} &=(I-K_k C) P_{k|k-1} (I-K_k C)^T+K_k R K_k^T
+\end{align}
+using $K_k S_k=P_{k|k-1} C^T$ when examined gives,
+\begin{align}
+    P_{k|k} &=(I-K_k C) P_{k|k-1} (I-K_k C)^T+K_k R K_k^T\\
+    &=(P_{k|k-1} -K_k C P_{k|k-1} )(I-C^T K_k^T)+K_k R K_k^T\\
+    &=P_{k|k-1}-K_k C P_{k|k-1}-P_{k|k-1}C^T K_k^T+K_k C P_{k|k-1}C^T K_k^T+K_k R K_k^T\\
+    &=P_{k|k-1}-K_k C P_{k|k-1}-P_{k|k-1}C^T K_k^T+K_k (C P_{k|k-1}C^T+R) K_k^T\\
+    &=P_{k|k-1}-K_k C P_{k|k-1}-(K_k S_k) K_k^T+K_k S_k K_k^T\\
+    &=P_{k|k-1}-K_k C P_{k|k-1}-K_k S_k K_k^T+K_k S_k K_k^T\\
+    &=P_{k|k-1}-K_k C P_{k|k-1}\\
+    P_{k|k} &=(I-K_k C) P_{k|k-1}
+\end{align}
+
+\section{Summary}
+With initial choices of $\hat{x}_0$, $P_0$, the Kalman filter is summarized as follows:
+\begin{align}
+    \hat{x}_{k|k-1} &= A \hat{x}_{k-1|k-1} + B_u u_{k-1}
+\end{align}
+the filter is:
+\begin{align}
+    S_k &= C P_{k|k-1} C^T + R\\
+    K_k &= P_{k|k-1} C^T S_k^{-1}
+\end{align}
+then,
+\begin{align}
+    \hat{x}_{k|k} &= \hat{x}_{k|k-1} + K_k \left( y_k - C \hat{x}_{k|k-1} \right)\\
+    P_{k|k} &= (I-K_k C) P_{k|k-1}
+\end{align}
+
 
 \end{document}
