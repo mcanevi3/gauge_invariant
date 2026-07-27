@@ -189,4 +189,8 @@ This sequential architecture ensures that the disturbance is estimated without i
 \section{Conclusion}
 The cross-covariance helps the augmented kalman filter to outperform dual PSM method, PSM for disturbance and PSM for state estimation, but if the disturbance has some discontinuities then the peaks are isolated in dual PSM, hence it performs better.
 
+The augmented kalman can be improved in terms of state estimation by sacrificing the disturbance estimation entirely, such that dual PSM like peak reduction occurs in the states. But disturbance is not estimated at all.
+
+It seems like, the Normalized Innovation Squared signal can be utilized to switch between dual PSM and augmented kalman to improve the overall estimation.
+
 \end{document}

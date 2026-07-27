@@ -32,6 +32,8 @@ x_true(:,1) = [0; 0];
 z_hat(:,1)  = [0; 0; 0]; % Initial augmented state: [x1; x2; w]
 P_aug = eye(n_z);
 
+eps_k_hist=zeros(1,N);
+
 % 4. Main Simulation and Filter Loop
 for k = 2:N
     % --- SIMULATE TRUE SYSTEM ---
@@ -47,6 +49,11 @@ for k = 2:N
     S_k = C_aug * P_pred * C_aug' + R;
     K_k = P_pred * C_aug' / S_k; % Standard division is fine here (no projection)
     
+    % Normalized Innovation Squared (NIS)
+    v_k=y_meas(:,k) - C_aug * z_pred;
+    eps_k = v_k'*inv(S_k)*v_k;
+    eps_k_hist(k)=eps_k;
+
     z_hat(:,k) = z_pred + K_k * (y_meas(:,k) - C_aug * z_pred);
     P_aug = (eye(n_z) - K_k * C_aug) * P_pred;
 end
@@ -61,6 +68,7 @@ results_aug.x_true = x_true;
 results_aug.w_true = w_true;
 results_aug.x_hat = x_hat;
 results_aug.w_hat = w_hat;
+results_aug.eps_k_hist = eps_k_hist;
 
 % Save the struct to a binary .mat file
 save('sim_results_aug.mat', '-struct', 'results_aug');
