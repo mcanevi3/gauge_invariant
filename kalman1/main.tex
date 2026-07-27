@@ -138,4 +138,52 @@ then,
 \end{align}
 
 
+\section{Two-Stage Estimation Approach}
+In the presence of an unknown disturbance $w_k$, the discrete-time measurement equation is given by:
+\begin{equation}
+    y_k = C x_k + D_w w_k + v_k
+\end{equation}
+To decouple the state $x_k$ from the disturbance $w_k$ during the initial estimation phase, a projection matrix $\Pi$ is defined such that it nullifies the measurement matrix $C$. Assuming $C$ has full column rank, $\Pi$ is computed via the pseudo-inverse as:
+\begin{equation}
+    \Pi = I - C (C^T C)^{-1} C^T
+\end{equation}
+which satisfies $\Pi C = 0$. 
+
+\subsection{Stage 1: Disturbance Estimation}
+Multiplying the measurement equation by the projection matrix yields the projected measurement $\bar{y}_k$:
+\begin{align}
+    \bar{y}_k &= \Pi y_k \\
+    &= \Pi C x_k + \Pi D_w w_k + \Pi v_k \\
+    &= \Pi D_w w_k + \bar{v}_k
+\end{align}
+where $\bar{v}_k = \Pi v_k$ is the projected measurement noise with covariance $\bar{R} = \Pi R \Pi^T$. This projection completely removes the influence of the state $x_k$. Assuming the disturbance evolves as a random walk model ($w_k = w_{k-1} + w_{w,k-1}$ with process noise covariance $Q_w$), the Kalman filter for the disturbance is formulated as follows.
+
+The prediction step for the disturbance is:
+\begin{align}
+    \hat{w}_{k|k-1} &= \hat{w}_{k-1|k-1} \\
+    P^w_{k|k-1} &= P^w_{k-1|k-1} + Q_w
+\end{align}
+The update step uses the projected measurement:
+\begin{align}
+    S^w_k &= (\Pi D_w) P^w_{k|k-1} (\Pi D_w)^T + \bar{R} \\
+    K^w_k &= P^w_{k|k-1} (\Pi D_w)^T (S^w_k)^{-1} \\
+    \hat{w}_{k|k} &= \hat{w}_{k|k-1} + K^w_k \left( \Pi y_k - \Pi D_w \hat{w}_{k|k-1} \right) \\
+    P^w_{k|k} &= (I - K^w_k \Pi D_w) P^w_{k|k-1}
+\end{align}
+
+\subsection{Stage 2: State Estimation}
+With the updated disturbance estimate $\hat{w}_{k|k}$ acquired, it is treated as a known input for the primary state estimator. The state prediction relies on the prior disturbance estimate $\hat{w}_{k-1|k-1}$:
+\begin{align}
+    \hat{x}_{k|k-1} &= A_d \hat{x}_{k-1|k-1} + B_{ud} u_{k-1} + B_{wd} \hat{w}_{k-1|k-1} \\
+    P^x_{k|k-1} &= A_d P^x_{k-1|k-1} A_d^T + Q_x
+\end{align}
+For the state update, the effect of the newly estimated disturbance is subtracted from the actual measurement, creating a modified innovation term. The state update is executed as:
+\begin{align}
+    S^x_k &= C P^x_{k|k-1} C^T + R \\
+    K^x_k &= P^x_{k|k-1} C^T (S^x_k)^{-1} \\
+    \hat{x}_{k|k} &= \hat{x}_{k|k-1} + K^x_k \left( y_k - C \hat{x}_{k|k-1} - D_w \hat{w}_{k|k} \right) \\
+    P^x_{k|k} &= (I - K^x_k C) P^x_{k|k-1}
+\end{align}
+This sequential architecture ensures that the disturbance is estimated without interference from the system states, providing a clean feedforward term for the state estimator's correction phase.
+
 \end{document}
