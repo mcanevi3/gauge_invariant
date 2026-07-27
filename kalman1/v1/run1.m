@@ -1,5 +1,5 @@
 %% Kalman filter augmented with disturbance x1,x2,w
-clear;clc;
+clear;clc;close all;
 init;
 
 % Augment the state vector z = [x1; x2; w]

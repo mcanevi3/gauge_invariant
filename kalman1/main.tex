@@ -186,4 +186,7 @@ For the state update, the effect of the newly estimated disturbance is subtracte
 \end{align}
 This sequential architecture ensures that the disturbance is estimated without interference from the system states, providing a clean feedforward term for the state estimator's correction phase.
 
+\section{Conclusion}
+The cross-covariance helps the augmented kalman filter to outperform dual PSM method, PSM for disturbance and PSM for state estimation, but if the disturbance has some discontinuities then the peaks are isolated in dual PSM, hence it performs better.
+
 \end{document}
