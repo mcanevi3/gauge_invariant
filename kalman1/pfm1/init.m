@@ -31,10 +31,10 @@ w_true(1, 201:400) = 2.0;
 w_true(1, 401:700) = 2.0 + 1.5 * sin(2*pi*2*t(401:700));      
 w_true(1, 701:N)   = linspace(2.0, -1.0, N-700);              
 
-% dual psm favoring disturbance
-w_true = zeros(n_w, N);
-w_true(1, 201:500) = 5 * sign(sin(2*pi*50*t(201:500))); 
-w_true(1, 600) = 15; 
-w_true(1, 700) = -20;
-w_true(1, 800) = 25;
-w_true(1, 900) = -15;
+% % dual psm favoring disturbance
+% w_true = zeros(n_w, N);
+% w_true(1, 201:500) = 5 * sign(sin(2*pi*50*t(201:500))); 
+% w_true(1, 600) = 15; 
+% w_true(1, 700) = -20;
+% w_true(1, 800) = 25;
+% w_true(1, 900) = -15;

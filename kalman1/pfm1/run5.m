@@ -1,8 +1,8 @@
-%% Adaptive Augmented Kalman estimating w and x at once
+%% Adaptive Augmented Kalman estimating w and x at once adapting Sk
 clear; clc; close all;
 
 % 1. Lock Random Seed for Reproducibility
-rng(42, 'twister'); 
+rng(43, 'twister'); 
 
 % 2. Load System Matrices
 init; 

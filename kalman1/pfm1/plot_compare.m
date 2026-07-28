@@ -19,37 +19,34 @@ figure('Name', 'Filter Comparison: Dual-PFM vs Augmented', 'Position', [100, 100
 
 % --- State 1 ---
 subplot(4,1,1);cla;hold on;grid on;
-plot(t, data_uio.x_true(1,:), 'k', 'LineWidth', 1.5); 
-plot(t, data_uio.x_hat(1,:), 'r--', 'LineWidth', 1.5);
-plot(t, data_aug.x_hat(1,:), 'b--', 'LineWidth', 1.5);
-plot(t, data_adapt.x_hat(1,:), 'm--', 'LineWidth', 1.5);
-ylabel('x_1'); 
+plot(t, data_uio.x_true(1,:), 'k', 'LineWidth', 1.5,'DisplayName','State'); 
+plot(t, data_uio.x_hat(1,:), 'r--', 'LineWidth', 1.5,'DisplayName','Duak-PFM');
+plot(t, data_aug.x_hat(1,:), 'b--', 'LineWidth', 1.5,'DisplayName','Augmented KF');
+plot(t, data_adapt.x_hat(1,:), 'm--', 'LineWidth', 1.5,'DisplayName','Augmented Adaptive Sk KF');
+xlabel('time(s)');ylabel('x_1'); legend('show', 'Location', 'best');
 title('State 1 Estimation');
-legend('True State', 'Dual-PFM Estimate', 'Augmented Estimate', 'Location', 'best');
 
 % --- State 2 ---
 subplot(4,1,2);cla;hold on;grid on;
-plot(t, data_uio.x_true(2,:), 'k', 'LineWidth', 1.5); 
-plot(t, data_uio.x_hat(2,:), 'r--', 'LineWidth', 1.5);
-plot(t, data_aug.x_hat(2,:), 'b--', 'LineWidth', 1.5);
-plot(t, data_adapt.x_hat(2,:), 'm--', 'LineWidth', 1.5);
-ylabel('x_2'); 
+plot(t, data_uio.x_true(2,:), 'k', 'LineWidth', 1.5,'DisplayName','State'); 
+plot(t, data_uio.x_hat(2,:), 'r--', 'LineWidth', 1.5,'DisplayName','Duak-PFM');
+plot(t, data_aug.x_hat(2,:), 'b--', 'LineWidth', 1.5,'DisplayName','Augmented KF');
+plot(t, data_adapt.x_hat(2,:), 'm--', 'LineWidth', 1.5,'DisplayName','Augmented Adaptive Sk KF');
+xlabel('time(s)');ylabel('x_2'); legend('show', 'Location', 'best');
 title('State 2 Estimation');
-legend('True State', 'Dual-PFM Estimate', 'Augmented Estimate', 'Location', 'best');
 
 % --- Disturbance ---
 subplot(4,1,3);cla;hold on;grid on;
-plot(t, data_uio.w_true(1,:), 'k', 'LineWidth', 1.5); 
-plot(t, data_uio.w_hat(1,:), 'r--', 'LineWidth', 1.5);
-plot(t, data_aug.w_hat(1,:), 'b--', 'LineWidth', 1.5);
-plot(t, data_adapt.w_hat(1,:), 'm--', 'LineWidth', 1.5);
-ylabel('w'); xlabel('Time (s)'); 
+plot(t, data_uio.w_true(1,:), 'k', 'LineWidth', 1.5,'DisplayName','State'); 
+plot(t, data_uio.w_hat(1,:), 'r--', 'LineWidth', 1.5,'DisplayName','Duak-PFM');
+plot(t, data_aug.w_hat(1,:), 'b--', 'LineWidth', 1.5,'DisplayName','Augmented KF');
+plot(t, data_adapt.w_hat(1,:), 'm--', 'LineWidth', 1.5,'DisplayName','Augmented Adaptive Sk KF');
+xlabel('time(s)');ylabel('w'); legend('show', 'Location', 'best');
 title('Disturbance Estimation');
-legend('True Disturbance', 'Dual-PFM Estimate', 'Augmented Estimate', 'Location', 'best');
 
 subplot(4,1,4);cla;hold on;grid on;
 plot(t, data_aug.eps_k_hist, 'k', 'LineWidth', 1.5); 
-
+title("Normalized Innovation Squared");
 % 3. Calculate and Display Mean Squared Error (MSE)
 fprintf('--- Mean Squared Error (MSE) Comparison ---\n');
 
@@ -71,14 +68,16 @@ mse_adapt_w  = mean((data_adapt.w_true(1,:) - data_adapt.w_hat(1,:)).^2);
 fprintf('State 1 (x1):\n');
 fprintf('  Dual-PFM MSE: %e\n', mse_uio_x1);
 fprintf('  Augmented MSE: %e\n', mse_aug_x1);
-fprintf('  Augmented MSE: %e\n', mse_adapt_x1);
+fprintf('  Augmented Ad Sk MSE: %e\n', mse_adapt_x1);
 
 fprintf('State 2 (x2):\n');
 fprintf('  Dual-PFM MSE: %e\n', mse_uio_x2);
 fprintf('  Augmented MSE: %e\n', mse_aug_x2);
-fprintf('  Augmented MSE: %e\n', mse_adapt_x2);
+fprintf('  Augmented Ad Sk MSE: %e\n', mse_adapt_x2);
 
 fprintf('Disturbance (w):\n');
 fprintf('  Dual-PFM MSE: %e\n', mse_uio_w);
 fprintf('  Augmented MSE: %e\n', mse_aug_w);
-fprintf('  Augmented MSE: %e\n', mse_adapt_w);
+fprintf('  Augmented Ad Sk MSE: %e\n', mse_adapt_w);
+
+% print("res1.png","-dpng")

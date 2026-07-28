@@ -1,6 +1,6 @@
 %% PFM kalman for disturbance, PFM kalman for state
 clear; clc; close all;
-rng(42, 'twister');
+rng(43, 'twister');
 % 1. Load System Matrices
 init; 
 
